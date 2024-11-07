@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'aritadm';
+    src: url('../fonts/AritaDotumMedium.eot');
+    src: local('※'), url('../fonts/AritaDotumMedium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/AritaDotumMedium.woff') format('woff'),
+         url('../fonts/AritaDotumKR-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'aritadm', sans-serif !important;
+    background-color: #f8f9fa;
+}
+p{
+    word-break: keep-all;
+}
+.tilteBold{
+    font-weight: bold;
+}
+.card {
+    margin: 15px;
+}
+.logo {
+    width: 50px; /* 로고 크기 조정 */
+}
+
+.logoTitle{
+    color : #313336
+}
+
+/* .banner-wrapper{
+    width: 100%;
+    height: 300px;
+    background-color: #11A0FF;
+}
+.banner-image{
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}  */
+
+.banner-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto; /* 고정된 높이 */
+    overflow: hidden;
+}
+
+.blur-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../img/banner.png");
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px); /* 배경 블러 효과 적용 */
+    z-index: 0; /* 뒤에 배치 */
+}
+
+.banner-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 원본 이미지 비율 유지 */
+    z-index: 1; /* 블러 배경보다 위에 배치 */
+}
+.benefit-card-ul{
+    display: flex;
+    list-style-type: none;
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+.benefit-card-li{
+    float: left;
+    align-content: center;
+}
+.card-container {
+    display: flex; /* 플렉스박스를 사용하여 카드들을 가로로 나열 */
+    justify-content: space-between; /* 카드 사이에 고르게 공간 분배 */
+    margin: 0; /* 상하 여백 추가 */
+}
+
+.card {
+    display: flex; /* Flexbox를 사용하여 자식 요소를 가로로 배치 */
+    border: 1px solid #ccc; /* 카드 테두리 */
+    padding: 10px; /* 카드 내부 여백 */
+    border-radius: 5px; /* 카드 모서리 둥글게 */
+}
+.benefit-card{
+    margin: 1px !important;
+}
+.card-image-container {
+    margin-right: 10px; /* 이미지와 카드 내용 사이의 간격 */
+}
+
+.card-image {
+    width: 75px; /* 이미지 너비 */
+    height: auto; /* 비율 유지 */
+}
+
+.card-title {
+    font-size: 1.2em; /* 제목 크기 */
+    font-weight: bold; /* 제목 두껍게 */
+    margin: 0;
+}
+
+.card-description {
+    font-size: 1em; /* 설명 크기 */
+    color: #666; /* 설명 색상 */
+    margin: 0;
+}
+#cardControl{
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+.i-icon {
+    font-size: 24px; /* 아이콘 크기 */
+    color: #333; /* 아이콘 색상 */
+}
+.h2-i{
+    background-color: #ffffff; /* 배경색 흰색 */
+    border-radius: 8px; /* 모서리 둥글게 설정 */
+    padding: 2px; /* 내부 여백 추가 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    margin: 0; /* 상하 여백 추가 */
+}
+
+/* 검색부분 */
+.form-group {
+    margin-bottom: 1rem; /* 각 요소 간의 간격 조정 */
+}
+.date-time-group {
+    display: flex; /* 날짜와 시간 입력란을 가로로 배치 */
+    justify-content: space-between; /* 요소 간격 조정 */
+}
+.date-time-group .form-control {
+    flex: 1; /* 각 입력란의 너비를 균등하게 조정 */
+    margin-right: 0.5rem; /* 입력란 간의 간격 조정 */
+}
+.date-time-group .form-control:last-child {
+    margin-right: 0; /* 마지막 요소의 오른쪽 여백 제거 */
+}
+
+.mt-5 {
+    background-color:#ffffff ;
+}
+
+.mt-4{
+    background-color:#ffffff ;
+}

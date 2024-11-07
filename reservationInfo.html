@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>니혼카</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style/carInfo.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+</head>
+
+<body>
+
+    <header class="bg-white text-white" style="background-color: #ffffff;">
+        <div class="container d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center">
+                <img src="logo.png" alt="로고" class="logo">
+                <h1 class="ml-2 logoTitle">니혼카</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- 상단 메뉴 -->
+    <nav class="bg-dark">
+        <div class="container">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">홈</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">차량 리스트</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">예약하기</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#">문의하기</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <div class="carInfoContainer">
+            <section class="car-details">
+                <div class="car-container">
+                    <div class="car-image">
+                        <img id="carImg" alt="렌터카 이미지">
+                        <h3 id="title">오릭스 렌터카 - 모델명</h3>
+                    </div>
+                    <div class="car-info">
+                        <table class="car-details-table">
+                            <tr>
+                                <th>차량 등급</th>
+                                <td class="car-td" id="grade">미드사이즈</td>
+                            </tr>
+                            <tr>
+                                <th>수하물 갯수</th>
+                                <td class="car-td" id="luggage-count">2개</td>
+                            </tr>
+                            <tr>
+                                <th>탑승 인원수</th>
+                                <td class="car-td" id="passenger-capacity">5명</td>
+                            </tr>
+                            <tr>
+                                <th>변속기 유형</th>
+                                <td class="car-td" id="transmission">자동</td>
+                            </tr>
+                            <tr>
+                                <th>에어컨</th>
+                                <td class="car-td" id="air-conditioning">있음</td>
+                            </tr>
+                            <tr>
+                                <th>문 갯수</th>
+                                <td class="car-td" id="door-count">4개</td>
+                            </tr>
+                            <tr>
+                                <th>인수위치</th>
+                                <td class="car-td" id="door-count">4개</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <div class="form-group">
+                        <div class="date-time-group">
+                            <label for="pickupDate">대여 일시</label>
+                            <input type="text" class="form-control datepicker" id="pickupDate" placeholder="대여기간 선택">
+                        </div>
+                        <div class="date-time-group">
+                            <label for="returnDate">반납 일시</label>
+                            <input type="text" class="form-control datepicker" onclick="$('#pickupDate').click();"
+                                id="returnDate" placeholder="날짜 선택">
+                        </div>
+                    </div>
+                    <div class="carPrice">
+                        <h5 id="rentDate"></h5>
+                        <h5 id="price"></h5>
+                        <input type="hidden" id="totalPrice"/>
+                    </div>
+                    <div class="btn-container">
+                        <a class="reserve-btn" href="#" onclick="pageMove();">예약하기</a>
+                        <a class="back-btn" href="index.html">이전으로</a>
+                    </div>
+                </div>
+            </section>
+
+            <script>
+                function pageMove(){
+                    const id = sessionStorage.getItem("id");
+                    const pickupDate = document.getElementById("pickupDate").value;
+                    const returnDate = document.getElementById("returnDate").value;
+                
+                    // 세션 스토리지에 저장
+                    sessionStorage.setItem("id", id);
+                    sessionStorage.setItem("pickupDate", pickupDate);
+                    sessionStorage.setItem("returnDate", returnDate);
+                
+                    // 페이지 이동
+                    window.location.href = "/reservation.html";
+                }
+            </script>
+
+            <section class="guide-section">
+                <div class="halfbottom">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th class="th" width="20%">안내사항</th>
+                                <td class="td" width="80%">
+                                    <ul class="list_style disc">
+                                        <li><span class="text-danger">본 예약은 신청 시 바로 확정되지 않습니다.</span>배차 상황을 확인 후 이메일로 예약
+                                            가능
+                                            여부를 안내해드립니다.</li>
+                                        <li>요금은 현지에서 카드 또는 현금으로 결제하셔야 합니다.</li>
+                                        <li>렌터카를 현지에서 수령할 때에는 국제면허증과 여권이 반드시 필요합니다.</li>
+                                        <li>둘 중 하나라도 없을 경우 차량을 대여할 수 없으므로 주의해주시기 바랍니다.</li>
+                                        <li>전차량 금연 차량이며 ,한국어(다국어 지원) 네비게이션이 모든 차량에 장착되어 있습니다.</li>
+                                        <li>표기된 요금에는 면책보상료와 소비세가 포함되어 있습니다.</li>
+                                        <li>풀커버 보험(NOC안심)에 가입하고 싶을 경우, 현지에서 추가 요금을 결제하여 가입하실 수 있습니다.</li>
+                                        <li>일본 법률로 만5세 이하 아이는 차일드 시트를 의무적으로 사용해야 합니다.</li>
+                                        <li>차일드 시트 요금은 렌터카 요금에는 포함되어 있지 않으므로, 현지에서 추가로 결제하셔야 합니다.</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <script>
+
+                function onchg_view(no, cnt) {
+                    for (var i = 1; i <= cnt; i++) {
+                        tab = eval("document.getElementById('tab" + i + "')");
+                        if (no == i) {
+                            tab.style.display = '';
+                        } else {
+                            tab.style.display = 'none';
+                        }
+                    }
+                }
+
+            </script>
+            <section class="rental-terms">
+                <div class="panel_wrapper" id="tab1">
+                    <ul class="panel_tabs">
+                        <li class="panel_tab on" style="width: 20%;"><a href="javascript:onchg_view(1,5);"
+                                class="panel_link">이용방법</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(2,5);"
+                                class="panel_link">수령 반납 방법</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(3,5);"
+                                class="panel_link">보험안내</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(5,5);"
+                                class="panel_link">사전 준비 항목</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(4,5);"
+                                class="panel_link">영업소 위치</a></li>
+                    </ul>
+                    <div class="panel_body">
+                        <div id="user_guide">
+                            <div class="guide_box">
+                                <div class="guide_icon icon_request">예약 신청 접수</div>
+                                <p class="guide_text01">STEP 01</p>
+                                <p class="guide_text02">렌터카 예약 신청 접수<br>(대여 예약 마감일은 1일전 16시 까지)</p>
+                            </div>
+                            <div class="guide_box">
+                                <div class="guide_icon icon_search">배차 확인</div>
+                                <p class="guide_text01">STEP 02</p>
+                                <p class="guide_text02">24시간 이내에 이메일로 예약 가능 여부 를 안내해드립니다.<br>메일이 도착하지 않을 경우 팸 메일 폴더도 확인해
+                                    주시기
+                                    바랍니다.</p>
+                            </div>
+                            <div class="guide_box">
+                                <div class="guide_icon icon_mail">예약 결과 통보</div>
+                                <p class="guide_text01">STEP 03</p>
+                                <p class="guide_text02">예약 확정 시에는 이메일을 확인하고 출발 예정 점포에 방문해주시기 바랍니다.<br>공항점만 공항 송영이 가능합니다.
+                                </p>
+                            </div>
+                            <div class="guide_box">
+                                <div class="guide_icon icon_picket">예약 진행 시 이메일 회신</div>
+                                <p class="guide_text01">STEP 04</p>
+                                <p class="guide_text02">영업소에서 계약 내용을 확인한 후 국제면허증과 여권을 제시해주세요.<br>확인이 안될 경우, 출발할 수 없으므로
+                                    주의해주시기 바랍니다.</p>
+                            </div>
+                            <div class="guide_box">
+                                <div class="guide_icon icon_contract">계약</div>
+                                <p class="guide_text01">STEP 05</p>
+                                <p class="guide_text02">렌터카 요금은 현지에서<br>카드 또는 현금으로 결제하셔야 합니다.</p>
+                            </div>
+                            <!-- <div class="guide_box">
+                            <div class="guide_icon icon_time">요금 지불</div>
+                            <p class="guide_text01">STEP 06</p>
+                            <p class="guide_text02">렌트카 이용 요금<br>현장에서 지불</p>
+                        </div>
+                        <div class="guide_box">
+                            <div class="guide_icon icon_wrench">차량 이상유무 확인</div>
+                            <p class="guide_text01">STEP 07</p>
+                            <p class="guide_text02">차량 이상 유무<br>(흠, 가솔린 체크 등)<br>점검 후 출발</p>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel_wrapper" id="tab2" style="display:none;">
+                    <ul class="panel_tabs">
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(1,5);"
+                                class="panel_link">이용방법</a></li>
+                        <li class="panel_tab on" style="width: 20%;"><a href="javascript:onchg_view(2,5);"
+                                class="panel_link">수령 반납 방법</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(3,5);"
+                                class="panel_link">보험안내</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(5,5);"
+                                class="panel_link">사전 준비 항목</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(4,5);"
+                                class="panel_link">영업소 위치</a></li>
+                    </ul>
+                    <div class="panel_body">
+                        <p class="font_w500"><span class="icon15 check"></span>렌터카 수령 방법 및 주의점</p>
+                        <div class="text_info_box">
+                            <dl class="list_inner none">
+                                <dd>
+                                    <p class="text-danger">렌터카를 현지에서 수령할 때에는 국제면허증과 여권이 반드시 필요합니다.</p>
+                                </dd>
+                                <dd>나하공항점에서 출발할 경우, 나하공항에서 무료 셔틀버스로 송영해드립니다.<br>※나하공항점 이외의 영업소는 송영 서비스가 제공되지 않습니다.</dd>
+                                <dd>나하공항점을 이용하실 손님께서는 나하공항 도착 후 국내선측 셔틀버스 정류장 14번으로 와주시기 바랍니다.<br>※셔틀버스 정류장에 대기하는 오릭스
+                                    스탭에게
+                                    예약시 사용된 알파벳명을 보여주세요.</dd>
+                                <dd>영업소에 도착 후 렌터카 요금을 카드 또는 현금으로 결제하셔야 합니다.<br>※요금에는 면책 보상과 소비세가 포함되어 있습니다.<br>※NOC(휴업
+                                    보상)
+                                    보험을 추가하고 싶은 분들께서는 현지에서 요청 후 추가 비용을 지불해 주시기 바랍니다.<br>※일본 법률로 만5세 이하 아이는 차일드 시트를 의무적으로
+                                    사용해야 합니다.1대 당 1,100엔을 현지에서 지불하셔야 합니다.</dd>
+                                <!--<dd>오키나와는 교통체증이 자주 발생하기에 예상 시간보다 일찍 준비해주세요.</dd>-->
+                            </dl>
+                        </div>
+                        <p class="font_w500"><span class="icon15 check"></span>렌터카 반납 방법 및 주의점</p>
+                        <div class="text_info_box">
+                            <dl class="list_inner none">
+                                <dd>반납시에는 반드시 기름을 가득 채워서 반납해 주시기 바랍니다. <br>※경유를 넣으면 고장이 날 수도 있으므로,반드시 레귤러 가솔린을 넣으시기
+                                    부탁드립니다.
+                                </dd>
+                            </dl>
+                        </div>
+                        <!-- <p class="font_w500"><span class="icon15 check"></span>주의사항</p>
+                    <div class="text_info_box">
+                        <ul class="list_style number">
+                            <li>본 예약 신청은 확정 예약이 아닙니다. <span class="text-danger">카카오톡 알림톡 또는 확정 메일을 받으셔야 예약 확정</span>으로 진행이 됩니다. 확정 메일에는 렌트카 회사의 주소, 피켓 등의 정보가 들어 있습니다.</li>
+                            <li>기간 내 <span class="text-danger">국제면허증, 한국운전면허증, 여권</span>을 모두 가져 오셔야 계약이 가능합니다. 국제면허증은 여권이 있어야 효력이 발생하오니 운전 시 꼭! 지참해주세요.</li>
+                            <li>차량 반납 전 주유를 꼭 가득 채워서 반납해주세요. 영수증을 가져오지 않으시거나 주유하지 않고 오시면 불이익이 발생합니다.</li>
+                            <li>오릭스 렌트카 다국어 네비게이션은 버튼 및 시스템이 일본어&영어로 표기되어 있으며, 지도에 나오는 지명은 한국어로 표기되어 있고, 한국어 음성 안내가 나옵니다. (모든 일본 렌트카회사의 네비게이션은 비슷함)</li>
+                            <li>비행시간에 늦지 않도록 여유시간을 가지고 반납해주세요.</li>
+                            <li>아주 경미한 사건, 사고, 차량 이상의 경우라도 사고 현장에서 경찰서에 사고접수를 하셔야 보험 처리가 가능합니다.<br>예) 거울이 떨어지는 경우 등 <span class="text-danger">(절대 사고 장소 이탈 금지)</span></li>
+                            <li>또한 렌트카 요금에는 면책보상요금이 포함됨을 알려드립니다.</li>
+                            <li>주유시에 휘발유와 경유 구분에 주의해주세요.</li>
+                            <li>불법 주차를 하지 않도록 주의해주세요.</li>
+                        </ul>
+                    </div> -->
+                    </div>
+                </div>
+
+                <div class="panel_wrapper" id="tab3" style="display:none;">
+                    <ul class="panel_tabs">
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(1,5);"
+                                class="panel_link">이용방법</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(2,5);"
+                                class="panel_link">수령 반납 방법</a></li>
+                        <li class="panel_tab on" style="width: 20%;"><a href="javascript:onchg_view(3,5);"
+                                class="panel_link">보험안내</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(5,5);"
+                                class="panel_link">사전 준비 항목</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(4,5);"
+                                class="panel_link">영업소 위치</a></li>
+                    </ul>
+                    <div class="panel_body">
+                        <!--
+                    <p class="font_w500"><span class="icon15 check"></span>오릭스 렌트카의 <span class="text-danger">요금에는 아래의 두가지 보험(풀커버 보험, 면책보험)이 포함</span>되어 있습니다.</p>
+                    <div class="text_info_box">
+                        <ul class="list_style number">
+                            <li>전 차종 <span class="text-danger">풀커버 보험</span>에 가입되어 있어 사고 시 걱정하지 않으셔도 됩니다.</li>
+                            <li><span class="text-danger">사고 시에 1회에 한하여 고객 부담금 없이 처리</span>해드리며, 사고 시에 보험은 계약 종료됩니다.</li>
+                            <li>계약 종료 후에 보험만 따로 가입은 불가능합니다. 단, 새로운 차량으로 재계약은 가능합니다.</li>
+                            <li>중대한 사고(주행이 불가능한 사고)의 경우에는 그 자리에서 계약은 종료되며 남은 시간은 말소됩니다.</li>
+                            <li><span class="text-danger">안전띠 착용</span>을 조건으로 보험 보상에 가입되어 있습니다.</li>
+                        </ul>
+                    </div>
+                    <p class="font_w500"><span class="icon15 check"></span>풀커버 보험이란?</p>
+                    <div class="text_info_box">
+                        <ul class="list_style number">
+                            <li>NOC(None Operation Charge) 휴차 영업손실부담금을 말합니다.</li>
+                            <li>만일 고객님이 사고가 발생하여 렌트카의 차량에 수리가 필요한 경우에 수리기간 중 렌트카 측에 영업손실이 발생하게 되는데 이 경우 50,000엔~100,000엔까지 요금이 발생하지만 이런 영업손실부담금까지 커버하는 것이 풀커버 보험입니다.</li>
+                            <li>차량 반송서비스 안내 (1회 사고 등에 대해 15만엔(부가세 포함)을 상한으로 보상합니다. 15만엔을 초과하는 부분에 대해서는 고객님께서 부담하셔야 합니다. 반송처는 당사가 지정하는 공장 등입니다.</li>
+                            <li>긴급시 응급 대응서비스(계약하신 차량이 고장이나 배터리 방전 등 차량 자체에 발생한 문제로 주행이 불가능하게 된 경우 30분 내에 대응 가능한 정도의 응급대응을 실시합니다. 단, 서비스가 적용되지 않는 작업 또는 보상 범위를 초과한 부분에 대해서는 고객님이 부담하셔야 합니다.)</li>
+                            <li>단, 위반 사고를 일으킨 경우 또는 경찰의 사고증명이 없는 경우 등에는 고객님이 부담하셔야 합니다.</li>
+                        </ul>
+                    </div>
+-->
+                        <p class="font_w500"><span class="icon15 check"></span>면책보험에 대해 (면책보상이란?)</p>
+                        <div class="text_info_box">
+                            <dl class="list_inner none">
+                                <dd>만약 렌터카 승차시에 사고가 발생한 경우, 고객님이 부담하는 자기부담금액<br>(대인보상, 인신상해, 대물보상, 차량보상) 을 렌터카 회사가 정한
+                                    보상한도액의
+                                    범위 내에서 면제해드리는 보험입니다.</dd>
+                                <dd>대인 : 무제한 대물: 무제한 / 본인 또는 동승자1명당 : 3천만엔, 자차 : 무제한(차량금액)</dd>
+                                <dd>단, 위반 사고를 일으킨 경우 또는 경찰의 사고증명이 없는 경우 등에는 고객님이 부담하셔야 됩니다.</dd>
+                            </dl>
+                        </div>
+                        <p class="font_w500"><span class="icon15 check"></span>보험・보상제도가 적용되지 않는 경우</p>
+                        <div class="text_info_box">
+                            <ul class="list_style number">
+                                <li>하기 경우의 보험・보상제도가 적용 되지 않는 손해<br>&lt;또는 보상의 한도액을 넘은 손해에 관해서는 고객님이 부담하셔야 됩니다./li&gt;
+                                </li>
+                                <li>
+                                    사고 시 경찰 및 당사로의 연락 등 소정의 절차가 없었던 경우
+                                    <!--<dl class="list_inner none">
+                                    <dd>주변에 방해가 되는 (불법)주차로 인한 손해</dd>
+                                    <dd>음주 및 술기운이 있는 상태에서의 운전</dd>
+                                    <dd>약물 사용</dd>
+                                    <dd>무단 연장</dd>
+                                    <dd>계약서에 기재된 운전자 및 부운전자 이외의 운전</dd>
+                                    <dd>다시 다른 사람에게 대여</dd>
+                                    <dd>무면허 운전(운전면허정지 기간, 운전이 가능한 자동차의 종류에 위반해 있는 경우도 포함)</dd>
+                                    <dd>무단으로 합의를 한 경우</dd>
+                                    <dd>각종 테스트, 경기에 사용하거나 또는 다른 차량을 견인, 밀어주기에 사용한 경우</dd>
+                                    <dd>고의에 인한 사고</dd>
+                                    <dd>열쇠 분실, 파손</dd>
+                                    <dd>고객님이 소유, 사용, 관리하시는 재산의 손해</dd>
+                                    <dd>지진 또는 분화 , 그리고 이로 인해 발생하는 쓰나미로 인한 손해</dd>
+                                </dl>-->
+                                </li>
+                                <li>
+                                    렌터카의 대여 약관을 위반했을 경우
+                                    <dl class="list_inner none">
+                                        <dd>주변에 방해가 되는 (불법)주차로 인한 손해</dd>
+                                        <dd>음주 및 술기운이 있는 상태에서의 운전</dd>
+                                        <dd>약물 사용</dd>
+                                        <dd>무단 연장</dd>
+                                        <dd>계약서에 기재된 운전자 및 부운전자 이외의 운전</dd>
+                                        <dd>다시 다른 사람에게 대여</dd>
+                                        <dd>무면허 운전(운전면허정지 기간, 운전이 가능한 자동차의 종류에 위반해 있는 경우도 포함)</dd>
+                                        <dd>무단으로 합의를 한 경우</dd>
+                                        <dd>각종 테스트, 경기에 사용하거나 또는 다른 차량을 견인, 밀어주기에 사용한 경우</dd>
+                                        <dd>고의에 인한 사고</dd>
+                                        <dd>열쇠 분실, 파손</dd>
+                                        <dd>고객님이 소유, 사용, 관리하시는 재산의 손해</dd>
+                                        <dd>지진 또는 분화 , 그리고 이로 인해 발생하는 쓰나미로 인한 손해</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    사용, 관리 상의 잘못이 있을 경우
+                                    <dl class="list_inner none">
+                                        <dd>열쇠를 걸어둔 채 또는 잠그지 않은 채 주차하여 도난을 당한 경우</dd>
+                                        <dd>거친 사용으로 인해 발생한 차체 등의 손상 또는 부식 보수비</dd>
+                                        <dd>차내 장비의 파손</dd>
+                                        <dd>장비품의 분실, 파손</dd>
+                                        <dd>휠캡 분실, 파손</dd>
+                                        <dd>타이어 체인, 캐리어, 차일드 시트의 부착 및 장착 불량으로 인한 손해</dd>
+                                        <dd>해안, 하천부지 또는 숲 등 차도 이외에서 주행한 경우의 차량 손해 (유지 및 관리된 도로 이외에서의 사고)</dd>
+                                        <dd>급유 시 틀린 종별의 연료 주입으로 발생한 보수비</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    기타
+                                    <dl class="list_inner none">
+                                        <dd>크레인 차량 크레인 본체의 손상 (아우트리거를 포함)</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    상기의 보험, 보상제도가 적용되지 않는 손해 또는 보상 한도액을 넘은 손해에
+                                    <dl class="list_inner none">
+                                        <dd>대해서는 고객님의 실비 부담이 발생합니다.</dd>
+                                    </dl>
+                                </li>
+                                <li>
+                                    상대방 불명의 뺑소니, 차량 도난 등에 의한 손해에 대해 보상제도 적용을
+                                    <dl class="list_inner none">
+                                        <dd> 받기 위해서는 경찰에 신고하셔야 합니다.</dd>
+                                    </dl>
+                                </li>
+                                <li>보험의 적용은 사고시 안전벨트 착용을 조건으로 합니다.</li>
+                                <li>어떤 사고의 경우라도 반드시 경찰, 영업소로 신고해 주십시오.</li>
+                                <li>영업소로의 신고는 영업 시간 내에 부탁드립니다. (8:00~20:00)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel_wrapper" id="tab4" style="display:none;">
+                    <ul class="panel_tabs">
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(1,5);"
+                                class="panel_link">이용방법</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(2,5);"
+                                class="panel_link">수령 반납 방법</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(3,5);"
+                                class="panel_link">보험안내</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(5,5);"
+                                class="panel_link">사전 준비 항목</a></li>
+                        <li class="panel_tab on" style="width: 20%;"><a href="javascript:onchg_view(4,5);"
+                                class="panel_link">영업소 위치</a></li>
+                    </ul>
+                    <div class="panel_body">
+                        <table width="100%">
+                            <tbody>
+                                <tr>
+                                    <td width="50%" align="left" valign="top">
+                                        <p class="font_w500"><span class="icon15 arrow_right"></span>나하공항점</p>
+                                        <iframe
+                                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2532.278543284615!2d127.65198121546594!3d26.158180053577265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e5680bda12f44f%3A0x2f64d878b7a9f3a5!2z7Jik66at7Iqk66CM7Yq47Lm0!5e0!3m2!1sko!2skr!4v1535621876309"
+                                            width="455" height="300" frameborder="0"
+                                            style="box-sizing: border-box; padding: 10px; background: #fafafa; border: 1px solid #cccccc; margin: 0 0 15px;"
+                                            allowfullscreen=""></iframe>
+                                        <table width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td height="25" width="16%"><span class="label block">주소지</span>
+                                                    </td>
+                                                    <td width="84%">&nbsp;&nbsp;1-1174 Toyosaki, Tomigusuku, Okinawa
+                                                        Prefecture 901-0225</td>
+                                                </tr>
+                                                <tr>
+                                                    <td height="25"><span class="label block">긴급연락처</span></td>
+                                                    <td>&nbsp;&nbsp;+81-98-851-0543</td>
+                                                </tr>
+                                                <tr>
+                                                    <td height="25"><span class="label block">영업시간</span></td>
+                                                    <td>&nbsp;&nbsp;08:00 ~ 20:00 (연중 무휴)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td height="25"><span class="label block">맵코드</span></td>
+                                                    <td>&nbsp;&nbsp;232 543 445*83</td>
+                                                </tr>
+                                                <tr>
+                                                    <td height="25"><span class="label block">무료 서비스</span></td>
+                                                    <td>&nbsp;&nbsp;외국인 마크, 초보자 마크</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="panel_wrapper" id="tab5" style="display:none;">
+                    <ul class="panel_tabs">
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(1,5);"
+                                class="panel_link">이용방법</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(2,5);"
+                                class="panel_link">수령 반납 방법</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(3,5);"
+                                class="panel_link">보험안내</a></li>
+                        <li class="panel_tab on" style="width: 20%;"><a href="javascript:onchg_view(5,5);"
+                                class="panel_link">사전 준비 항목</a></li>
+                        <li class="panel_tab" style="width: 20%;"><a href="javascript:onchg_view(4,5);"
+                                class="panel_link">영업소 위치</a></li>
+                    </ul>
+                    <div class="panel_body">
+                        <p class="font_w500"><span class="icon15 check"></span><span class="text-danger">반드시 예약 확정 바우처의
+                                렌트카
+                                수령 및 이용안내를 확인하세요!</span></p>
+                        <p class="font_w500"><span class="icon15 check"></span>국제선 이용시</p>
+                        <div class="text_info_box">
+                            <ul class="list_style number">
+                                입국심사 후 국제선 로비로 나오시면 바로 앞에 아래 오릭스렌트카 피켓 사진을 들고 잇는 직원이 있습니다.<br>성함을 확인 후 안내에 따라 송영버스로
+                                이동해주세요.
+                            </ul>
+                        </div>
+                        <p class="font_w500"><span class="icon15 check"></span>국내선 이용시</p>
+                        <div class="text_info_box">
+                            <ul class="list_style number">
+                                나하공항 국내선 1층 로비에 3번 또는 4번 출구로 나와서 왼쪽에 보이는 횡단보도를 건너서 왼쪽편으로 보이는 간판 [14번]에 셔틀버스 정류장이
+                                있습니다.<br>[14번] 승강장 근처에 오릭스 렌트카 직원이 대기하고 있으므로 성함 확인하시고 셔틀버스 탑승하시면 됩니다.
+                            </ul>
+                        </div>
+                        <p class="font_w500"><span class="icon15 check"></span>나하 공항 셔틀버스 정거장 안내</p>
+                        <div class="text_info_box">
+                            <ul class="list_style number">
+                                <span class="text-danger strong"><a href="naha-airport.php" target="_blank">나하 공항 셔틀버스
+                                        정거장
+                                        안내 내용 보기</a></span>
+                            </ul>
+                        </div>
+                        <p class="font_w500"><span class="icon15 check"></span>셔틀버스 탑승장소와 피켓은 아래 이미지를 참조하세요.</p>
+                        <div class="text-center">
+                            <img src="images/orix-guide1.jpg">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 렌터카 서비스 | 모든 권리 보유</p>
+    </footer>
+
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/carInfo.js"></script>
+
+</body>
+
+</html>

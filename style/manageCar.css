@@ -1,0 +1,171 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.search-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.add-car-btn {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.car-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.car-card {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    position: relative;
+}
+
+.car-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.car-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.car-company {
+    color: #666;
+    font-size: 1em;
+}
+
+.car-details {
+    display: none;
+    margin-top: 10px;
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    border-top: 1px solid #ddd;
+}
+
+.car-card.expanded .car-details {
+    display: block;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.car-simple-info {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    gap: 15px;
+}
+
+.car-img {
+    width: 120px; /* 이미지의 너비 */
+    height: auto; /* 비율을 유지하며 높이를 자동으로 설정 */
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.car-info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.car-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.car-company {
+    font-size: 1em;
+    color: #666;
+    margin-top: 5px;
+}
+.car-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.car-info-table th,
+.car-info-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.car-info-table th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+    width: 20%;
+}
+
+.car-info-table td input.inp-car {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.company {
+    display: flex;            /* 플렉스박스를 사용하여 자식 요소들을 가로로 배치 */
+    align-items: center;      /* 세로 정렬을 중앙으로 맞추기 */
+    gap: 10px;                /* 요소 사이에 간격을 추가 */
+}
+
+.company p {
+    margin: 0;                /* 기본 p 태그의 마진을 제거 */
+}
+
+.company input {
+    padding: 5px;             /* 입력창에 패딩 추가 */
+    width: 90%;             /* 입력창 너비를 설정 */
+}

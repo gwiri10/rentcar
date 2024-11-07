@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>니혼카</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style/manageCar.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+</head>
+
+<body>
+    <script type="module">
+        import { 
+            addCompanyModule 
+            , deleteCompany 
+            , addCompany 
+            , cancelCompany
+        } from '/js/manageCompanyModule.js'; // 모듈에서 함수 불러오기
+
+        // 이 코드에서 함수 사용 가능
+        window.addCompanyModule = addCompanyModule; // 전역 객체에 함수 추가
+        window.deleteCompany = deleteCompany; // 전역 객체에 함수 추가
+        window.addCompany = addCompany; // 전역 객체에 함수 추가
+        window.cancelCompany = cancelCompany; // 전역 객체에 함수 추가
+    </script>
+
+    <header class="bg-white text-white" style="background-color: #ffffff;">
+        <div class="container d-flex justify-content-between align-items-center py-3">
+            <div class="d-flex align-items-center">
+                <img src="logo.png" alt="로고" class="logo">
+                <h1 class="ml-2 logoTitle">니혼카</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- 상단 메뉴 -->
+    <nav class="bg-dark">
+        <div class="container">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/manageRes.html">예약관리</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/manageCar.html">차량관리</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/manageCompany.html">업체관리</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- 검색 섹션 -->
+        <div class="search-section" style="justify-content: flex-end !important;" >
+            <button class="add-car-btn" onclick="addCompany()">업체 추가</button>
+        </div>
+        <div class="car-list" id="car-list">
+            <div class="car-card">
+                <div class="company">
+                    <p>업체명 : </p>
+                    <input type="text" value="업체명"/>
+                </div>
+                <div class="action-buttons">
+                    <button class="edit-btn" >수정</button>
+                    <button class="delete-btn" >삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white text-center py-4">
+        <p>&copy; 2024 렌터카 서비스 | 모든 권리 보유</p>
+    </footer>
+
+    <script type="module" src="js/firebase.js"></script>
+    <script type="text/javascript" src="js/manageCompanyModule.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,908 @@
+/*===============================================================================================================
+
+	GOODS LIST
+
+===============================================================================================================*/
+#car_list_wrapper,
+#goods_list_wrapper {
+	display: block;
+	position: relative;
+	margin: 0 0 30px;
+	padding: 0;
+	overflow: hidden;
+}
+
+#goods_list {
+	display: block;
+	position: relative;
+	margin: -20px 0 0 -25px;
+	width: 1050px;
+}
+
+#car_list {
+	display: block;
+	position: relative;
+	margin: 0 0 0 -25px;
+	width: 1050px;
+}
+.car_list_box,
+.goods_list_box {
+	display: inline-block;
+	position: relative;
+	width: 299px;
+	padding: 20px 25px 15px;
+	margin: 0px -4px 0 0;
+	font-size: 0px;
+	letter-spacing: -4px;
+	zoom: 1;
+	vertical-align: top;
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+
+.car_list_box {
+	padding: 35px 25px 15px;
+}
+
+.car_list_inner,
+.goods_list_inner {
+	display: block;
+	position: relative;
+}
+
+.car_shop_logo {
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: -20px;
+	z-index: 22222;
+	width: 50px;
+	height: 56px;
+	font-size: 0px;
+	background-repeat: no-repeat;
+} 
+
+.car_shop_logo.travel {
+	background-image: url('../images/logo-travel-rentcar.png');
+}
+
+.car_shop_logo.youi {
+	background-image: url('../images/logo-youi-rentcar.png');
+}
+
+.car_shop_logo.orix {
+	background-image: url('../images/logo-orix-rentcar.png');
+}
+
+a.list_thumb {
+	height: 200px;
+	display: block;
+	position: relative;
+	margin: 0;
+}
+
+hr.dashed_line {
+	display: block;
+	position: relative;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: 1px dashed #dddddd;
+	height: 10px;
+	box-shadow: none;
+	margin: 0 0 5px;
+	padding: 0;
+}
+
+.goods_tags {
+	display: block;
+	position: relative;
+	border-top: 1px dashed #dddddd;
+	padding: 15px 0 0;
+	margin: 12px 0 0;
+	letter-spacing: 0 !important;
+	min-height: 20px;
+	max-height: 44px;
+}
+
+.goods_tags .label + .label {
+	margin-right: 4px;
+	margin-bottom: 4px;
+	vertical-align: top;
+}
+
+.list_text {
+	display: block;
+	position: relative;
+	padding: 15px 0 0;
+}
+
+
+.list_text01 {
+	font-size: 15px;
+	line-height: 24px;
+	height: 24px;
+	letter-spacing: -0.025em;
+	margin: 0 0 3px;
+	padding: 0;
+	color: #666666;
+	font-weight: 400;
+	overflow: hidden;
+}
+
+
+.list_text02 {
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 26px;
+	letter-spacing: -0.025em;
+	margin: 0 0 15px;
+	padding: 0;
+	height: 52px;
+	color: #393939;
+	overflow: hidden;	
+	word-break: keep-all;
+}
+
+.car_list_inner .list_text01 {
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 26px;
+	letter-spacing: -0.025em;
+	margin: 0 0 8px;
+	padding: 0;
+	height: 52px;
+	color: #393939;
+	overflow: hidden;	
+	word-break: keep-all;
+}
+
+.car_list_inner .list_text01 a:hover,
+.list_text02 a:hover {
+	color: #000000;
+	transition: all ease-in-out .2s;
+}
+
+.car_list_inner .list_text02 {
+	font-size: 14px;
+	color: #666666;
+	line-height: 22px;
+	height: 44px;
+	overflow: hidden;
+	margin: 0 0 10px;
+	word-break: keep-all;
+	letter-spacing: -0.025em;
+}
+
+.list_text03 {
+	font-size: 15px;
+	line-height: 30px;
+	color: #393939;
+	margin: 0;
+	letter-spacing: -0.02em;
+}
+
+.list_text03 .list_rate_normal {
+	display: block;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	line-height: 22px;
+	color: #666666;
+}
+
+.list_rate {
+	color: #e5102b;
+	font-size: 21px;
+	font-weight: bold;
+	font-family: 'Arial', sans-serif;
+	letter-spacing: -0.02em;
+	line-height: 30px;
+	vertical-align: bottom;
+	margin: 0 2px 0 0;
+}
+
+
+
+/*===============================================================================================================
+
+	RENT CAR VIEW
+
+===============================================================================================================*/
+
+#car_view_wrapper {
+	display: block;
+	position: relative;
+	margin: 0 0 30px;
+	padding: 0;
+}
+
+
+#car_summary {
+	display: block;
+	position: relative;
+	margin: 0 0 10px;
+	padding: 0;
+}
+
+#car_thumb {
+	width: 360px;
+	display: inline-block;
+	position: relative;
+	margin: 0 -3px 0 0;
+	padding: 0;
+	letter-spacing: -3px;
+	font-size: 0px;
+	zoom: 1;
+	vertical-align: top;
+}
+
+#car_thumb .simplegallery.car_thumb {
+	display: inline-block;
+	position: relative;
+	float: none;
+	margin: 0 -3px 0 0;
+	padding: 0;
+	width: 360px;
+	font-size: 0px;
+	letter-spacing: -3px;
+	zoom: 1;
+	border: 1px solid #dddddd;
+}
+
+#car_thumb .content {
+	background: #fff;
+	position: relative;
+	width: 360px;
+	padding: 5px 0;
+	overflow: hidden;
+	border: none !important;
+}
+
+#car_thumb .content img {
+	width: 100%;
+	margin: auto;
+	vertical-align: middle;
+}
+
+
+.simplegallery.car_thumb .thumbnail .thumb {
+	display: inline-block;
+	width: 80px;
+	height: 50px;
+	border: 1px solid #dddddd;
+	margin: 0 5px 0 0;
+	cursor: pointer;
+	background: #ffffff;
+	vertical-align: top;
+}
+
+#car_thumb .simplegallery .thumbnail {
+	text-align: center;
+	display: block;
+	padding: 12px 0;
+	height: 52px;
+	background: #F9F9FA;
+	margin: 0;
+}
+
+#car_info {
+	display: inline-block;
+	position: relative;
+	vertical-align: bottom;
+	width: 613px;
+	padding: 0px 0 0 25px;
+	margin: 0 -3px 0 0;
+	font-size: 0px;
+	letter-spacing: -3px;
+	zoom: 1;
+	word-break: keep-all;
+}
+
+#car_info .car_info_text01 {
+	font-size: 30px;
+	font-weight: 500;
+	letter-spacing: -0.05em;
+	color: #494949;
+	line-height: 42px;
+	padding: 0 20px 0 0;
+	margin: 0 0 8px;
+}
+
+#car_info .car_info_text02 {
+	font-size: 18px;
+	letter-spacing: -0.05em;
+	color: #666666;
+	line-height: 28px;
+	margin: 0 0 20px;
+}
+
+
+#cars_tags_info {
+	display: block;
+	position: relative;
+	margin: 0 0 20px;
+}
+
+#car_info .car_shop_logo {
+	padding: 8px 15px 35px 15px;
+	border: 1px solid #eeeeee;
+	left: auto;
+	right: 0;
+	top: -15px;
+	background-position: center 10px;
+}
+
+#car_info .car_shop_logo .shop_name {
+	display: block;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	font-size: 12px;
+	line-height: 24px;
+	color: #444444;
+	background-color: #eeeeee;
+	text-align: center;
+	letter-spacing: -0.01em;
+	font-weight: 400;
+}
+
+
+/*===============================================================================================================
+
+	GOODS VIEW
+
+===============================================================================================================*/
+
+#goods_view_wrapper {
+	display: block;
+	position: relative;
+	margin: 0 0 30px;
+	padding: 0;
+}
+
+#goods_summary {
+	display: block;
+	position: relative;
+	margin: 0 0 10px;
+	padding: 20px;
+	background: #ffffff;
+	border: 1px solid #dddddd;
+}
+
+#goods_thumb {
+	display: inline-block;
+	position: relative;
+	width: 320px;
+	height: 210px;
+	padding: 0;
+	margin: 0 -3px 0 0;
+	letter-spacing: -3px;
+	font-size: 0px;
+	zoom: 1;
+	vertical-align: top;
+}
+
+#goods_info {
+	display: inline-block;
+	position: relative;
+	width: 618px;
+	padding: 0 0 0 20px;
+	margin: 0 -3px 0 0;
+	letter-spacing: -3px;
+	font-size: 0px;
+	zoom: 1;
+	vertical-align: top;
+}
+
+#goods_tags_info {
+	display: block;
+	position: relative;
+	height: 20px;
+	margin: 3px 0 15px;
+	padding: 0 0 12px;
+	border-bottom: 1px dashed #dddddd;
+	letter-spacing: 0px;
+}
+
+.goods_info_text01 {
+	font-size: 20px;
+	letter-spacing: -0.02em;
+	color: #666666;
+	line-height: 28px;
+	margin: 0px;
+}
+
+.goods_info_text02 {
+	font-size: 26px;
+	font-weight: 500;
+	letter-spacing: -0.05em;
+	color: #494949;
+	line-height: 40px;
+	padding: 0;
+	margin: 0 0 15px;
+}
+
+#goods_rate_info {
+	display: block;
+	position: relative;
+	border-top: 3px solid #6d6c6c;
+	background: #ffffff;
+	padding: 0px;
+	margin: 0 0 10px;
+	letter-spacing: -0.025em;
+}
+
+#goods_rate_group {
+	display: inline-block;
+	position: relative;
+	padding: 15px 0 13px;
+	margin: 0 -3px 0 0;
+	font-size: 0px;
+	letter-spacing: -3px;
+	zoom: 1;
+	width: 830px;
+	border-left: 1px solid #dddddd;
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+
+
+#goods_view_btns {
+	display: inline-block;
+	position: relative;
+	float: right;
+	padding: 10px 20px 10px 20px;
+	height: 75px;
+	width: 130px;
+	text-align: center;
+	border-right: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+
+.goods_input_form_vertical {
+	display: inline-block;
+	position: relative;
+	padding: 0px 0 0 20px;
+	margin: 0 -3px 0 0;
+	vertical-align: top;
+	letter-spacing: -3px;
+	font-size: 0;
+	zoom: 1;
+}
+
+.goods_input_form_vertical .form_label {
+	font-size: 14px;
+	color: #333333;
+	line-height: 20px;
+	height: 20px;
+	margin: 0 0 5px;
+	letter-spacing: 0;
+}
+
+.form_input {
+	display: inline-block;
+	position: relative;
+	margin: 0 3px 0 0;
+}
+
+.form_input_contents {
+	display: inline-block;
+	position: relative;
+	margin: 0;
+	padding: 10px;
+	vertical-align: top;
+	color: #333333;
+	letter-spacing: 0;
+	font-size: 14px;
+	border: none;
+	box-shadow: none;
+	outline: none;
+}
+
+
+.rate_form_total {
+	display: block;
+	position: relative;
+	height: 40px;
+	line-height: 40px;
+	font-size: 15px;
+	color: #333333;
+	letter-spacing: -0.05em;
+}
+
+.rate_form_text {
+	color: #ec1818;
+	font-size: 24px;
+	letter-spacing: -1px;
+	margin: 0 4px 0 0;
+}
+
+#reserve_input_form {
+	display: block;
+	position: relative;
+	margin: 0 0 20px;
+	font-size: 14px;
+}
+
+.input_form_inline,
+.goods_input_form_inline {
+	display: block;
+	position: relative;
+	padding: 10px 0px;
+	margin: 0px;
+	border-bottom: 1px solid #dddddd;
+	vertical-align: top;
+}
+
+.input_form_inline .form_label,
+.goods_input_form_inline .form_label {
+	display: inline-block;
+	position: relative;
+	font-size: 14px;
+	color: #333333;
+	line-height: 40px;
+	width: 14%;
+	height: 40px;
+	margin: 0px;
+	letter-spacing: 0;
+	vertical-align: top;
+}
+
+.form_input_group {
+	display: inline-block;
+	position: relative;
+	width: 85%;
+	vertical-align: middle;
+}
+
+.input_form_inline .form_label {
+	width: 22%;
+}
+
+.input_form_inline .form_input_group {
+	width: 76%;
+}
+
+.form_input_group .styledRadio,
+.form_input_group .styledCheckbox {
+	margin-top: 10px;
+}
+
+#user_guide {
+	display: block;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.guide_box {
+	display: inline-block;
+	position: relative;
+	font-size: 0;
+	letter-spacing: -3px;
+	margin: 0px -3px 0 0;
+	padding: 20px 0;
+	width: 24.8888%;
+	height: 180px;
+	background: #ffffff;
+	vertical-align: top;
+	border-right: 1px solid #eeeeee;
+	border-bottom: 1px solid #eeeeee;
+	flex: 1;
+}
+
+.guide_box:nth-child(4),
+.guide_box:nth-child(8),
+.guide_box:nth-child(12) {
+	border-right: none;
+}
+
+
+.guide_icon {
+	width: 85px;
+	height: 85px;
+	display: block;
+	position: relative;
+	margin: 0 auto 15px;
+	background-repeat: no-repeat;
+	background-image: url('../images/tour-guide-icons.png');
+	background-color: transparent;
+	font-size: 0px;
+}
+
+.guide_icon.icon_request { background-position: 0 0; }
+.guide_icon.icon_search { background-position: -85px 0; }
+.guide_icon.icon_mail { background-position: -170px 0; }
+.guide_icon.icon_talk { background-position: 0px -85px; }
+.guide_icon.icon_money { background-position: -85px -85px; }
+.guide_icon.icon_print { background-position: -170px -85px; }
+.guide_icon.icon_picket { background-position: -255px 0px; }
+.guide_icon.icon_location { background-position: -255px 0px; }
+.guide_icon.icon_contract { background-position: -255px -85px; }
+.guide_icon.icon_time { background-position: 0px -170px; }
+.guide_icon.icon_wrench { background-position: -85px -170px; }
+
+.guide_text01 {
+	font-size: 14px;
+	color: #ec1818;
+	letter-spacing: 0;
+	margin: 0 0 3px;
+	line-height: 18px;
+	text-align: center;
+}
+
+.guide_text02 {
+	font-size: 15px;
+	color: #333333;
+	letter-spacing: 0;
+	margin: 0px;
+	line-height: 20px;
+	text-align: center;
+}
+
+
+/*===============================================================================================================
+
+	RESERVATION PROCESS BAR
+
+===============================================================================================================*/
+
+#reserve_step_bar {
+	display: block;
+	position: relative;
+	height: 50px;
+	margin: 0 0 10px;
+	background: #ffffff;
+	overflow: hidden;
+}
+/* .reserve_step {
+	display: block;
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0 15px 0 0;
+	box-sizing: border-box;
+	text-align: center;
+	font-size: 15px;
+	color: #777777;
+	line-height: 50px;
+	background-color: #ffffff;
+	background-image: url('../images/reserve-step-bar-default.png');
+	background-repeat: no-repeat;
+	background-position: right top;
+	cursor: default;
+}
+
+.reserve_step.tail {
+	background-image: none;
+}
+
+.reserve_step.active {
+	background-image: url('../images/reserve-step-bar-active.png');
+	background-color: #ec1818;
+	color: #ffffff;
+} */
+
+.reserve_step {
+	display: block;
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0 0 0 25px;
+	text-align: center;
+	font-size: 15px;
+	color: #777777;
+	line-height: 50px;
+	cursor: default;
+	z-index: 22;
+	box-sizing: border-box;
+	
+}
+
+.reserve_step.edge:after {
+	content: "";
+	position: absolute;
+	right: -30px;
+	bottom: 0;
+	width: 30px;
+	height: 50px;
+	background: url('../images/reserve-step-bar-default.png');
+	z-index: 1;
+}
+
+
+.reserve_step.active {
+	background: #ec1818;
+	color: #ffffff;
+	z-index: 55;
+	padding: 0 0 0 10px;
+}
+
+.reserve_step.active:after {
+	content: "";
+	position: absolute;
+	left: 0px;
+	bottom: 0;
+	width: 0;
+	height: 0;
+	border-left: 25px solid white;
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	z-index: 33;
+}
+
+.reserve_step.active:before {
+	content: "";
+	position: absolute;
+	right: -25px;
+	bottom: 0;
+	width: 0;
+	height: 0;
+	border-left: 25px solid #ec1818;
+	border-top: 25px solid transparent;
+	border-bottom: 25px solid transparent;
+	z-index: 33;
+}
+
+.reserve_step.active.start:after {
+	display: none;
+	content: "";
+}
+
+/*===============================================================================================================
+
+	RESERVATION FORM
+
+===============================================================================================================*/
+
+#goods_reservation_form {
+	display: block;
+	position: relative;
+	background: #ffffff;
+	margin: 0 0 70px;
+	padding: 30px;
+}
+
+#reserve_goods_info {
+	display: block;
+	position: relative;
+	margin: 0 0 20px;
+	padding: 0 0 20px;
+	border-bottom: 1px solid #dddddd;
+}
+
+#reserve_goods_thumb {
+	display: inline-block;
+	position: relative;
+	width: 200px;
+	height: 130px;
+	letter-spacing: -3px;
+	margin: 0 -3px 0 0;
+	padding: 0;
+	font-size: 0px;
+	zoom: 1;
+	vertical-align: middle;
+}
+
+#reserve_goods_text {
+	display: inline-block;
+	position: relative;
+	width: 710px;
+	letter-spacing: 0px;
+	margin: 0 -3px 0 0;
+	padding: 0 0 0 30px;
+	font-size: 14px;
+	zoom: 1;
+	vertical-align: middle;
+}
+
+#reserve_goods_text01 {
+	font-size: 	24px;
+	line-height: 30px;
+	color: #000000;
+	letter-spacing: -1px;
+	margin: 0 0 5px;
+	padding: 0;
+}
+
+#reserve_goods_text02 {
+	font-size: 16px;
+	color: #555555;
+	margin: 0 0 15px;
+	letter-spacing: 0px;
+}
+
+#reserve_input_btns {
+	display: block;
+	position: relative;
+	border-top: 1px solid #dddddd;
+	padding: 30px 30px 20px;
+	margin: 40px -30px 0 -30px;
+	background: #ffffff;
+	text-align: center;
+}
+
+
+#goods_reserve_ok {
+	display: block;
+	position: relative;
+	padding: 30px 0 50px;
+}
+
+.reserve_ok_text01 {
+	text-align: center;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 34px;
+	margin: 0 0 5px;
+}
+
+.reserve_ok_text02 {
+	text-align: center;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 24px;
+	margin: 0 0 35px;
+}
+
+/*===============================================================================================================
+
+	JQUERY UI datepicker custom
+
+===============================================================================================================*/
+.ui-datepicker-trigger {
+	cursor: pointer;
+	height: 38px;
+	border: 1px solid #dddddd;
+	border-left: none;
+	border-radius: 0 4px 4px 0;
+	vertical-align: middle;
+	padding: 0 3px 0 0;
+}
+.ui-datepicker{ font-size: 13px; width: 220px; font-family: 'Noto sans KR', sans-serif; }
+.ui-datepicker-calendar td { padding: 1px; }
+.ui-datepicker-calendar td a { padding: 0px 2px; text-align: center; }
+
+
+/*===============================================================================================================
+
+	common
+
+===============================================================================================================*/
+.form-static { 
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0 5px;
+	margin: 0;
+	font-size: inherit;
+	line-height: inherit;
+	color: inherit;
+}
+
+/*===============================================================================================================
+
+	ICON STYLE 15PX
+
+===============================================================================================================*/
+.icon15 {
+	display: inline-block;
+	position: relative;
+	width: 15px;
+	height: 15px;
+	background-image: url('https://www.okizonepass.com/okinawa/images/text-icons.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	font-size: 0px;
+	line-height: inherit;
+	margin: -1px 4px 0 0;
+	overflow: hidden;
+}
+
+.icon15.check { background-position: 0 0; }
+.icon15.exclamation { background-position: -16px 0; }
+.icon15.arrow_right { background-position: -32px 0; }

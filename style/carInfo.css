@@ -1,0 +1,450 @@
+/* 간단한 CSS 스타일 */
+.carInfoContainer {
+    background-color: #fff; /* 배경색 */
+    max-width: 1200px; /* 최대 너비 설정 (원하는 값으로 조정 가능) */
+    margin: 0 auto; /* 수평 중앙 정렬 */
+    padding: 20px; /* 내부 여백 */
+}
+.car-details {
+    display: flex;                    /* Flexbox 활성화 */
+    flex-wrap: wrap;                 /* 줄 바꿈 허용 */
+    justify-content: space-between;   /* 요소 사이 공간 균등 배분 */
+} 
+.car-image, .car-info {
+    flex: 1;
+    /* min-width: 300px; */
+}
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 768px) {
+    .car-details {
+        flex-direction: column;       /* 화면 크기가 작을 때 세로 방향으로 정렬 */
+        align-items: center;          /* 중앙 정렬 */
+    }
+
+    .car-image,
+    .car-info {
+        width: 50%;                  /* 너비를 100%로 설정하여 전체 공간 차지 */
+        margin: 10px 0;              /* 위아래 간격 추가 */
+    }
+	.car-details th {
+        font-size: 0.8em;  /* h1 태그의 글자 크기 조정 */
+    }
+	.car-td {
+        font-size: 0.8em;  /* h1 태그의 글자 크기 조정 */
+    }
+    .car-details h3 {
+        font-size: 1.3em;  /* h3 태그의 글자 크기 조정 */
+    }
+
+	.car-details-table th, .car-details-table td {
+		border: 1px solid #ddd;
+		padding: 3px !important;
+	}
+
+	.carPrice h5 {
+        font-size: 0.6em !important;    /* h5 태그의 글자 크기 조정 */
+    }
+	.date-time-group label{
+		font-size: 1em;
+		margin-bottom: 0;
+	}
+}
+
+.date-time-group label{
+	margin-bottom: 0;
+}
+.car-details-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.car-details-table th, .car-details-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.car-details-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    width:40%
+}
+.car-details-table td {
+    width : "60%"
+}
+.carPrice {
+    font-size: 1.8em;
+    color: #d9534f;
+    text-align: center;
+}
+
+.reserve-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* 배경색과 크기 변화를 부드럽게 */
+    text-align: center;
+}
+
+/* 마우스를 올렸을 때의 스타일 */
+.reserve-btn:hover {
+    background-color: #0056b3; /* 배경색 변경 */
+    transform: scale(1.05); /* 버튼과 글자 크기 증가 */
+    color: #fff;
+}
+
+.back-btn {
+    width: 100%; /* 버튼 너비를 100%로 설정 */
+    padding: 10px; /* 내부 여백 */
+    background-color: #fff; /* 흰색 배경 */
+    color: #000; /* 검은색 글자 */
+    font-size: 1em; /* 글자 크기 */
+    border: 1px solid #007bff; /* 경계선 추가 (파란색으로) */
+    cursor: pointer; /* 커서 변경 */
+    transition: background-color 0.3s, color 0.3s; /* 부드러운 전환 효과 */
+    text-align: center;
+}
+
+/* 마우스를 올렸을 때의 스타일 */
+.back-btn:hover {
+    background-color: #9ca0a5; /* 배경색 변경 */
+    border: 1px solid #9ca0a5; /* 경계선 추가  */
+    color: #fff; /* 글자색 변경 */
+	transform: scale(1.05); /* 버튼과 글자 크기 증가 */
+}
+.car-image {
+    display: flex;               /* Flexbox 활성화 */
+    flex-direction: column;      /* 수직 방향으로 정렬 */
+    align-items: center;         /* 수평 중앙 정렬 */
+    text-align: center;          /* 텍스트 중앙 정렬 */
+}
+
+#carImg {
+    max-width: 100%;            /* 이미지를 부모 컨테이너에 맞춰 최대 크기로 설정 */
+    height: auto;               /* 비율 유지 */
+}
+
+#title{
+    text-align: center;
+    font-weight: bold;
+}
+#totalPrice{
+    margin: 0;
+    font-weight: bold;
+}
+#price{
+    margin-top: 5px;
+    font-weight: bold;
+}
+.car-td{
+    padding-left: 10px;
+}
+
+.halfbottom {
+    display: block;
+    position: relative;
+    margin: 0 0 30px;
+    font-size: 14px;
+    line-height: 24px;
+    border: 1px solid #bbbbbb;
+    background: #ffffff;
+    letter-spacing: -0.02em;
+}
+.guide-section{
+    flex-wrap: wrap;
+    max-width: 1200px;
+    /* padding: 20px; */
+    margin: auto;
+}
+.halfbottom table tbody tr th{
+    padding: 10px 13px;
+    border: 1px solid #dddddd;
+    border-top: none;
+    text-align: center;
+}
+
+
+/* 판넬부분 */
+.rental-terms{
+    flex-wrap: wrap;
+    max-width: 1200px;
+    /* padding: 20px; */
+    margin: auto;
+}
+.panel_wrapper,
+.panel_tabs {
+	display: block;
+	position: relative;
+	margin: 0;
+	padding: 0;
+}
+
+.panel_tabs {
+	height: 55px;
+}
+
+.panel_tab {
+	display: block;
+	position: relative;
+	padding: 0;
+	margin: 0;
+	height: 55px;
+	list-style: none;	
+	background: #f9f9f9;
+	box-sizing: border-box;
+	float: left;
+	border: 1px solid #d5d4d0;
+	border-left: none;
+}
+
+.panel_tab:first-child {
+	border-left: 1px solid #d5d4d0;
+}
+
+.panel_tab.on {
+	background: #ffffff;
+	border-bottom: 1px solid #ffffff;
+}
+
+a.panel_link {
+	display: block;
+	position: relative;
+	height: 53px;
+	line-height: 53px;
+	text-align: center;
+	font-size: 15px;
+	color: #666666;
+	letter-spacing: 0;
+}
+
+.panel_tab.on a.panel_link {
+	color: #222222;
+}
+
+.panel_body {
+	display: block;
+	position: relative;
+	padding: 20px 20px;
+	background: #ffffff;
+	border: 1px solid #d5d4d0;
+	border-top: none;
+}
+
+.panel_body img {
+	max-width: 100%;
+}
+
+.text_info_box {
+	display: block;
+	position: relative;
+	border: 1px solid #e5e5e5;
+	background: #fafafa;
+	padding: 12px;
+	margin: 0 0 10px;
+}
+
+.faqBox {
+	display: block;
+	position: relative;
+	padding: 0;
+	margin: 0 0 20px;
+}
+
+.faqBox .f_box {
+	display: block;
+	position: relative;
+	padding: 13px 20px;
+	background: #685f52;
+	color: #ffffff;
+	font-size: 22px;
+	letter-spacing: -1px;
+	font-weight: 300;
+	line-height: 40px;
+}
+
+.f_box .label_circle {
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	position: relative;
+	vertical-align: top;
+	margin: 0 15px 0 0;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 22px;
+	font-weight: 400;
+	background: #ffffff;
+	color: #685f52;
+	line-height: 40px;
+}
+
+.q_box {
+	display: block;
+	position: relative;
+	padding: 15px 20px 15px 75px;
+	min-height: 40px;
+	background: #ffffff;
+	color: #444444;
+	font-size: 18px;
+	letter-spacing: -1px;
+	line-height: 28px;
+}
+
+.q_box .label_circle {
+	width: 40px;
+	height: 40px;
+	display: block;
+	position: absolute;
+	left: 20px;
+	top: 15px;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 22px;
+	font-weight: 400;
+	background: #888888;
+	color: #ffffff;
+	line-height: 40px;
+}
+
+
+#user_guide {
+	display: block;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.guide_box {
+	display: inline-block;
+	position: relative;
+	font-size: 0;
+	letter-spacing: -3px;
+	margin: 0px -3px 0 0;
+	padding: 20px 0;
+	width: 24.8888%;
+	height: 180px;
+	background: #ffffff;
+	vertical-align: top;
+	border-right: 1px solid #eeeeee;
+	border-bottom: 1px solid #eeeeee;
+	flex: 1;
+}
+
+.guide_box:nth-child(4),
+.guide_box:nth-child(8),
+.guide_box:nth-child(12) {
+	border-right: none;
+}
+
+
+.guide_icon {
+	width: 85px;
+	height: 85px;
+	display: block;
+	position: relative;
+	margin: 0 auto 15px;
+	background-repeat: no-repeat;
+	background-image: url('https://www.okizonepass.com/okinawa/images/tour-guide-icons.png');
+	background-color: transparent;
+	font-size: 0px;
+}
+
+.guide_icon.icon_request { background-position: 0 0; }
+.guide_icon.icon_search { background-position: -85px 0; }
+.guide_icon.icon_mail { background-position: -170px 0; }
+.guide_icon.icon_talk { background-position: 0px -85px; }
+.guide_icon.icon_money { background-position: -85px -85px; }
+.guide_icon.icon_print { background-position: -170px -85px; }
+.guide_icon.icon_picket { background-position: -255px 0px; }
+.guide_icon.icon_location { background-position: -255px 0px; }
+.guide_icon.icon_contract { background-position: -255px -85px; }
+.guide_icon.icon_time { background-position: 0px -170px; }
+.guide_icon.icon_wrench { background-position: -85px -170px; }
+
+.guide_text01 {
+	font-size: 14px;
+	color: #ec1818;
+	letter-spacing: 0;
+	margin: 0 0 3px;
+	line-height: 18px;
+	text-align: center;
+}
+
+.guide_text02 {
+	font-size: 15px;
+	color: #333333;
+	letter-spacing: 0;
+	margin: 0px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.car-details {
+    display: flex;                   /* Flexbox 활성화 */
+    flex-direction: column;          /* 세로 방향으로 정렬 */
+    margin: 20px;                   /* 전체 섹션에 여백 추가 */
+}
+
+.car-container {
+    display: flex;                   /* Flexbox 활성화 */
+    justify-content: space-between;  /* 양옆으로 배치 */
+}
+.form-container {
+    display: flex;
+    flex-direction: row; /* 기본적으로 가로로 나열 */
+    justify-content: space-between; /* 항목 간 균등 간격 */
+    align-items: flex-start; /* 위쪽 정렬 */
+    flex-wrap: wrap; /* 필요 시 항목이 줄 바꿈됨 */
+    gap: 5px; /* 항목 간 간격 */
+	/* border: 1px solid #9ca0a5; */
+}
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 768px) {
+    .form-container {
+        flex-direction: column; /* 화면 크기가 작아지면 세로로 나열 */
+        align-items: center; /* 중앙 정렬 */
+        width: 100%; /* 너비를 100%로 설정 */
+    }
+
+    .form-group {
+        width: 100%; /* 각 항목이 세로로 나열될 때 너비 100% */
+    }
+
+    .carPrice {
+        width: 100%; /* 가격 정보도 너비 100% */
+        text-align: center; /* 가격 텍스트 가운데 정렬 */
+    }
+
+    .reserve-btn, .back-btn {
+        width: 100%; /* 버튼들이 세로로 나열될 때 너비 100% */
+        padding: 15px; /* 버튼 크기 조정 */
+        font-size: 0.8em; /* 글자 크기 조정 */
+        margin-bottom: 5px; /* 버튼 간 간격 */
+    }
+	.btn-container{
+		width:100%;
+	}
+}
+.form-group {
+    display: flex;                    /* Flexbox 활성화 */
+    flex-direction: row;              /* 수평 방향으로 정렬 */
+    gap: 6px;                        /* 요소들 사이의 간격 설정 */
+}
+
+.date-time-group {
+    display: flex;                    /* Flexbox 활성화 */
+    flex-direction: column;           /* 세로 방향으로 정렬 */
+}
+
+.button-group {
+    display: flex;                    /* Flexbox 활성화 */
+    gap: 10px;                       /* 버튼들 사이의 간격 설정 */
+}
+.btn-container {
+    display: flex;                   /* Flexbox 활성화 */
+    flex-direction: column;          /* 세로 방향으로 정렬 */
+}
