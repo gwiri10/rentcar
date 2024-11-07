@@ -75,3 +75,6 @@ export const pagingunit = 5;
 
 //사전결제와 현장결제의 비율 (사전결제 * calRate = 현장결제)
 export const calRate = 0.8;
+
+//github 배포 이름
+export const systemRoot = "/rent";
