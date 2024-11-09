@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'aritadm';
+    src: url('../fonts/AritaDotumMedium.eot');
+    src: local('※'), url('../fonts/AritaDotumMedium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/AritaDotumMedium.woff') format('woff'),
+         url('../fonts/AritaDotumKR-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 .container {
     max-width: 800px;
     margin: auto;
