@@ -169,3 +169,42 @@
     padding: 5px;             /* 입력창에 패딩 추가 */
     width: 90%;             /* 입력창 너비를 설정 */
 }
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.info-table th, .info-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.info-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    width : 30%;
+}
+
+.info-table td input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+.search-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.search-section h2 {
+    margin: 0;  /* 기본 마진 제거 */
+}
+
+.add-car-btn {
+    /* 버튼 스타일링 추가 가능 */
+}

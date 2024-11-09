@@ -29,7 +29,7 @@
             , deleteCar 
             , addCar 
             , cancleCar
-        } from '/js/manageCarModule.js'; // 모듈에서 함수 불러오기
+        } from './js/manageCarModule.js'; // 모듈에서 함수 불러오기
 
         // 이 코드에서 함수 사용 가능
         window.setLocation = setLocation; // 전역 객체에 함수 추가
@@ -41,10 +41,10 @@
     </script>
 
     <header class="bg-white text-white" style="background-color: #ffffff;">
-        <div class="container d-flex justify-content-between align-items-center py-3">
+        <div class="container d-flex justify-content-between align-items-center py-3" style="padding-bottom:0 !important;">
             <div class="d-flex align-items-center">
-                <img src="logo.png" alt="로고" class="logo">
-                <h1 class="ml-2 logoTitle">니혼카</h1>
+                <img src="./img/logo.png" alt="로고" class="logo" style="width: 75px;">
+                <h2 class="ml-2 logoTitle" style="font-weight:bold;margin: 0 !important;">니혼카</h2>
             </div>
         </div>
     </header>
@@ -54,6 +54,9 @@
         <div class="container">
             <ul class="nav">
                 <li class="nav-item">
+                    <a class="nav-link text-white" href="./index.html">홈</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link text-white" href="./manageRes.html">예약관리</a>
                 </li>
                 <li class="nav-item">
@@ -62,11 +65,14 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="./manageCompany.html">업체관리</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./manageRate.html">사전결제비율</a>
+                </li>
             </ul>
         </div>
     </nav>
     <div class="container">
+        <h2>챠량관리</h2>
         <!-- 검색 섹션 -->
         <div class="search-section">
             <select class="search-input" id="search-company"></select>

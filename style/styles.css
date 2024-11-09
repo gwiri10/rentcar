@@ -1,12 +1,3 @@
-@font-face {
-    font-family: 'aritadm';
-    src: url('../fonts/AritaDotumMedium.eot');
-    src: local('※'), url('../fonts/AritaDotumMedium.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/AritaDotumMedium.woff') format('woff'),
-         url('../fonts/AritaDotumKR-Medium.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
 body {
     font-family: 'aritadm', sans-serif !important;
     background-color: #f8f9fa;
@@ -26,6 +17,16 @@ p{
 
 .logoTitle{
     color : #313336
+}
+
+.container {
+    max-width: 1200px;
+    padding-top: 10px;
+    margin-top: 5px !important;
+}
+
+.serchContainer{
+    border: 1px solid #9ca0a5;
 }
 
 /* .banner-wrapper{
@@ -151,4 +152,108 @@ p{
 
 .mt-4{
     background-color:#ffffff ;
+}
+
+#btnMoreList{
+    margin-bottom: 10px;
+}
+
+#btnSearch{
+    height: 65px;
+}
+
+/* 카드 전체 스타일 */
+.car-card {
+    width: 100%; /* 카드가 전체 가로폭을 차지하도록 설정 */
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+/* 카드 이미지 크기 조정 */
+.card-img-top {
+    width: 40%;
+    height: auto;
+}
+
+/* 카드 본문 */
+.card-body {
+    padding: 15px;
+}
+
+/* 제목 스타일 */
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 아이콘을 포함한 텍스트 스타일 */
+.card-text {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* 가격 텍스트 스타일 */
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #e74c3c; /* 가격 색상 */
+    margin-top: 15px;
+}
+
+/* 버튼 스타일 */
+.btn {
+    margin-top: 20px;
+    
+}
+.btn:hover{
+    transform: scale(1.05); /* 버튼과 글자 크기 증가 */
+}
+
+.btnMore{
+    background-color: #fff;
+    color : #333;
+}
+.btnMore:hover{
+    background-color: #0069d9;
+    color : #fff;
+}
+
+/* 아이콘 스타일 */
+.fas {
+    margin-right: 7px;
+    margin-left: 15px;
+}
+
+.cardList{
+    width:97%
+}
+
+.managerBtn{
+    background-color: #343a40!important;
+}
+/* 반응형 디자인 (모바일 화면에서 이미지가 위에 오고 텍스트가 아래로 배치) */
+@media screen and (max-width: 768px) {
+    .car-card {
+        flex-direction: column;
+    }
+    .card-img-top {
+        width: 100%;
+        height: auto;
+    }
+    .card-body{
+        text-align: center;
+    }
+    .card-text {
+        justify-content: space-between;
+    }
+    .fas {
+        margin: 0;
+    }
+    .btn {
+        margin: 0;
+        width: 100%;
+    }
 }

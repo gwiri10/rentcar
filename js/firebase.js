@@ -76,7 +76,7 @@ export async function fetchComCdMax() {
     return querySnapshot.docs[0].data().companyCd;
 }
 
-// 업체명으로 차량 데이터 가져오기
+// 업체코드로 차량 데이터 가져오기
 export async function fetchCarDocument(collectionName, companyCd) {
     const q = query(
         collection(db, collectionName)
@@ -98,6 +98,31 @@ export async function fetchCarDocument(collectionName, companyCd) {
     }
 
     return querySnapshot;
+}
+
+// 업체코드로 업체명 가져오기
+export async function fetchCompanysDocument(companyCd) {
+    const q = query(
+        collection(db, "companys")
+        , where("companyCd", "==", companyCd)
+        , limit(1)
+    );
+    const querySnapshot = await getDocs(q);
+
+    let companyNm ='';
+    if (!querySnapshot.empty) {
+        firstVisibleDoc = querySnapshot.docs[0];
+        lastVisibleDoc = querySnapshot.docs[0];
+
+        querySnapshot.forEach((doc) => {
+            companyNm += doc.data().companyNm
+        });
+
+    } else {
+        console.log("No documents found");
+    }
+
+    return companyNm;
 }
 
 
@@ -221,7 +246,6 @@ function uploadData() {
 // 문서 업데이트
 export async function updateDocument(conNm, id, updatedData) {
     const docRef = doc(db, conNm, id);
-
     try {
         // Firestore에서 문서 업데이트
         await updateDoc(docRef, updatedData);
@@ -243,3 +267,39 @@ export async function deleteItem(colNm, docId) {
         return false;
     }
 };
+
+// 업체코드로 보험정보가져오기
+export async function fetchInsurances(companyCd) {
+    const q = query(
+        collection(db, "insurances")
+        , where("companyCd", "==", companyCd)
+    );
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+        firstVisibleDoc = querySnapshot.docs[0];
+        lastVisibleDoc = querySnapshot.docs[0];
+    } else {
+        console.log("No documents found");
+    }
+
+    return querySnapshot;
+}
+
+// 업체코드로 카시트정보가져오기
+export async function fetchCarseat(companyCd) {
+    const q = query(
+        collection(db, "carseats")
+        , where("companyCd", "==", companyCd)
+    );
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+        firstVisibleDoc = querySnapshot.docs[0];
+        lastVisibleDoc = querySnapshot.docs[0];
+    } else {
+        console.log("No documents found");
+    }
+
+    return querySnapshot;
+}

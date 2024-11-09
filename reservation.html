@@ -21,12 +21,12 @@
 </head>
 
 <body>
-    
+
     <header class="bg-white text-white" style="background-color: #ffffff;">
-        <div class="container d-flex justify-content-between align-items-center py-3">
+        <div class="container d-flex justify-content-between align-items-center py-3" style="padding-bottom:0 !important;">
             <div class="d-flex align-items-center">
-                <img src="logo.png" alt="로고" class="logo">
-                <h1 class="ml-2 logoTitle">니혼카</h1>
+                <img src="./img/logo.png" alt="로고" class="loo" style="width: 75px;">
+                <h2 class="ml-2 logoTitle" style="font-weight:bold;margin: 0 !important;">니혼카</h2>
             </div>
         </div>
     </header>
@@ -38,7 +38,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="./index.html">홈</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-white" href="#">차량 리스트</a>
                 </li>
                 <li class="nav-item">
@@ -46,319 +46,309 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">문의하기</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
-    
 
     <div class="container">
-        <div id="reserve_step_bar">
-            <div class="reserve_step start active" style="width: 16.66666%;">1. 신청서 작성</div>
-            <div class="reserve_step edge" style="width: 16.66666%;">2. 예약 접수 완료</div>
-            <div class="reserve_step edge" style="width: 16.66666%;">3. 배차 확인</div>
-            <div class="reserve_step edge" style="width: 16.66666%;">4. 이메일 회신</div>
-            <div class="reserve_step edge" style="width: 16.66666%;">5. 현지 미팅</div>
-            <div class="reserve_step end" style="width: 16.66666%;">6. 차량 수령</div>
+        <!-- 차량 정보 섹션 -->
+        <div class="car-info">
+            <div class="car-details">
+                <img id="carImg" class="car-img" alt="차량 이미지">
+                <h2 class="car-title" id="reserve_goods_text01">도요타 라이즈</h2>
+            </div>
+            <div class="car-info-caution">
+                <span class="text-danger"><span class="icon15 exclamation"></span>본 예약은 신청 시 바로 확정되지 않습니다. </span>
+                <p>배차 상황을 확인 후 이메일로 예약 가능 여부를 안내해드립니다.</p>
+            </div>
         </div>
-        <div id="goods_reservation_form">
-            <div class="page_title">상품 정보</div>
-            <div id="reserve_goods_info">
-                <div id="reserve_goods_thumb" class="imgLiquidFill imgLiquid imgLiquid_bgSize imgLiquid_ready" data-imgliquid-fill="true" style="background-image: url(&quot;../../upload_files/carImg20190614115705.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat;">
-                    <img src="../../upload_files/carImg20190614115705.jpg" alt="닛산 노트 e-power" style="display: none;"></div>
-                <div id="reserve_goods_text">
-                    <h2 id="reserve_goods_text01">[오릭스 렌터카] 닛산NOTE e-power등 (5인승 1,300CC 하이브리드)</h2>
-                    <span class="icon15 exclamation"></span><span class="text-danger">본 예약은 신청 시 바로 확정되지 않습니다. </span>
-                    <p>배차 상황을 확인 후 이메일로 예약 가능 여부를 안내해드립니다.</p>
-                </div>
+        <input type="hidden" id="car-people"/>
+
+        <!-- 예약 정보 섹션 -->
+        <form class="reservation-form">
+            <!-- 예약자명, 성, 이름 등 -->
+            <div class="form-group">
+                <label for="driverName">예약자명</label>
+                <input type="text" id="driverName" name="driverName">
+                <p class="form-static"><span class="icon15 exclamation"></span>한글 이름으로 입력 (예: 홍길동)</p>
             </div>
-            <div class="page_title nomargin">신청서 작성</div>
-            <div id="reserve_input_form">
-                <div class="goods_input_form_inline">
-                    <p class="form_label"><span class="text-danger">*</span> 예약자명</p>
-                    <div class="form_input_group">
-                        <input type="text" class="iptText" id="driverName" style="width: 120px;">
-                        <p class="form-static"><span class="icon15 exclamation"></span>한글 이름으로 입력 (예: 홍길동)</p>
+            <div class="form-group enName">
+                <label for="lastName">영문명</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name (*성)">
+                <input type="text" id="firstName" name="firstName" placeholder="First Name (*이름)">
+                <p class="form-static"><span class="icon15 exclamation"></span>여권에 있는 영문명으로 정확하게 입력해주세요.</p>
+            </div>
+
+            <!-- 인수날짜시간 & 장소 -->
+            <div class="form-group">
+                <label for="pickupDate">인수날짜시간</label>
+                <input type="text" id="pickupDate" name="pickupDate" readonly="readonly">
+                <label for="pickupSpot">인수장소</label>
+                <select id="pickupSpot" name="pickupSpot" disabled="disabled">
+                    <option value="1">장소 1</option>
+                    <option value="2">장소 2</option>
+                    <option value="3">장소 3</option>
+                </select>
+            </div>
+
+            <!-- 반납날짜시간 & 장소 -->
+            <div class="form-group">
+                <label for="returnDate">반납날짜시간</label>
+                <input type="text" id="returnDate" name="returnDate" readonly="readonly">
+                <label for="returnSpot">반납장소</label>
+                <select id="returnSpot" name="returnSpot" disabled="disabled">
+                    <option value="1">장소 1</option>
+                    <option value="2">장소 2</option>
+                    <option value="3">장소 3</option>
+                </select>
+            </div>
+
+            <!-- 도착항공편 -->
+            <div class="form-group">
+                <label for="flightIn">도착항공편</label>
+                <input type="text" id="flightIn" name="flightIn" placeholder="예:KE756">
+            </div>
+
+            <!-- 참가인원 -->
+            <div class="form-group">
+                <label>참가인원</label>
+                <div class="participant-selects">
+                    <div class="participant-group">
+                        <label for="adultCount">성인</label>
+                        <select id="adultCount" name="adultCount">
+                            <option value="0">0명</option>
+                            <option value="1">1명</option>
+                            <option value="2">2명</option>
+                            <option value="3">3명</option>
+                            <option value="4">4명</option>
+                            <option value="5">5명</option>
+                            <option value="6">6명</option>
+                            <option value="7">7명</option>
+                            <option value="8">8명</option>
+                            <option value="9">9명</option>
+                            <option value="10">10명</option>
+                        </select>
                     </div>
-                </div>
-                <div class="goods_input_form_inline">
-                    <p class="form_label"><span class="text-danger">*</span> 여권 영문명</p>
-                    <div class="form_input_group">
-                        <input type="text" class="iptText" id="lastName" style="width: 174px; text-transform: uppercase;" placeholder="Last Name (*성)">
-                        <input type="text" class="iptText" id="firstName" style="width: 174px; text-transform: uppercase;" placeholder="First Name (*이름)">
-                        <p class="form-static"><span class="icon15 exclamation"></span>여권에 있는 영문명으로 정확하게 입력해주세요.</p>							
+                    <div class="participant-group">
+                        <label for="childCount">소인</label>
+                        <select id="childCount" name="childCount">
+                            <option value="0">0명</option>
+                            <option value="1">1명</option>
+                            <option value="2">2명</option>
+                            <option value="3">3명</option>
+                            <option value="4">4명</option>
+                            <option value="5">5명</option>
+                            <option value="6">6명</option>
+                            <option value="7">7명</option>
+                            <option value="8">8명</option>
+                            <option value="9">9명</option>
+                            <option value="10">10명</option>
+                        </select>
                     </div>
-                </div>
-                
-                <div class="goods_input_form_inline">
-                    <p class="form_label"><span class="text-danger">*</span> 수령일</p>
-                    <div class="form_input_group">
-                        <input type="text" class="iptText icon_calendar hasDatepicker" placeholder="수령일 선택" id="pickupDate" style="width: 30%;">
-                        <select class="sltBox" id="spot1" style="width: 30%;" ></select>
+                    <div class="participant-group">
+                        <label for="babyCount">유아</label>
+                        <select id="babyCount" name="babyCount">
+                            <option value="0">0명</option>
+                            <option value="1">1명</option>
+                            <option value="2">2명</option>
+                            <option value="3">3명</option>
+                            <option value="4">4명</option>
+                            <option value="5">5명</option>
+                            <option value="6">6명</option>
+                            <option value="7">7명</option>
+                            <option value="8">8명</option>
+                            <option value="9">9명</option>
+                            <option value="10">10명</option>
+                        </select>
                     </div>
-                </div>
-                <div class="goods_input_form_inline">
-                    <p class="form_label"><span class="text-danger">*</span> 반납일</p>
-                    <div class="form_input_group">
-                        <input type="text" class="iptText icon_calendar hasDatepicker" placeholder="반납일 선택" id="returnDate" style="width: 30%;">
-                        <select class="sltBox" id="spot2" style="width: 30%;"></select>
-                    </div>
-                </div>                
-                <div class="goods_input_form_inline" id="flightNo">
-                    <p class="form_label"><span class="text-danger">*</span> 도착항공편</p>
-                    <div class="form_input_group">
-                        <input type="text" class="iptText text-center" id="flightIn" style="width: 29%;" maxlength="6">
-                        <p class="form_label">예:KE756</p>
-                    </div>
-                </div>
-                <div class="goods_input_form_inline">
-                    <p class="form_label"><span class="text-danger">*</span> 참가인원</p>
-                    <div class="form_input_group">
-                        <div class="table nomargin thin text-center">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th width="25%" class="th">성인 (만 6세 이상)</th>
-                                        <th width="25%" class="th">소인 (만 4세 ~ 5세)</th>
-                                        <th width="25%" class="th">유아 (만 1세 ~ 3세)</th>
-                                        <th width="25%" class="th">영아 (12개월 미만)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="td">
-                                            <select class="sltBox" id="person1" style="width: 50px;" onchange="dateCnt();">
-                                                <option value="1">1명</option>
-                                                <option value="2">2명</option>
-                                                <option value="3">3명</option>
-                                                <option value="4">4명</option>
-                                                <option value="5">5명</option>
-                                                <option value="6">6명</option>
-                                                <option value="7">7명</option>
-                                                <option value="8">8명</option>
-                                                <option value="9">9명</option>
-                                                <option value="10">10명</option>
-                                            </select>
-                                        </td>
-                                        <td class="td">
-                                            <select class="sltBox" id="person2" style="width: 50px;" onchange="dateCnt();">
-                                                <option value="0">0명</option>
-                                                <option value="1">1명</option>
-                                                <option value="2">2명</option>
-                                                <option value="3">3명</option>
-                                                <option value="4">4명</option>
-                                                <option value="5">5명</option>
-                                                <option value="6">6명</option>
-                                                <option value="7">7명</option>
-                                                <option value="8">8명</option>
-                                                <option value="9">9명</option>
-                                                <option value="10">10명</option>
-                                            </select>
-                                        </td>
-                                        <td class="td">
-                                            <select class="sltBox" id="person3" style="width: 50px;" onchange="dateCnt();">
-                                                <option value="0">0명</option>
-                                                <option value="1">1명</option>
-                                                <option value="2">2명</option>
-                                                <option value="3">3명</option>
-                                                <option value="4">4명</option>
-                                                <option value="5">5명</option>
-                                                <option value="6">6명</option>
-                                                <option value="7">7명</option>
-                                                <option value="8">8명</option>
-                                                <option value="9">9명</option>
-                                                <option value="10">10명</option>
-                                            </select>
-                                        </td>
-                                        <td class="td">
-                                            <select class="sltBox" id="person4" style="width: 50px;" onchange="dateCnt();">
-                                                <option value="0">0명</option>
-                                                <option value="1">1명</option>
-                                                <option value="2">2명</option>
-                                                <option value="3">3명</option>
-                                                <option value="4">4명</option>
-                                                <option value="5">5명</option>
-                                                <option value="6">6명</option>
-                                                <option value="7">7명</option>
-                                                <option value="8">8명</option>
-                                                <option value="9">9명</option>
-                                                <option value="10">10명</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <p style="margin: 8px 0;">
-                            <!--<span class="icon15 exclamation"></span>본 상품은 <span class="text-danger">5인승 1,300CC 하이브리드</span> 차량이 제공되며 <span class="text-danger">규정된 탑승인원을 초과하여 신청할 경우 예약이 취소</span>될 수 있습니다.<br>
-                            <span class="icon15 exclamation"></span>소인,유아,영아를 선택해주신 인원만큼 카시트를 설치해놓고 있습니다(1대 1100엔)<br>-->
-                            <span class="icon15 exclamation"></span>일본 법률로 만5세 이하 아이는 차일드 시트를 의무적으로 사용해야 합니다.<br>1대 당 1,100엔을 현지에서 지불하셔야 합니다.
-                        </p>
-                    </div>
-                </div>
-                <div class="goods_input_form_inline" id="shuttle">
-                    <p class="form_label"><span class="text-danger">*</span> 수령방법</p>
-                    <div class="form_input_group">
-                        <div class="styledRadio">
-                            <input type="radio" id="shuttleY" name="pickup" value="Y" checked=""><label for="shuttleY">공항픽업 셔틀버스 이용</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="shuttleN" name="pickup" value="N"><label for="shuttleN">직접 지점 방문 수령</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="goods_input_form_inline" id="shuttle">
-                    <p class="form_label"><span class="text-danger">*</span>풀커버 보험(NOC안심) </p>
-                    <div class="form_input_group">
-                        <div class="styledRadio">
-                            <input type="radio" id="nocY" name="NOC" value="Y" checked=""><label for="nocY">가입</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="nocN" name="NOC" value="N"><label for="nocN">비가입</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="goods_input_form_inline" id="shuttle">
-                    <p class="form_label"><span class="text-danger">*</span> 카시트</p>
-                    <div class="form_input_group">
-                        <div class="styledRadio">
-                            <input type="radio" id="shuttleY" name="pickup" value="Y" checked=""><label for="shuttleY">사용</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="shuttleN" name="pickup" value="N"><label for="shuttleN">미사용</label>
-                        </div>
-                        <div class="table nomargin thin text-center">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th width="30%" class="th">주니어 (만 4세 ~ 5세)</th>
-                                        <th width="30%" class="th">차일드 (만 1세 ~ 3세)</th>
-                                        <th width="30%" class="th">베이비 (12개월 미만)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="td">
-                                            <select class="sltBox" id="juniorCnt" style="width: 50px;" onchange="dateCnt();">
-                                                <option value="1">1명</option>
-                                                <option value="2">2명</option>
-                                                <option value="3">3명</option>
-                                                <option value="4">4명</option>
-                                                <option value="5">5명</option>
-                                                <option value="6">6명</option>
-                                                <option value="7">7명</option>
-                                                <option value="8">8명</option>
-                                                <option value="9">9명</option>
-                                                <option value="10">10명</option>
-                                            </select>
-                                        </td>
-                                        <td class="td">
-                                            <select class="sltBox" id="childCnt" style="width: 50px;" onchange="dateCnt();">
-                                                <option value="0">0명</option>
-                                                <option value="1">1명</option>
-                                                <option value="2">2명</option>
-                                                <option value="3">3명</option>
-                                                <option value="4">4명</option>
-                                                <option value="5">5명</option>
-                                                <option value="6">6명</option>
-                                                <option value="7">7명</option>
-                                                <option value="8">8명</option>
-                                                <option value="9">9명</option>
-                                                <option value="10">10명</option>
-                                            </select>
-                                        </td>
-                                        <td class="td">
-                                            <select class="sltBox" id="babyCnt" style="width: 50px;" onchange="dateCnt();">
-                                                <option value="0">0명</option>
-                                                <option value="1">1명</option>
-                                                <option value="2">2명</option>
-                                                <option value="3">3명</option>
-                                                <option value="4">4명</option>
-                                                <option value="5">5명</option>
-                                                <option value="6">6명</option>
-                                                <option value="7">7명</option>
-                                                <option value="8">8명</option>
-                                                <option value="9">9명</option>
-                                                <option value="10">10명</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="goods_input_form_inline">
-                    <p class="form_label"><span class="text-danger">*</span> 휴대전화</p>
-                    <div class="form_input_group">
-                        <input type="text" class="iptText text-center" id="mobile1" style="width: 60px;" maxlength="4">
-                        <span class="form-static">-</span>
-                        <input type="text" class="iptText text-center" id="mobile2" style="width: 60px;" maxlength="4">
-                        <span class="form-static">-</span>
-                        <input type="text" class="iptText text-center" id="mobile3" style="width: 60px;" maxlength="4">
-                    </div>
-                </div>
-                <div class="goods_input_form_inline">
-                    <p class="form_label"><span class="text-danger">*</span> 이메일<span class="text-danger">（중요）</span></p>
-                    <div class="form_input_group">
-                        <input type="email" class="iptText" id="email" style="width: 220px;">							
-                        <p style="margin: 8px 0 6px;"><span class="icon15 exclamation"></span>24시간 이내에 이메일로 예약 가능 여부 를 안내해드립니다.<span class="text-danger">※메일이 도착하지 않을 경우 스팸 메일 폴더도 확인해 주시기 바랍니다.</span></p>
-                        <!--<p><span class="icon15 exclamation"></span>경우에 따라 예약이 되지 않는 경우도 있으니 반드시 메일을 확인하시기 바랍니다.</p>
-                        <p><span class="icon15 exclamation"></span>24시간 내에 아무런 연락이 없는 경우 이메일 okizonepass@tomotoday.com 으로 문의주십시요.</p>-->
-                    </div>
-                </div>
-                <!--
-                <div class="goods_input_form_inline">
-                    <p class="form_label">기타 요청사항</p>
-                    <div class="form_input_group">
-                        <textarea class="textArea block" name="content" rows="4"></textarea>
-                    </div>
-                </div>
--->
-                <div class="goods_input_form_inline">
-                    <p class="form_label"><span class="text-danger">*</span> 총 합계 금액</p>
-                    <div class="form_input_group">
-                        <div class="rate_form_total"><big class="rate_form_text" id="totalpay">14,210엔</big> (총 <span class="text-danger" id="daycount">24</span>시간 + 타지점 반납 추가요금 <span class="text-danger" id="orixp">0</span>엔)</div>
+                    <div class="participant-group">
+                        <label for="infantCount">영아</label>
+                        <select id="infantCount" name="infantCount">
+                            <option value="0">0명</option>
+                            <option value="1">1명</option>
+                            <option value="2">2명</option>
+                            <option value="3">3명</option>
+                            <option value="4">4명</option>
+                            <option value="5">5명</option>
+                            <option value="6">6명</option>
+                            <option value="7">7명</option>
+                            <option value="8">8명</option>
+                            <option value="9">9명</option>
+                            <option value="10">10명</option>
+                        </select>
                     </div>
                 </div>
             </div>
-            <p class="font_w400"><span class="icon15 exclamation"></span>주의사항</p>
-            <div class="text_info_box halfbottom">
-                <ul class="list_style">
-                    <li>- <span class="text-danger">본 예약은 신청 시 바로 확정되지 않습니다. </span><br>　배차 상황을 확인 후 이메일로 예약 가능 여부를 안내해드립니다.</li>
-                    <li>- 요금은 현지에서 카드 또는 현금으로 결제하셔야 합니다.</li>
-                    <li>- 렌터카를 현지에서 수령할 때에는 국제면허증과 여권이 반드시 필요합니다.<br>　둘 중 하나라도 없을 경우 차량을 대여할 수 없으므로 주의해주시기 바랍니다.</li>
-                    <li>- 전차량 금연 차량이며 ,<br>　한국어(다국어 지원) 네비게이션이 모든 차량에 장착되어 있습니다.</li>
-                    <li>- 표기된 요금에는 면책보상료와 소비세가 포함되어 있습니다.</li>
-                    <li>- 풀커버 보험(NOC안심)에 가입하고 싶을 경우, <br>　현지에서 추가 요금을 결제하여 가입하실 수 있습니다.</li>
-                    <li>- 일본 법률로 만5세 이하 아이는 차일드 시트를 의무적으로 사용해야 합니다. <br>　차일드 시트 요금은 렌터카 요금에는 포함되어 있지 않으므로, <br>　현지에서 추가로 결제하셔야 합니다.</li>
-                </ul>
+
+            <!-- 수령방법 -->
+            <div class="form-group">
+                <label>수령방법</label>
+                <div class="pickup-method">
+                    <input type="radio" id="pickupMethodShuttle" name="pickupMethod" value="Y" checked>
+                    <label for="pickupMethodShuttle">셔틀이용</label>
+                    <input type="radio" id="pickupMethodDirect" name="pickupMethod" value="N">
+                    <label for="pickupMethodDirect">직접수령</label>
+                </div>
             </div>
-            <div class="styledCheckbox text-center">
-                <input type="checkbox" name="agree" id="agree1" value="Y"><label for="agree1">위 안내 및 주의사항을 확인하였으며 이에 동의합니다.</label>
+
+            <!-- 전화번호 (3칸) -->
+            <div class="form-group">
+                <label>전화번호</label>
+                <div class="mobile-input">
+                    <input type="text" id="mobile1" name="mobile1" maxlength="3" placeholder="010">
+                    <span>-</span>
+                    <input type="text" id="mobile2" name="mobile2" maxlength="4" placeholder="1234">
+                    <span>-</span>
+                    <input type="text" id="mobile3" name="mobile3" maxlength="4" placeholder="1234">
+                </div>
             </div>
-            <div id="reserve_input_btns">
-                <!-- <button type="button" class="btn light lg" onclick="location.href='rent-car-list.php';">예약 신청 취소</button> -->
-                <button type="submit" class="btn danger lg">예약 신청 완료</button>
+
+            <!-- 이메일 -->
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="email" >
+                <p style="margin: 8px 0 6px;"><span class="icon15 exclamation"></span>24시간 이내에 이메일로 예약 가능 여부 를
+                    안내해드립니다.<span class="text-danger">※메일이 도착하지 않을 경우 스팸 메일 폴더도 확인해 주시기 바랍니다.</span></p>
             </div>
-            <input type="hidden" name="payVal" value="14210">
-            <input type="hidden" name="totalHour" value="24">
-            <input type="hidden" name="partner" value="orix">
-        </div>			
+
+            <!-- 풀커버 보험 (NOC안심) 가입 여부 -->
+            <div class="form-group">
+                <label>풀커버 보험(NOC안심) 가입 여부</label>
+                <div class="noc-option">
+                    <input type="radio" id="nocYes" name="NOC" value="Y" checked>
+                    <label for="nocYes">가입</label>
+                    <input type="radio" id="nocNo" name="NOC" value="N">
+                    <label for="nocNo">미가입</label>
+                </div>
+                <p style="margin: 8px 0 6px;">
+                    <!-- <span class="icon15 exclamation"></span> -->
+                    4~5인승 : <span class="text-danger"  id="insurance1">0</span>(엔)  24시간 기준<br>
+                    7~8인승 : <span class="text-danger" id="insurance2">0</span>(엔)  24시간 기준
+                </p>
+            </div>
+
+            <!-- 카시트 -->
+            <div class="form-group">
+                <label>카시트</label>
+                <table class="car-seat-table">
+                    <thead>
+                        <tr>
+                            <th>주니어카시트</th>
+                            <th>차일드카시트</th>
+                            <th>베이비카시트</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select id="juniorSeat" name="carseat">
+                                    <option value="0">0개</option>
+                                    <option value="1">1개</option>
+                                    <option value="2">2개</option>
+                                    <option value="3">3개</option>
+                                    <option value="4">4개</option>
+                                    <option value="5">5개</option>
+                                    <option value="6">6개</option>
+                                    <option value="7">7개</option>
+                                    <option value="8">8개</option>
+                                    <option value="9">9개</option>
+                                    <option value="10">10개</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="childSeat" name="carseat">
+                                    <option value="0">0개</option>
+                                    <option value="1">1개</option>
+                                    <option value="2">2개</option>
+                                    <option value="3">3개</option>
+                                    <option value="4">4개</option>
+                                    <option value="5">5개</option>
+                                    <option value="6">6개</option>
+                                    <option value="7">7개</option>
+                                    <option value="8">8개</option>
+                                    <option value="9">9개</option>
+                                    <option value="10">10개</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select id="babySeat" name="carseat">
+                                    <option value="0">0개</option>
+                                    <option value="1">1개</option>
+                                    <option value="2">2개</option>
+                                    <option value="3">3개</option>
+                                    <option value="4">4개</option>
+                                    <option value="5">5개</option>
+                                    <option value="6">6개</option>
+                                    <option value="7">7개</option>
+                                    <option value="8">8개</option>
+                                    <option value="9">9개</option>
+                                    <option value="10">10개</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="carseatInfo">
+                    <span class="icon15 exclamation"></span>일본 법률로 만5세 이하 아이는 카시트를 의무적으로 사용해야 합니다.
+                </div>
+                <p style="margin: 8px 0 6px;">
+                    <!-- <span class="icon15 exclamation"></span> -->
+                    주니어카시트 : <span class="text-danger"  id="carseat1">0</span>(엔) 전 일정<br>
+                    <span class="carseatNote">- 체중 15~32kg, 신장 100~135cm 이하 / 약 4세~ 6세 미만</span><br>
+                    차일드카시트 : <span class="text-danger" id="carseat2">0</span>(엔) 전 일정<br>
+                    <span class="carseatNote">- 체중 9~18kg, 신장 100cm 이하 / 약 9개월 ~ 4세 미만</span><br>
+                    베이비카시트 : <span class="text-danger" id="carseat3">0</span>(엔) 전 일정<br>
+                    <span class="carseatNote">-  체중 9kg 이하, 신장 100cm 이하 / 생후 ~ 약 9개월 미만</span>
+                </p>
+            </div>
+
+            <div class="form-group">
+                <div class="total-amount" style="text-align:denter;">
+                    <p><strong>사전결제:</strong><span class="text-danger" id="beforePrice">70,500</span>(원)
+                        +현장결제:<span class="text-danger" id="afterPrice">1000</span>(엔)</p>
+                </div>
+                <p id="insurance">풀커버 보험(NOC안심) 가입 : <span id="ins1"></span>(엔) X <span id="diffDay">0</span>(박)</span></p>
+                <p>주니어카시트 : <span id="carse1"></span>(엔) X <span id="juniorCnt">0</span>(개)</span></p>
+                <p>차일드카시트 : <span id="carse2"></span>(엔) X <span id="chileCnt">0</span>(개)</span></p>
+                <p>베이비카시트 : <span id="carse3"></span>(엔) X <span id="babyCnt">0</span>(개)</span></p>
+            </div>
+
+            <!-- 동의 체크박스 및 버튼 -->
+            <div class="form-group">
+                <div>
+                    <p class="font_w400"><span class="icon15 exclamation"></span>주의사항</p>
+                    <div class="text_info_box halfbottom">
+                        <ul class="list_style">
+                            <li> <span class="text-danger">본 예약은 신청 시 바로 확정되지 않습니다. </span><br>배차 상황을 확인 후 이메일로 예약 가능
+                                여부를 안내해드립니다.</li>
+                            <li> 요금은 현지에서 카드 또는 현금으로 결제하셔야 합니다.</li>
+                            <li> 렌터카를 현지에서 수령할 때에는 국제면허증과 여권이 반드시 필요합니다.<br>둘 중 하나라도 없을 경우 차량을 대여할 수 없으므로 주의해주시기 바랍니다.
+                            </li>
+                            <li> 전차량 금연 차량이며 ,<br>한국어(다국어 지원) 네비게이션이 모든 차량에 장착되어 있습니다.</li>
+                            <li> 표기된 요금에는 면책보상료와 소비세가 포함되어 있습니다.</li>
+                            <li> 풀커버 보험(NOC안심)에 가입하고 싶을 경우, <br>현지에서 추가 요금을 결제하여 가입하실 수 있습니다.</li>
+                            <li> 일본 법률로 만5세 이하 아이는 카시트를 의무적으로 사용해야 합니다. <br>카2시트 요금은 렌터카 요금에는 포함되어 있지 않으므로,
+                                현지에서 추가로 결제하셔야 합니다.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="agree">
+                    <input type="checkbox" id="termsAgreement">
+                    <label for="termsAgreement">위 안내 및 주의사항을 확인하였으며 이에 동의합니다.</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="button" class="submit-btn">예약 신청</button>
+            </div>
+        </form>
     </div>
 
-<!-- footer 시작 -->
-    <footer class="bg-dark text-white text-center py-4">
-        <p>&copy; 2024 렌터카 서비스 | 모든 권리 보유</p>
-        <button onclick="gotoManage();">관리자페이지</button>
-    </footer>
-
-    <script>
-        function gotoManage(){
-            const password = prompt("비밀번호를 입력하세요");
-            if(password == 'nihonka'){
-                window.location.href = "/manageCar.html";
-            }
-        }        
-    </script>
-<!-- footer 끝 -->
+    <!-- footer 끝 -->
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/reservation.js"></script>
-    
+
 </body>
 
 </html>

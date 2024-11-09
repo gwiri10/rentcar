@@ -1,5 +1,4 @@
-import { fetchOneDocument } from './firebase.js';
-import { calRate } from './setting.js';
+import { fetchOneDocument, fetchCompanysDocument, fetchData } from './firebase.js';
 
 const id = sessionStorage.getItem("id");
 const pickupDate = sessionStorage.getItem("pickupDate");
@@ -8,7 +7,7 @@ const returnDate = sessionStorage.getItem("returnDate");
 window.onload = async function () {
     let data = await fetchOneDocument(id);
 
-    fetchCarInfo(data);
+    await fetchCarInfo(data);
 
     if ($("#pickupDate").val() != '') {
         $("#pickupDate").val(pickupDate);
@@ -18,7 +17,7 @@ window.onload = async function () {
     getDateDiff();
 }
 
-function fetchCarInfo(data) {
+async function fetchCarInfo(data) {
     // collectionName  : "cars",
     // modelNm         : "Sample Title",   //title, 차량모델
     // grade           : "소형",           //차량등급
@@ -44,7 +43,10 @@ function fetchCarInfo(data) {
     $("#door-count").html(data.door + '개');
 
     $("#totalPrice").val(data.price);
-    
+
+    //인수위치 세팅
+    let companyNm = await fetchCompanysDocument(data.companyCd*1);
+    $("#rentSpot").html(companyNm);
 }
 
 const today = new Date();
@@ -71,15 +73,15 @@ $("#pickupDate").daterangepicker({
     //console.log(e);
 });
 
-$("#pickupDate").on('apply.daterangepicker', function (ev, picker) {
+$("#pickupDate").on('apply.daterangepicker', async function (ev, picker) {
     let dateArray = $("#pickupDate").val().split(' ~ ');
     $("#pickupDate").val(dateArray[0]);
     $("#returnDate").val(dateArray[1]);
 
-    getDateDiff();
+    await getDateDiff();
 });
 
-const getDateDiff = () => {
+const getDateDiff = async() => {
     //대여일시와 반납일시간의 시간 구하기
     let date1 = new Date($("#pickupDate").val());
     let date2 = new Date($("#returnDate").val());
@@ -88,13 +90,32 @@ const getDateDiff = () => {
 
     //대여일시와 반납일시간의 날짜 구하기(나머지가 있다면 +1)
     let diffDay = parseInt( diffDate / 24 );
-    diffDate % 24 > 0 ? diffDay++ : diffDay;
+    let totalPrice = 0;
+    let extraDate = diffDate % 24;
+    //총 대여시간을 24로 나눈 나머지 시간이 5시간을 초과하면 1박추가로 계산
+    if(extraDate != 0){
+        if(extraDate > 5){
+            diffDay += 1; 
+            extraDate = 0;
+        }
+    } 
 
-    let totalPrice = $("#totalPrice").val() * diffDay;
+    totalPrice = ($("#totalPrice").val() * diffDay) + extraDate*11000;
+
+    let calRate = 0;//사전결제비율
+    let result = await fetchData("rate");
+    result.forEach((doc) => {
+        calRate = doc.data().rate * 0.01;
+    });
     let beforePrice = totalPrice * calRate;
     let afterPrice = (totalPrice* 1 - beforePrice) / 10;
 
-    $("#rentDate").html("총 : "+diffDate+"시간")
+    //예약하기 시 넘겨줄 데이터
+    document.getElementById("afterPrice").value = afterPrice;
+    document.getElementById("beforePrice").value = beforePrice;
+    document.getElementById("diffDay").value = diffDay;
+
+    $("#rentDate").html("총 "+diffDate+"시간")
     $("#price").html("사전결제 :  " + beforePrice + '(원) + 현장결제 : ' + afterPrice + '(엔)');
 
 }

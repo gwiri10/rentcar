@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'aritadm';
+    src: url('../fonts/AritaDotumMedium.eot');
+    src: local('※'), url('../fonts/AritaDotumMedium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/AritaDotumMedium.woff') format('woff'),
+         url('../fonts/AritaDotumKR-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+.res-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+
+.reservation-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    position: relative;
+}
+
+.reservation-status.complete {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4caf50;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.reservation-status.pending {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff9800;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.reservation-status.cancel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #df6565;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.reservation-title {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.reservation-subtitle {
+    font-size: 0.9em;
+    color: #777;
+    /* margin-bottom: 10px; */
+}
+
+.reservation-details {
+    display: none; /* 처음에는 보이지 않도록 설정 */
+}
+
+.reservation-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.cancel-btn, .confirm-btn {
+    margin-left: 5px;
+}
+
+.reservation-details table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+.reservation-details th, 
+.reservation-details td {
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+.reservation-details th {
+    background-color: #f0f0f0; /* 원하는 배경색으로 변경 가능 */
+    font-weight: bold;
+    /* text-align: center; */
+    width: 40%;
+}
+
+/* 공통 버튼 스타일 */
+.reservation-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 5px;
+}
+
+/* 예약취소 버튼 스타일 */
+.cancel-btn {
+    background-color: #d9534f; /* 빨간색 */
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #c9302c;
+}
+
+/* 예약확정 버튼 스타일 */
+.confirm-btn {
+    background-color: #5cb85c; /* 초록색 */
+    transition: background-color 0.3s ease;
+}
+
+.confirm-btn:hover {
+    background-color: #4cae4c;
+}

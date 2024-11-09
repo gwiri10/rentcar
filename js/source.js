@@ -150,9 +150,9 @@ $("#btnSearch").click(async () => {
     makeCarList(result);
 
     let totalCount = await getTotalDocumentsCount("cars");
-    let listCount = carList.childElementCount;
+    let listCount = document.getElementById("carList").childElementCount;
 
-    if (totalCount < listCount) {
+    if (totalCount <= listCount) {
         $("#btnMoreList").hide();
     } else {
         $("#btnMoreList").show();
@@ -163,16 +163,15 @@ $("#btnMoreList").click(async function () {
     let companyCd = $("#pickupLocation").val() * 1;
 
     let totalCount = await getTotalDocumentsCount("cars");
-    let listCount = carList.childElementCount;
+    let listCount = document.getElementById("carList").childElementCount + pagingunit;;
     let limitCnt = 0;
 
     if (totalCount > listCount) {
         $("#btnMoreList").show();
-        if(totalCount - listCount < pagingunit){
-            limitCnt= totalCount - listCount;
-        }
+        limitCnt = pagingunit;
     } else {
         $("#btnMoreList").hide();
+        limitCnt= totalCount - listCount + 5;
     }
 
     let result = await fetchNextDocument("cars", companyCd, limitCnt);
@@ -188,16 +187,27 @@ function makeCarList(result) {
 
         // 카드 요소 생성
         const card = document.createElement('div');
-        card.className = 'col-md-4'; // Bootstrap의 그리드 시스템 사용
+        card.className = 'cardList'; // Bootstrap의 그리드 시스템 사용
 
+        let airconNm = data.aircon==1 ? "있음" : "없음"
         // 카드 HTML 구성
         card.innerHTML = `
-            <div class="card">
-                <img src="${data.imgurl}" class="card-img-top" alt="차량 이미지">
-                <div class="card-body">
-                    <h5 class="card-title">${data.modelNm}</h5> <!-- title 값 삽입 -->
-                    <p class="card-text">연식: ${data.gear}<br>종류: ${data.grade}<br>가격: ${data.price}원/일</p>
-                    <a href="#" onclick="pageMove('${doc.id}')"class="btn btn-primary">자세히 보기</a>
+            <div class="col-md-12"> <!-- 한 줄에 가득 차도록 col-md-12 -->
+                <div class="card car-card">
+                    <img src="${data.imgurl}" class="card-img-top" alt="차량 이미지">
+                    <div class="card-body">
+                        <h5 class="card-title">${data.modelNm}</h5>
+                        <p class="card-text">
+                            <span><i class="fas fa-car-side"></i> ${data.grade}</span> 
+                            <span><i class="fas fa-cogs"></i> ${data.gear}</span> 
+                            <span><i class="fas fa-suitcase"></i> ${data.bag}개</span> 
+                            <span><i class="fas fa-users"></i> ${data.people}명</span> 
+                            <span><i class="fas fa-snowflake"></i> ${airconNm}</span>
+                            <span><i class="fas fa-door-open"></i> ${data.door}개</span>
+                        </p>
+                        <p class="price">가격 : <strong>${data.price}원/일</strong></p> <!-- 가격 강조 -->
+                        <a href="#" onclick="pageMove('${doc.id}')" class="btn btn-primary btnMore"> 자세히 보기</a>
+                    </div>
                 </div>
             </div>
             `;

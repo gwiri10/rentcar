@@ -13,6 +13,10 @@ export const firebaseConfig = {
 export const companys = {
     collectionName  : "companys",
     companyNm       : "나하공항점(OKA)", //업체명
+    address         : "일본 오키나와 나하공항점", //주소지
+    telephone       : "010-1234-1234",          //긴급연락처
+    openTime        : "10:00 AM - 17:00 PM",    //영업시간
+    freeService     : "픽업서비스",              //무료서비스
     companyCd       : 1                 //업체코드
 }
 
@@ -50,31 +54,28 @@ export const carseats = {
 //예약정보
 export const reservation = {
     driverName : "홍길동",      //예약자명
+    carName : "도요타 라이즈 또는 동급차종", //예약한 차량명
     lastName : "HONG",            //성
     firstName : "GILDONG",         //이름
     pickupDate : "2024-11-08 04:00 AM", //인수날짜시간
-    spot1 : 1,                  //인수장소
+    pickupSpot : 1,                  //인수장소
     returnDate : "2024-11-11 04:00 AM", //반납날짜시간
-    spot2 : 1,                  //반납장소
+    returnSpot : 1,                  //반납장소
     flightIn : "KE756",         //도착항공편
-    person1 : 2,                //성인 수
-    person2 : 0,                //소인 수
-    person3 : 0,                //유아 수
-    person4 : 1,                //영아 수
-    pickup : 'Y',               //수령방법(Y:셔틀이용, N:직접수령)
+    adultCount : 2,                //성인 수
+    childCount : 0,                //소인 수
+    babyCount : 0,                //유아 수
+    infantCount : 1,                //영아 수
+    pickupMethod : '셔틀이용',   //수령방법
     mobile : '010-1234-1234',   //전화번호
     email : 'gildong@gmail.com',//email
-    NOC : 'Y',                  //풀커버 보험(NOC안심) 가입 여부
-    juniorCnt : 0,              //주니어카시트 수
-    childCnt : 0,               //차일드카시트 수
-    babyCnt : 0,                //베이비카시트 수
-
+    insurance : "1100(엔) X 2(박)",//풀커버 보험(NOC안심) 가입 여부
+    juniorSeat : 0,              //주니어카시트 수
+    childSeat : 0,               //차일드카시트 수
+    babySeat : 0,                //베이비카시트 수
+    resState : 1,               //예약상태(1:예약대기, 2:예약확정, 3:예약취소)
+    regDate : "2024-11-10 04:00 AM" //등록날짜
 }
 //검색 시 한번 검색할 떄 표시할 목록의 갯수
 export const pagingunit = 5;
 
-//사전결제와 현장결제의 비율 (사전결제 * calRate = 현장결제)
-export const calRate = 0.8;
-
-//github 배포 이름
-export const systemRoot = "/rent";

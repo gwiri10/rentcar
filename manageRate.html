@@ -7,35 +7,21 @@
     <title>니혼카</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/styles.css">
+    
     <link rel="stylesheet" href="style/manageCar.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
+    
 </head>
 
 <body>
-    <script type="module">
-        import { 
-            addCompanyModule 
-            , deleteCompany 
-            , addCompany 
-            , cancelCompany
-        } from './js/manageCompanyModule.js'; // 모듈에서 함수 불러오기
-
-        // 이 코드에서 함수 사용 가능
-        window.addCompanyModule = addCompanyModule; // 전역 객체에 함수 추가
-        window.deleteCompany = deleteCompany; // 전역 객체에 함수 추가
-        window.addCompany = addCompany; // 전역 객체에 함수 추가
-        window.cancelCompany = cancelCompany; // 전역 객체에 함수 추가
-    </script>
-
     <header class="bg-white text-white" style="background-color: #ffffff;">
         <div class="container d-flex justify-content-between align-items-center py-3" style="padding-bottom:0 !important;">
             <div class="d-flex align-items-center">
@@ -44,7 +30,7 @@
             </div>
         </div>
     </header>
-
+    
     <!-- 상단 메뉴 -->
     <nav class="bg-dark">
         <div class="container">
@@ -67,41 +53,30 @@
             </ul>
         </div>
     </nav>
+
     <div class="container">
-        <!-- 검색 섹션 -->
-        <div class="search-section">
-            <h2>업체관리</h2>
-            <button class="add-car-btn" onclick="addCompany()">업체 추가</button>
-        </div>
-        <div class="car-list" id="car-list">
-            <div class="car-card">
-                <div class="company">
-                    <p>업체명 : </p>
-                    <input type="text" value="업체명"/>
-                </div>
-                <div class="company-details">
-                    <p><strong>주소지:</strong> <input type="text" value="일본 오키나와 나하공항점"/></p>
-                    <p><strong>긴급연락처:</strong> <input type="text" value="010-1234-1234"/></p>
-                    <p><strong>영업시간:</strong> <input type="text" value="10:00 AM - 17:00 PM"/></p>
-                    <p><strong>무료서비스:</strong> <input type="text" value="픽업서비스"/></p>
-                    <div class="action-buttons">
-                        <button class="edit-btn" onclick="editCar(event)">수정</button>
-                        <button class="delete-btn" onclick="deleteCar(event)">삭제</button>
-                    </div>
-                </div>
-                <div class="action-buttons">
-                    <button class="edit-btn" >수정</button>
-                    <button class="delete-btn" >삭제</button>
-                </div>
+        <h2>사전결제비율</h2>
+        <div class="car-card">
+            <div class="company">
+                <p>사전결제비율 : </p>
+                <input type="text" id="rate" value="20" style="width:80%"/>%
+                <input type="text" id="id" style="display: none;"/>
+            </div>
+            <div class="action-buttons">
+                <button class="edit-btn" >수정</button>
             </div>
         </div>
     </div>
+
+    <!-- footer 시작 -->
     <footer class="bg-dark text-white text-center py-4">
         <p>&copy; 2024 렌터카 서비스 | 모든 권리 보유</p>
     </footer>
+<!-- footer 끝 -->
 
     <script type="module" src="js/firebase.js"></script>
-    <script type="module" src="js/manageCompanyModule.js"></script>
+    <script type="module" src="js/manageRateModule.js"></script>
+    
 </body>
 
 </html>

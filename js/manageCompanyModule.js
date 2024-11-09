@@ -29,6 +29,26 @@ export async function addCompany() {
             <p>업체명 : </p>
             <input type="text" value=""/>
         </div>
+        <div class="company-details">
+                <table class="info-table">
+                    <tr>
+                        <th>주소지</th>
+                        <td><input type="text" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>긴급연락처</th>
+                        <td><input type="text" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>영업시간</th>
+                        <td><input type="text" value="" /></td>
+                    </tr>
+                    <tr>
+                        <th>무료서비스</th>
+                        <td><input type="text" value="" /></td>
+                    </tr>
+                </table>
+            </div>
         <div class="action-buttons">
             <button class="edit-btn" onclick="addCompanyModule()">추가</button>
             <button class="delete-btn" onclick="cancelCompany(this)">취소</button>
@@ -41,7 +61,6 @@ export async function addCompany() {
 }
 
 export function cancelCompany(object){
-    debugger;
     let flag = confirm("취소하시겠습니까?");
     if(flag) object.parentElement.parentElement.remove();
 }
@@ -61,6 +80,26 @@ async function btnSearch() {
             <div class="company">
                 <p>업체명 : </p>
                 <input type="text" id="${doc.id}" value="${data.companyNm}"/>
+            </div>
+            <div class="company-details">
+                <table class="info-table">
+                    <tr>
+                        <th>주소지</th>
+                        <td><input type="text" value="${data.address}" /></td>
+                    </tr>
+                    <tr>
+                        <th>긴급연락처</th>
+                        <td><input type="text" value="${data.telephone}" /></td>
+                    </tr>
+                    <tr>
+                        <th>영업시간</th>
+                        <td><input type="text" value="${data.openTime}" /></td>
+                    </tr>
+                    <tr>
+                        <th>무료서비스</th>
+                        <td><input type="text" value="${data.freeService}" /></td>
+                    </tr>
+                </table>
             </div>
             <div class="action-buttons">
                 <button class="edit-btn">수정</button>

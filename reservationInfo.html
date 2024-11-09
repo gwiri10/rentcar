@@ -23,10 +23,11 @@
 <body>
 
     <header class="bg-white text-white" style="background-color: #ffffff;">
-        <div class="container d-flex justify-content-between align-items-center py-3">
+        <div class="container d-flex justify-content-between align-items-center py-3"
+            style="padding-bottom:0 !important;">
             <div class="d-flex align-items-center">
-                <img src="logo.png" alt="로고" class="logo">
-                <h1 class="ml-2 logoTitle">니혼카</h1>
+                <img src="./img/logo.png" alt="로고" class="logo" style="width: 75px;">
+                <h2 class="ml-2 logoTitle" style="font-weight:bold;margin: 0 !important;">니혼카</h2>
             </div>
         </div>
     </header>
@@ -38,7 +39,7 @@
                 <li class="nav-item">
                     <a class="nav-link text-white" href="./index.html">홈</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link text-white" href="#">차량 리스트</a>
                 </li>
                 <li class="nav-item">
@@ -46,11 +47,14 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="#">문의하기</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
     <main>
+        <input type="hidden" id="beforePrice" />
+        <input type="hidden" id="afterPrice" />
+        <input type="hidden" id="diffDay" />
         <div class="carInfoContainer">
             <section class="car-details">
                 <div class="car-container">
@@ -86,7 +90,7 @@
                             </tr>
                             <tr>
                                 <th>인수위치</th>
-                                <td class="car-td" id="door-count">4개</td>
+                                <td class="car-td" id="rentSpot">4개</td>
                             </tr>
                         </table>
                     </div>
@@ -104,28 +108,36 @@
                         </div>
                     </div>
                     <div class="carPrice">
-                        <h5 id="rentDate"></h5>
                         <h5 id="price"></h5>
-                        <input type="hidden" id="totalPrice"/>
+                        <p id="rentDate"></p>
+                        <input type="hidden" id="totalPrice" />
                     </div>
-                    <div class="btn-container">
-                        <a class="reserve-btn" href="#" onclick="pageMove();">예약하기</a>
-                        <a class="back-btn" href="./index.html">이전으로</a>
-                    </div>
+                        <div class="btn-container">
+                            <a class="reserve-btn" href="#" onclick="pageMove();">예약하기</a>
+                            <a class="back-btn" href="./index.html">이전으로</a>
+                        </div>
                 </div>
             </section>
 
             <script>
-                function pageMove(){
+                function pageMove() {
                     const id = sessionStorage.getItem("id");
                     const pickupDate = document.getElementById("pickupDate").value;
                     const returnDate = document.getElementById("returnDate").value;
-                
+                    const beforePrice = document.getElementById("beforePrice").value;
+                    const afterPrice = document.getElementById("afterPrice").value;
+                    const diffDay = document.getElementById("diffDay").value;
+
                     // 세션 스토리지에 저장
                     sessionStorage.setItem("id", id);
                     sessionStorage.setItem("pickupDate", pickupDate);
                     sessionStorage.setItem("returnDate", returnDate);
-                
+                    sessionStorage.setItem("beforePrice", beforePrice);
+                    sessionStorage.setItem("afterPrice", afterPrice);
+                    sessionStorage.setItem("diffDay", diffDay);
+
+                    debugger;
+
                     // 페이지 이동
                     window.location.href = "./reservation.html";
                 }
@@ -434,7 +446,7 @@
                                         <p class="font_w500"><span class="icon15 arrow_right"></span>나하공항점</p>
                                         <iframe
                                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2532.278543284615!2d127.65198121546594!3d26.158180053577265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e5680bda12f44f%3A0x2f64d878b7a9f3a5!2z7Jik66at7Iqk66CM7Yq47Lm0!5e0!3m2!1sko!2skr!4v1535621876309"
-                                            width="455" height="300" frameborder="0"
+                                            width="100%" height="300" frameborder="0"
                                             style="box-sizing: border-box; padding: 10px; background: #fafafa; border: 1px solid #cccccc; margin: 0 0 15px;"
                                             allowfullscreen=""></iframe>
                                         <table width="100%">
@@ -486,34 +498,25 @@
                                 class="panel_link">영업소 위치</a></li>
                     </ul>
                     <div class="panel_body">
-                        <p class="font_w500"><span class="icon15 check"></span><span class="text-danger">반드시 예약 확정 바우처의
-                                렌트카
-                                수령 및 이용안내를 확인하세요!</span></p>
-                        <p class="font_w500"><span class="icon15 check"></span>국제선 이용시</p>
+                        <p class="font_w500" style="font-weight:bold">운전자 대여 필수 소지품</p>
                         <div class="text_info_box">
-                            <ul class="list_style number">
-                                입국심사 후 국제선 로비로 나오시면 바로 앞에 아래 오릭스렌트카 피켓 사진을 들고 잇는 직원이 있습니다.<br>성함을 확인 후 안내에 따라 송영버스로
-                                이동해주세요.
+                            <ul class="list_style before">
+                                <li>실물 한국 운전면허증</li>
+                                <li>국제 운전 면허증</li>
+                                <li>여권</li>
+                                <li>해외결제 가능한 운전자 본인명의 신용카드</li>
+                                <li>예약바우처</li>
                             </ul>
-                        </div>
-                        <p class="font_w500"><span class="icon15 check"></span>국내선 이용시</p>
-                        <div class="text_info_box">
-                            <ul class="list_style number">
-                                나하공항 국내선 1층 로비에 3번 또는 4번 출구로 나와서 왼쪽에 보이는 횡단보도를 건너서 왼쪽편으로 보이는 간판 [14번]에 셔틀버스 정류장이
-                                있습니다.<br>[14번] 승강장 근처에 오릭스 렌트카 직원이 대기하고 있으므로 성함 확인하시고 셔틀버스 탑승하시면 됩니다.
-                            </ul>
-                        </div>
-                        <p class="font_w500"><span class="icon15 check"></span>나하 공항 셔틀버스 정거장 안내</p>
-                        <div class="text_info_box">
-                            <ul class="list_style number">
-                                <span class="text-danger strong"><a href="naha-airport.php" target="_blank">나하 공항 셔틀버스
-                                        정거장
-                                        안내 내용 보기</a></span>
-                            </ul>
-                        </div>
-                        <p class="font_w500"><span class="icon15 check"></span>셔틀버스 탑승장소와 피켓은 아래 이미지를 참조하세요.</p>
-                        <div class="text-center">
-                            <img src="images/orix-guide1.jpg">
+                            <div class="before_container">
+                                <div class="before_info">
+                                    <img src="https://carmore.kr/home/images/image-korean-license-sample.png" />
+                                    <p>실물 한국 운전면허증</p>
+                                </div>
+                                <div class="before_info">
+                                    <img src="https://carmore.kr/home/images/image-global-license-sample.png" />
+                                    <p>국제운전면허증</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
