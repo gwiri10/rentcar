@@ -31,12 +31,17 @@ p{
 
 .container {
     max-width: 1200px;
-    padding-top: 10px;
-    margin-top: 5px !important;
+    margin : 0
 }
 
 .serchContainer{
     border: 1px solid #9ca0a5;
+    padding-top: 10px;
+    margin-top: 5px !important;
+}
+.carContainer{
+    padding-top: 10px;
+    margin-top: 5px !important;
 }
 
 /* .banner-wrapper{
@@ -102,6 +107,7 @@ p{
 }
 .benefit-card{
     margin: 1px !important;
+    padding : 3px !important;
 }
 .card-image-container {
     margin-right: 10px; /* 이미지와 카드 내용 사이의 간격 */
@@ -265,5 +271,21 @@ p{
     .btn {
         margin: 0;
         width: 100%;
+    }
+    .mainCard{
+        font-size : 1em;
+    }
+    .subCard{
+        font-size : 0.8em;
+    }
+    .card-image {
+        width: 40px;
+        height: auto;
+    }
+    .h2-i{
+        font-size: 1px;
+    }
+    .fa-solid{
+        font-size: 13px;
     }
 }
