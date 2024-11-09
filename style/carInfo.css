@@ -95,6 +95,7 @@
     flex-direction: column;      /* 수직 방향으로 정렬 */
     align-items: center;         /* 수평 중앙 정렬 */
     text-align: center;          /* 텍스트 중앙 정렬 */
+	margin-top: 27px;
 }
 
 #carImg {
@@ -361,7 +362,6 @@ a.panel_link {
 .car-details {
     display: flex;                   /* Flexbox 활성화 */
     flex-direction: column;          /* 세로 방향으로 정렬 */
-    
 }
 
 .car-container {
@@ -400,10 +400,14 @@ a.panel_link {
         width: 100%; /* 너비를 100%로 설정 */
 		padding : 15px;
     }
+	.car-container {
+		flex-direction: column;
+	}
 
     .form-group {
         width: 100%; /* 각 항목이 세로로 나열될 때 너비 100% */
 		margin-top: 0; 
+		flex-direction: column; /* 화면 크기가 작아지면 세로로 나열 */
     }
 
     .carPrice {
@@ -472,7 +476,7 @@ a.panel_link {
 
     .car-image,
     .car-info {
-        width: 50%;                  /* 너비를 100%로 설정하여 전체 공간 차지 */
+        width: 100%;                  /* 너비를 100%로 설정하여 전체 공간 차지 */
         margin: 10px 0;              /* 위아래 간격 추가 */
     }
 	.car-details th {
