@@ -59,7 +59,7 @@ $("#pickupDate").on('apply.daterangepicker', function (ev, picker) {
     $("#pickupDate").val(dateArray[0]);
     $("#returnDate").val(dateArray[1]);
 });
-$(document).on('mousedown', function (event) {
+$(document).on('mousedown touchstart', function (event) {
     if (!$(event.target).closest('#your-daterangepicker-element').length) {
         let dateArray = $("#pickupDate").val().split(' ~ ');
         $("#pickupDate").val(dateArray[0]);
