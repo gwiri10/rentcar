@@ -17,12 +17,15 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+    <!-- 글꼴 -->
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
 </head>
 
 <body>
-    
+
     <header class="bg-white text-white" style="background-color: #ffffff;">
-        <div class="container d-flex justify-content-between align-items-center py-3" style="padding-bottom:0 !important;">
+        <div class="container d-flex justify-content-between align-items-center py-3"
+            style="padding-bottom:0 !important;">
             <div class="d-flex align-items-center">
                 <img src="./img/logo.png" alt="로고" class="logo" style="width: 75px;">
                 <h2 class="ml-2 logoTitle" style="font-weight:bold;margin: 0 !important;">니혼카</h2>
@@ -32,20 +35,23 @@
 
     <!-- 상단 메뉴 -->
     <nav class="bg-dark">
-        <div class="container">
+        <div class="container nav-container">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./index.html">홈</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-white" href="#">차량 리스트</a>
+                    <a class="nav-link text-white" href="./index.html">렌터카 (오키나와 / 미야코지마)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">예약하기</a>
+                    <a class="nav-link text-white" href="./notice.html">공지사항</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">문의하기</a>
-                </li> -->
+                    <a class="nav-link text-white" href="./faq.html">자주찾는질문</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./ask.html">문의하기</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./mypage.html">마이페이지</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -55,13 +61,71 @@
 
     <!-- 배너 이미지와 블러 오버레이 추가 -->
     <div class="banner-wrapper" id="bannerContainer">
-        <div class="blur-background"></div>
         <img src="img/banner.png" alt="배너 이미지" class="banner-image">
     </div>
 
     <div class="container">
+        <!-- 예약하기 위한 검색 정보 받는 곳 -->
+        <div class="container mt-5 serchContainer index-search">
+            <h3 class="tilteBold">차량 예약 검색</h3>
+            <div class="row">
+                <div class="col-md-3 col-12">
+                    <div class="form-group">
+                        <label for="pickupLocation">인수 장소</label>
+                        <select class="form-control" id="pickupLocation">
+                            <option>선택하세요</option>
+                            <option>부산</option>
+                            <option>서울</option>
+                            <option>제주도</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-12">
+                    <div class="form-group">
+                        <label for="pickupDate">대여 일시</label>
+                        <div class="date-time-group">
+                            <input type="text" class="form-control datepicker" id="pickupDate" placeholder="대여기간 선택">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-12">
+                    <div class="form-group">
+                        <label for="returnDate">반납 일시</label>
+                        <div class="date-time-group">
+                            <input type="text" class="form-control datepicker" onclick="$('#pickupDate').click();"
+                                id="returnDate" placeholder="날짜 선택">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-12">
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" id="btnSearch">
+                            검색 <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function pageMove(id) {
+                const pickupDate = document.getElementById("pickupDate").value;
+                const returnDate = document.getElementById("returnDate").value;
+                const companyCd = document.getElementById("pickupLocation").value;
+
+                // 세션 스토리지에 저장
+                sessionStorage.setItem("id", id);
+                sessionStorage.setItem("pickupDate", pickupDate);
+                sessionStorage.setItem("returnDate", returnDate);
+                sessionStorage.setItem("companyCd", companyCd);
+
+                // 페이지 이동
+                window.location.href = "./reservationInfo.html";
+            }
+        </script>
+
         <!-- 카드 넣는곳 https://img.icons8.com/?size=100&id=46756&format=png&color=000000-->
-        <div class="card-container" id="cardContainer">
+        <div class="card-container" id="cardContainer" style="padding:10px">
             <div class="card benefit-card">
                 <ul class="benefit-card-ul">
                     <li class="benefit-card-li benefit-card-li-img">
@@ -99,69 +163,69 @@
                 </ul>
             </div>
         </div>
-        <div id="cardControl">
+        <!-- <div id="cardControl">
             <p class="text-center h2-i"><i class="fa-solid fa-chevron-up i-icon"></i></p>
-        </div>
+        </div> -->
+        <div>
+            <div class="container mt-4 carContainer">
+                <h3 class="tilteBold">공지사항</h3>
+                <div class="colmun">
+                    <div class="" style="width:100%">
+                        <div class="notice">
+                            <div class="card-body">
+                                <p class="card-title">공지사항1</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- 예약하기 위한 검색 정보 받는 곳 -->
-        <div class="container mt-5 serchContainer">
-            <h3 class="tilteBold">차량 예약 검색</h3>
-            <div class="row">
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <label for="pickupLocation">인수 장소</label>
-                        <select class="form-control" id="pickupLocation">
-                            <option>선택하세요</option>
-                            <option>부산</option>
-                            <option>서울</option>
-                            <option>제주도</option>
-                        </select>
+                    <div class="">
+                        <div class="notice">
+                            <div class="card-body">
+                                <p class="card-title">공지사항1</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <label for="pickupDate">대여 일시</label>
-                        <div class="date-time-group">
-                            <input type="text" class="form-control datepicker" id="pickupDate" placeholder="대여기간 선택">
+
+                    <div class="">
+                        <div class="notice">
+                            <div class="card-body">
+                                <p class="card-title">공지사항1</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <label for="returnDate">반납 일시</label>
-                        <div class="date-time-group">
-                            <input type="text" class="form-control datepicker" onclick="$('#pickupDate').click();" id="returnDate" placeholder="날짜 선택">
+            </div>
+
+            <div class="container mt-4 carContainer">
+                <h3 class="tilteBold">자주찾는질문</h3>
+                <div class="colmun">
+                    <div class="" style="width:100%">
+                        <div class="notice">
+                            <div class="card-body">
+                                <p class="card-title">공지사항1</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-12">
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-block" id="btnSearch">
-                            검색 <i class="fas fa-search"></i>
-                        </button>
+
+                    <div class="">
+                        <div class="notice">
+                            <div class="card-body">
+                                <p class="card-title">공지사항1</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="">
+                        <div class="notice">
+                            <div class="card-body">
+                                <p class="card-title">공지사항1</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <script>
-            function pageMove(id){
-                const pickupDate = document.getElementById("pickupDate").value;
-                const returnDate = document.getElementById("returnDate").value;
-                const companyCd = document.getElementById("pickupLocation").value;
-            
-                // 세션 스토리지에 저장
-                sessionStorage.setItem("id", id);
-                sessionStorage.setItem("pickupDate", pickupDate);
-                sessionStorage.setItem("returnDate", returnDate);
-                sessionStorage.setItem("companyCd", companyCd);
-            
-                // 페이지 이동
-                window.location.href = "./reservationInfo.html";
-            }
-        </script>
-
-        <div class="container mt-4 carContainer">
+        <!-- <div class="container mt-4 carContainer">
             <h3 class="tilteBold">예약 가능 목록</h3>
             <div class="row" id="carList">
                 <div class="col-md-4">
@@ -200,27 +264,50 @@
             <div style="text-align:center;">
                 <button class="btn btn-primary" id="btnMoreList" style="display:none;">더보기+</button>                
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- footer 시작 -->
-    <footer class="bg-dark text-white text-center py-4">
-        <p>&copy; 2024 렌터카 서비스 | 모든 권리 보유</p>
-        <button class="managerBtn" onclick="gotoManage();">관리자페이지</button>
+    <footer class="bg-dark text-white py-4 footer">
+        <div class="container">
+            <div class="row">
+                <!-- 왼쪽 컬럼 -->
+                <div class="col-md-4 footer-column">
+                    <p>상호 OOOO</p>
+                    <p>대표자명 OOO</p>
+                    <p>사업자등록번호 758-04-02667</p>
+                </div>
+                <!-- 가운데 컬럼 -->
+                <div class="col-md-4 footer-column">
+                    <p>통신판매업 등록번호 2022-OOOO-0737</p>
+                    <p>대표전화 070-7954-2205</p>
+                    <p>[영업시간] 09:00~18:00 | 토,일,공휴일 휴무</p>
+                </div>
+                <!-- 오른쪽 컬럼 -->
+                <div class="col-md-4 footer-column text-end">
+                    <p>(주)OOOO는 렌터카 파트너사가 제공하는 일부 렌터카에 대하여</p>
+                    <p>통신판매중개자의 지위를 가지며, 해당 상품, 상품정보, 거래에</p>
+                    <p>관한 의무와 책임은 판매자에게 있습니다.</p>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p>Copyright ⓒ AAAAA All Rights Reserved</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        function gotoManage(){
+        function gotoManage() {
             const password = prompt("비밀번호를 입력하세요");
-            if(password == 'nihonka'){
+            if (password == 'nihonka') {
                 window.location.href = "./manageRes.html";
             }
         }        
     </script>
-<!-- footer 끝 -->
+    <!-- footer 끝 -->
 
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/source.js"></script>
-    
+
 </body>
 
 </html>

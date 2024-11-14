@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>니혼카</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- 글꼴 -->
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="bg-white text-white" style="background-color: #ffffff;">
+        <div class="container d-flex justify-content-between align-items-center py-3"
+            style="padding-bottom:0 !important;">
+            <div class="d-flex align-items-center" onclick="window.location.href='./index.html'">
+                <img src="./img/logo.png" alt="로고" class="logo" style="width: 75px;">
+                <h2 class="ml-2 logoTitle" style="font-weight:bold;margin: 0 !important;">니혼카</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- 상단 메뉴 -->
+    <nav class="bg-dark">
+        <div class="container nav-container">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./index.html">렌터카 (오키나와 / 미야코지마)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./notice.html">공지사항</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./faq.html">자주찾는질문</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./ask.html">문의하기</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./mypage.html">마이페이지</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- 예약하기 위한 검색 정보 받는 곳 -->
+        <div class="lab-search">
+            <label id="lab_search">나하공항점</br>2024-11-14 11:00 AM ~ 2024-11-17 11:00 AM</label>
+        </div>
+        <div class="container mt-5 serchContainer carList-search">
+            <label id="label_close">X</label>
+            <h3 class="tilteBold">차량 예약 검색</h3>
+            <div class="row">
+                <div class="col-md-3 col-12">
+                    <div class="form-group">
+                        <label for="pickupLocation">인수 장소</label>
+                        <select class="form-control" id="pickupLocation">
+                            <option>선택하세요</option>
+                            <option>부산</option>
+                            <option>서울</option>
+                            <option>제주도</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-12">
+                    <div class="form-group">
+                        <label for="pickupDate">대여 일시</label>
+                        <div class="date-time-group">
+                            <input type="text" class="form-control datepicker" id="pickupDate" placeholder="대여기간 선택">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-12">
+                    <div class="form-group">
+                        <label for="returnDate">반납 일시</label>
+                        <div class="date-time-group">
+                            <input type="text" class="form-control datepicker" onclick="$('#pickupDate').click();"
+                                id="returnDate" placeholder="날짜 선택">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-12">
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" id="btnSearch">
+                            검색 <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function pageMove(id) {
+                const pickupDate = document.getElementById("pickupDate").value;
+                const returnDate = document.getElementById("returnDate").value;
+                const companyCd = document.getElementById("pickupLocation").value;
+
+                // 세션 스토리지에 저장
+                sessionStorage.setItem("id", id);
+                sessionStorage.setItem("pickupDate", pickupDate);
+                sessionStorage.setItem("returnDate", returnDate);
+                sessionStorage.setItem("companyCd", companyCd);
+
+                // 페이지 이동
+                window.location.href = "./reservationInfo.html";
+            }
+        </script>
+
+        <div class="container mt-4 carContainer">
+            <h3 class="tilteBold">예약 가능 목록</h3>
+            <div class="row" id="carList">
+
+            </div>
+            <div style="text-align:center;">
+                <button class="btn btn-primary" id="btnMoreList" style="display:none;">더보기+</button>
+            </div>
+        </div>
+    </div>
+    <!-- footer 시작 -->
+    <footer class="bg-dark text-white py-4 footer">
+        <div class="container">
+            <div class="row">
+                <!-- 왼쪽 컬럼 -->
+                <div class="col-md-4 footer-column">
+                    <p>상호 OOOO</p>
+                    <p>대표자명 OOO</p>
+                    <p>사업자등록번호 758-04-02667</p>
+                </div>
+                <!-- 가운데 컬럼 -->
+                <div class="col-md-4 footer-column">
+                    <p>통신판매업 등록번호 2022-OOOO-0737</p>
+                    <p>대표전화 070-7954-2205</p>
+                    <p>[영업시간] 09:00~18:00 | 토,일,공휴일 휴무</p>
+                </div>
+                <!-- 오른쪽 컬럼 -->
+                <div class="col-md-4 footer-column text-end">
+                    <p>(주)OOOO는 렌터카 파트너사가 제공하는 일부 렌터카에 대하여</p>
+                    <p>통신판매중개자의 지위를 가지며, 해당 상품, 상품정보, 거래에</p>
+                    <p>관한 의무와 책임은 판매자에게 있습니다.</p>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p>Copyright ⓒ AAAAA All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+    <!-- footer 끝 -->
+
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/carList.js"></script>
+
+</body>
+
+</html>

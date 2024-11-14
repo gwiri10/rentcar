@@ -1,29 +1,21 @@
 import { fetchData, fetchFirstDocument, getTotalDocumentsCount, fetchNextDocument } from './firebase.js';
 import { pagingunit } from './setting.js';
 
-
 // 페이지 로드 시 한 번 실행
-window.onload = function () {
-
-    //daterangepicker 값을 두개의 input에 나눠넣기 
-    if ($("#pickupDate").val() != '') {
-        let dateArray = $("#pickupDate").val().split(' ~ ');
-        $("#pickupDate").val(dateArray[0]);
-        $("#returnDate").val(dateArray[1]);
-    }
+window.onload = async function () {
 
     //인수장소 세팅
-    setLocation();
-
+    await setLocation();
+    
+    let pickupDate = sessionStorage.getItem("pickupDate");
+    let returnDate = sessionStorage.getItem("returnDate");
+    
+    $("#pickupDate").val(pickupDate);
+    $("#returnDate").val(returnDate);
+    
+    //검색 세팅
+    $("#btnSearch").click();
 }
-
-let today = new Date();
-today.setMinutes(0);
-today.setHours(today.getHours() + 1)
-
-let today2 = new Date();
-today2.setMinutes(0);
-today2.setHours(today2.getHours() + 1)
 
 $("#pickupDate").daterangepicker({
     "locale": {
@@ -40,8 +32,6 @@ $("#pickupDate").daterangepicker({
     },
     timePicker: true,
     timePickerIncrement: 30,
-    "startDate": today,
-    "endDate": new Date(today2.setDate(today2.getDate() + 3)),
     "drops": "auto"
 }, function (start, end, label) {
     //console.log(e);
@@ -59,20 +49,32 @@ $("#pickupDate").on('apply.daterangepicker', function (ev, picker) {
 });
 
 $("#btnSearch").click(async () => {
-    // 기존 카드 내용 지우기 (새로 검색할 때마다 업데이트)
-    const pickupDate = document.getElementById("pickupDate").value;
-    const returnDate = document.getElementById("returnDate").value;
-    const companyCd = document.getElementById("pickupLocation").value;
-    const companyNm = $("#pickupLocation").text();
-
-    // 세션 스토리지에 저장
-    sessionStorage.setItem("pickupDate", pickupDate);
-    sessionStorage.setItem("returnDate", returnDate);
-    sessionStorage.setItem("companyCd", companyCd);
-    sessionStorage.setItem("companyNm", companyNm);
-
-    window.location.href = "./carList.html"
     
+    // 기존 카드 내용 지우기 (새로 검색할 때마다 업데이트)
+    $("#carList").html('');
+
+    let companyCd = $("#pickupLocation").val() * 1;
+    
+    //$("#pickupLocation").val(companyCd*1);
+    if(isNaN(companyCd)) companyCd = sessionStorage.getItem("companyCd") *1;
+
+    let companyNm = $("#pickupLocation").text();
+    let pickupDate = $("#pickupDate").val();
+    let returnDate = $("#returnDate").val();
+    $("#lab_search").html(companyNm+"<br/>"+pickupDate+" ~ "+returnDate);
+
+    let result = await fetchFirstDocument("cars", companyCd);
+
+    makeCarList(result);
+
+    let totalCount = await getTotalDocumentsCount("cars");
+    let listCount = document.getElementById("carList").childElementCount;
+
+    if (totalCount <= listCount) {
+        $("#btnMoreList").hide();
+    } else {
+        $("#btnMoreList").show();
+    }
 });
 
 $("#btnMoreList").click(async function () {
@@ -87,7 +89,7 @@ $("#btnMoreList").click(async function () {
         limitCnt = pagingunit;
     } else {
         $("#btnMoreList").hide();
-        limitCnt = totalCount - listCount + 5;
+        limitCnt= totalCount - listCount + 5;
     }
 
     let result = await fetchNextDocument("cars", companyCd, limitCnt);
@@ -105,7 +107,7 @@ function makeCarList(result) {
         const card = document.createElement('div');
         card.className = 'cardList'; // Bootstrap의 그리드 시스템 사용
 
-        let airconNm = data.aircon == 1 ? "있음" : "없음"
+        let airconNm = data.aircon==1 ? "있음" : "없음"
         // 카드 HTML 구성
         card.innerHTML = `
             <div class="col-md-12"> <!-- 한 줄에 가득 차도록 col-md-12 -->
@@ -121,13 +123,12 @@ function makeCarList(result) {
                             <span><i class="fas fa-snowflake"></i> ${airconNm}</span>
                             <span><i class="fas fa-door-open"></i> ${data.door}개</span>
                         </p>
-                        <p class="price">가격 : <strong>${data.price}원/일</strong></p> <!-- 가격 강조 -->
                         <a href="#" onclick="pageMove('${doc.id}')" class="btn btn-primary btnMore"> 자세히 보기</a>
                     </div>
                 </div>
             </div>
             `;
-
+        //<p class="price">가격 : <strong>${data.price}원/일</strong></p> <!-- 가격 강조 -->
         // 카드 컨테이너에 카드 추가
         cardContainer.appendChild(card);
     });
@@ -149,4 +150,14 @@ async function setLocation() {
     });
 
     optionList.html(html);
+    $("#pickupLocation").val(sessionStorage.getItem("companyCd")*1)
 }
+
+$("#lab_search").on("click", function(){
+    $(".lab-search")[0].style.display='none';
+    $(".carList-search")[0].style.display='block';
+});
+$("#label_close").on("click", function(){
+    $(".lab-search")[0].style.display='block';
+    $(".carList-search")[0].style.display='none';
+});

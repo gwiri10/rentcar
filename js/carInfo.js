@@ -29,7 +29,9 @@ async function fetchCarInfo(data) {
     // price           : 70500,            //금액(1박당)(원)
     // imgurl          : "https://d1masd123hbmlx.cloudfront.net/20231224075834_804_CARMST/20231224075834_804_CARMST_142.png", // 이미지링크URL
     // companyCd       : 1 //1
-    $("#carImg").attr("src", data.imgurl);
+    $("#carImg1").attr("src", data.imgurl);
+    $("#carImg2").attr("src", data.imgurl);
+    $("#carImg3").attr("src", data.imgurl);
     $("#title").html(data.modelNm);
     $("#grade").html(data.grade);
     $("#luggage-count").html(data.bag + '개');
@@ -86,6 +88,9 @@ const getDateDiff = async() => {
     let date1 = new Date($("#pickupDate").val());
     let date2 = new Date($("#returnDate").val());
 
+    //성수기 안에 선택한 값이 들어가는지 확인
+    let isDateInRangeResult = isDateInRange(date1, date2) ;
+
     let diffDate = Math.abs((date1.getTime() - date2.getTime()) / (1000 * 60 * 60 )); // 밀리세컨 * 초 * 분 = 시간
 
     //대여일시와 반납일시간의 날짜 구하기(나머지가 있다면 +1)
@@ -110,6 +115,22 @@ const getDateDiff = async() => {
     let beforePrice = totalPrice * calRate;
     let afterPrice = (totalPrice* 1 - beforePrice) / 10;
 
+    if(isDateInRangeResult){
+        if(diffDay == 1){
+            afterPrice += 5500
+        }else if(diffDay == 2){
+            afterPrice += 10800
+        }
+        else if(diffDay == 3){
+            afterPrice += 16000
+        }
+        else if(diffDay == 4){
+            afterPrice += 21100
+        }
+        else{
+            afterPrice += 5000*diffDay
+        }
+    }
     //예약하기 시 넘겨줄 데이터
     document.getElementById("afterPrice").value = afterPrice;
     document.getElementById("beforePrice").value = beforePrice;
@@ -118,4 +139,29 @@ const getDateDiff = async() => {
     $("#rentDate").html("총 "+diffDate+"시간")
     $("#price").html("사전결제 :  " + beforePrice + '(원) + 현장결제 : ' + afterPrice + '(엔)');
 
+}
+
+function isDateInRange(date1, date2) {
+    //성수기 기간 하드코딩
+    const range1Start = '2025-01-06';
+    const range1End = '2025-01-24';
+    const range2Start = '2025-01-25';
+    const range2End = '2025-04-06';
+
+    // Convert inputs to Date objects
+    const startDate = new Date(date1);
+    const endDate = new Date(date2);
+    const r1Start = new Date(range1Start);
+    const r1End = new Date(range1End);
+    const r2Start = new Date(range2Start);
+    const r2End = new Date(range2End);
+
+    // Check overlap with range 1
+    const isInRange1 = startDate <= r1End && endDate >= r1Start;
+
+    // Check overlap with range 2
+    const isInRange2 = startDate <= r2End && endDate >= r2Start;
+
+    // Return true if either range matches
+    return isInRange1 || isInRange2;
 }

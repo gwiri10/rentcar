@@ -25,7 +25,7 @@
     <header class="bg-white text-white" style="background-color: #ffffff;">
         <div class="container d-flex justify-content-between align-items-center py-3"
             style="padding-bottom:0 !important;">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center" onclick="window.location.href='./index.html'">
                 <img src="./img/logo.png" alt="로고" class="logo" style="width: 75px;">
                 <h2 class="ml-2 logoTitle" style="font-weight:bold;margin: 0 !important;">니혼카</h2>
             </div>
@@ -34,20 +34,23 @@
 
     <!-- 상단 메뉴 -->
     <nav class="bg-dark">
-        <div class="container">
+        <div class="container nav-container">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./index.html">홈</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link text-white" href="#">차량 리스트</a>
+                    <a class="nav-link text-white" href="./index.html">렌터카 (오키나와 / 미야코지마)</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">예약하기</a>
+                    <a class="nav-link text-white" href="./notice.html">공지사항</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="#">문의하기</a>
-                </li> -->
+                    <a class="nav-link text-white" href="./faq.html">자주찾는질문</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./ask.html">문의하기</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="./mypage.html">마이페이지</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -55,11 +58,57 @@
         <input type="hidden" id="beforePrice" />
         <input type="hidden" id="afterPrice" />
         <input type="hidden" id="diffDay" />
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                let currentIndex = 0;
+                const slides = document.querySelectorAll('.slide');
+                const totalSlides = slides.length;
+                const slider = document.querySelector('.slider');
+
+                function updateSlidePosition() {
+                    const offset = -currentIndex * 100; // 슬라이드 위치 계산
+                    slider.style.transform = `translateX(${offset}%)`;
+                }
+
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalSlides; // 다음 슬라이드
+                    updateSlidePosition();
+                }
+
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // 이전 슬라이드
+                    updateSlidePosition();
+                }
+
+                // 버튼 이벤트 추가
+                document.querySelector('.left-arrow').addEventListener('click', prevSlide);
+                document.querySelector('.right-arrow').addEventListener('click', nextSlide);
+            });
+
+        </script>
         <div class="carInfoContainer">
             <section class="car-details">
                 <div class="car-container">
                     <div class="car-image">
-                        <img id="carImg" alt="렌터카 이미지">
+                        <div class="slider-container">
+                            <button class="arrow left-arrow" onclick="prevSlide()">&#10094;</button>
+                            <div class="slider">
+                                <div class="slide">
+                                    <label class="slide-label">정면</label>
+                                    <img id="carImg1" alt="렌터카 이미지">
+                                </div>
+                                <div class="slide">
+                                    <label class="slide-label">옆면</label>
+                                    <img id="carImg2" alt="렌터카 이미지">
+                                </div>
+                                <div class="slide">
+                                    <label class="slide-label">뒷면</label>
+                                    <img id="carImg3" alt="렌터카 이미지">
+                                </div>
+                            </div>
+                            <button class="arrow right-arrow" onclick="nextSlide()">&#10095;</button>
+                        </div>
                         <h3 id="title">오릭스 렌터카 - 모델명</h3>
                     </div>
                     <div class="car-info">
@@ -94,6 +143,18 @@
                             </tr>
                         </table>
                     </div>
+                </div>
+                <div class="precautions">
+                    <p class="form-static"><span class="icon15 exclamation"></span>
+                        성수기 요금의 경우 추가 현장결제 요금이 발생합니다.<br>
+                        24H 5,500엔,<br>
+                        48H 10,800엔,<br>
+                        72H 16,000엔,<br>
+                        96H 21,100엔,<br>
+                        96H 이상 24H당 5,000엔<br>
+                        <br>
+                        2025 성수기 기간 : 1/6 - 1/24 , 1/25 - 4/6
+                    </p>
                 </div>
                 <div class="form-container">
                     <div class="form-group">
@@ -135,8 +196,6 @@
                     sessionStorage.setItem("beforePrice", beforePrice);
                     sessionStorage.setItem("afterPrice", afterPrice);
                     sessionStorage.setItem("diffDay", diffDay);
-
-                    debugger;
 
                     // 페이지 이동
                     window.location.href = "./reservation.html";
@@ -524,8 +583,32 @@
         </div>
     </main>
 
-    <footer class="bg-dark text-white text-center py-4">
-        <p>&copy; 2024 렌터카 서비스 | 모든 권리 보유</p>
+    <footer class="bg-dark text-white py-4 footer">
+        <div class="container">
+            <div class="row">
+                <!-- 왼쪽 컬럼 -->
+                <div class="col-md-4 footer-column">
+                    <p>상호 OOOO</p>
+                    <p>대표자명 OOO</p>
+                    <p>사업자등록번호 758-04-02667</p>
+                </div>
+                <!-- 가운데 컬럼 -->
+                <div class="col-md-4 footer-column">
+                    <p>통신판매업 등록번호 2022-OOOO-0737</p>
+                    <p>대표전화 070-7954-2205</p>
+                    <p>[영업시간] 09:00~18:00 | 토,일,공휴일 휴무</p>
+                </div>
+                <!-- 오른쪽 컬럼 -->
+                <div class="col-md-4 footer-column text-end">
+                    <p>(주)OOOO는 렌터카 파트너사가 제공하는 일부 렌터카에 대하여</p>
+                    <p>통신판매중개자의 지위를 가지며, 해당 상품, 상품정보, 거래에</p>
+                    <p>관한 의무와 책임은 판매자에게 있습니다.</p>
+                </div>
+            </div>
+            <div class="text-center mt-3">
+                <p>Copyright ⓒ AAAAA All Rights Reserved</p>
+            </div>
+        </div>
     </footer>
 
     <script type="module" src="js/firebase.js"></script>
