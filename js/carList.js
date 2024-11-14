@@ -37,12 +37,6 @@ window.onload = async function () {
     $("#btnSearch").click();
 }
 
-$("#pickupDate").on('apply.daterangepicker', function (ev, picker) {
-    let dateArray = $("#pickupDate").val().split(' ~ ');
-    $("#pickupDate").val(dateArray[0]);
-    $("#returnDate").val(dateArray[1]);
-});
-
 $("#pickupDate").on('change', function (ev, picker) {
     let dateArray = $("#pickupDate").val().split(' ~ ');
     if(dateArray.length > 1 ){
