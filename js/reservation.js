@@ -3,7 +3,7 @@ import {
     , fetchData
     , fetchInsurances
     , fetchCarseat
-    , addData
+    , addDataId
 } from './firebase.js';
 
 const id = sessionStorage.getItem("id");
@@ -203,11 +203,14 @@ async function fn_reservation(){
         , regDate : regDate //등록날짜
     }
 
-    let result = await addData("reservations", addDataMap);
-    if(result){
+    let result = await addDataId("reservations", addDataMap);
+    if(result != false){
         alert("예약신청이 완료되었습니다.");
         sessionStorage.clear();
-        window.location.href = "./index.html"
+        sessionStorage.setItem("id", result)
+        window.location.href = "./retRes.html";
+    }else{
+        alert("예약신청에 실패하셨습니다. 관리자에게 문의해주세요.");
     }
 }
 

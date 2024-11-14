@@ -1,4 +1,4 @@
-import { fetchData, fetchCarDocument , updateDocument, addData, deleteItem} from './firebase.js';
+import { fetchData, fetchCarDocument, updateDocument, addData, deleteItem } from './firebase.js';
 
 window.onload = async function () {
     let search_company = document.getElementById("search-company");
@@ -8,8 +8,8 @@ window.onload = async function () {
 // 차량 정보를 펼치거나 접는 함수
 export function toggleDetails(event, cardElement) {
     // input, button 또는 action-buttons 내부 클릭 시 실행 중지
-    if (event.target.closest('input') 
-        || event.target.closest('button') 
+    if (event.target.closest('input')
+        || event.target.closest('button')
         || event.target.closest('.action-buttons')
         || event.target.closest('select')) {
         return;
@@ -22,7 +22,7 @@ export function toggleDetails(event, cardElement) {
 export async function deleteCar(id) {
     event.stopPropagation();
     let result = await deleteItem("cars", id);
-    if(result){
+    if (result) {
         alert("차량이 삭제되었습니다.");
         const card = event.target.closest('.car-card');
         card.remove();
@@ -32,7 +32,7 @@ export async function deleteCar(id) {
 // 차량 추가 함수
 export async function addCar() {
     //아직 수정중이거나 추가하려는 항목이 있을 시 return
-    if(document.getElementsByClassName("expanded").length > 0){
+    if (document.getElementsByClassName("expanded").length > 0) {
         alert("아직 추가 또는 수정중인 항목이 있습니다. 작업을 완료하고 다시 시도해주세요.");
         return;
     }
@@ -86,6 +86,26 @@ export async function addCar() {
                     <td><input class="inp-car" name="price" type="text"/></td>
                 </tr>
                 <tr>
+                    <th>24H추가요금</th>
+                    <td><input class="inp-car" name="addprice24" type="text"/></td>
+                </tr>
+                <tr>
+                    <th>48H추가요금</th>
+                    <td><input class="inp-car" name="addprice48" type="text"/></td>
+                </tr>
+                <tr>
+                    <th>72H추가요금</th>
+                    <td><input class="inp-car" name="addprice72" type="text"/></td>
+                </tr>
+                <tr>
+                    <th>96H추가요금</th>
+                    <td><input class="inp-car" name="addprice96" type="text"/></td>
+                </tr>
+                <tr>
+                    <th>1박당추가요금(96H초과)</th>
+                    <td><input class="inp-car" name="addprice100" type="text"/></td>
+                </tr>
+                <tr>
                     <th>업체명</th>
                     <td><select class="search-input companyCd" name="companyCd"></select></td>
                 </tr>
@@ -104,9 +124,9 @@ export async function addCar() {
     await setLocation(companyCd);
 }
 
-export function cancleCar(object){
+export function cancleCar(object) {
     let flag = confirm("취소하시겠습니까?");
-    if(flag) object.parentElement.parentElement.parentElement.remove();
+    if (flag) object.parentElement.parentElement.parentElement.remove();
 }
 export async function setLocation(optionList) {
     optionList.innerHTML = '';
@@ -135,12 +155,12 @@ async function btnSearch() {
     let companyNm = $("#search-company").text();
     let result = await fetchCarDocument("cars", companyCd);
 
-    if(!result.empty){
+    if (!result.empty) {
         result.forEach((doc) => {
             let data = doc.data();
 
             const newCarCard = document.createElement('div');
-            newCarCard.className = 'car-card '+doc.id;
+            newCarCard.className = 'car-card ' + doc.id;
             newCarCard.onclick = function (event) { toggleDetails(event, newCarCard); };
             newCarCard.innerHTML = `
                 <div class="car-simple-info">
@@ -193,6 +213,26 @@ async function btnSearch() {
                             <td><input class="inp-car" name="price" type="text" value="${data.price}" /></td>
                         </tr>
                         <tr>
+                            <th>24H추가요금</th>
+                            <td><input class="inp-car" name="addprice24" value="${data.addprice24}" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <th>48H추가요금</th>
+                            <td><input class="inp-car" name="addprice48" value="${data.addprice48}" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <th>72H추가요금</th>
+                            <td><input class="inp-car" name="addprice72" value="${data.addprice72}" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <th>96H추가요금</th>
+                            <td><input class="inp-car" name="addprice96" value="${data.addprice96}" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <th>1박당추가요금(96H초과)</th>
+                            <td><input class="inp-car" name="addprice100" value="${data.addprice100}" type="text"/></td>
+                        </tr>
+                        <tr>
                             <th>업체명</th>
                             <td><select class="search-input companyCd" name="companyCd"></select></td>
                         </tr>
@@ -216,19 +256,19 @@ async function btnSearch() {
                 await btnSearch();
             });
 
-            newCarCard.getElementsByClassName("edit-btn")[0].onclick = async function(){
+            newCarCard.getElementsByClassName("edit-btn")[0].onclick = async function () {
                 await editCar(doc.id);
             }
 
-            newCarCard.getElementsByClassName("delete-btn")[0].onclick = async function(){
+            newCarCard.getElementsByClassName("delete-btn")[0].onclick = async function () {
                 let result = await deleteCar(doc.id);
-                if(result){
+                if (result) {
                     alert("완료되었습니다.");
                     await btnSearch();
                 }
             }
         });
-    }else{
+    } else {
         cardContainer.innerHTML = '검색 결과가 없습니다.';
     }
 
@@ -245,10 +285,10 @@ async function editCar(id) {
     for (let i = 0; i < inpboxArr.length; i++) {
         let fieldName = inpboxArr[i].name; // id를 필드 이름으로 사용
         let fieldValue = inpboxArr[i].value; // value를 데이터 값으로 사용
-        
-        if(fieldName == 'price') {
-            fieldValue = fieldValue*1; 
-            if(isNaN(fieldValue)){
+
+        if (fieldName == 'price') {
+            fieldValue = fieldValue * 1;
+            if (isNaN(fieldValue)) {
                 alert("금액은 숫자만 입력하세요.");
                 return false;
             }
@@ -256,18 +296,18 @@ async function editCar(id) {
         updatedData[fieldName] = fieldValue; // updatedData 객체에 필드 추가
     }
 
-    updatedData["companyCd"] = document.getElementById(id).getElementsByClassName("companyCd")[0].value*1;
-    updatedData["aircon"] = document.getElementById(id).getElementsByClassName("aircon")[0].value*1;
+    updatedData["companyCd"] = document.getElementById(id).getElementsByClassName("companyCd")[0].value * 1;
+    updatedData["aircon"] = document.getElementById(id).getElementsByClassName("aircon")[0].value * 1;
 
     let result = await updateDocument("cars", id, updatedData);
 
-    if(result){
+    if (result) {
         alert("성공적으로 완료되었습니다.");
         document.getElementsByClassName(id)[0].classList.toggle('expanded');
     }
 }
 
-export async function addCarModule(){
+export async function addCarModule() {
     let inpboxArr = document.getElementsByClassName("car-card")[0].childNodes[1].children[0].getElementsByClassName("inp-car");
     let inputList = document.getElementsByClassName("car-card")[0].childNodes[1].children[0];
     // 빈 객체 생성
@@ -277,27 +317,27 @@ export async function addCarModule(){
     for (let i = 0; i < inpboxArr.length; i++) {
         let fieldName = inpboxArr[i].name; // id를 필드 이름으로 사용
         let fieldValue = inpboxArr[i].value; // value를 데이터 값으로 사용
-        
-        if(fieldName == 'price') {
-            fieldValue = fieldValue*1; 
-            if(isNaN(fieldValue)){
+
+        if (fieldName == 'price') {
+            fieldValue = fieldValue * 1;
+            if (isNaN(fieldValue)) {
                 alert("금액은 숫자만 입력하세요.");
                 return false;
             }
         }
 
-        if(fieldValue == ''){
+        if (fieldValue == '') {
             alert('입력하지 않은 항목이 있습니다.');
             return;
         }
         updatedData[fieldName] = fieldValue; // updatedData 객체에 필드 추가
     }
 
-    updatedData["companyCd"] = inputList.getElementsByClassName("companyCd")[0].value*1;
-    updatedData["aircon"] = inputList.getElementsByClassName("aircon")[0].value*1;
+    updatedData["companyCd"] = inputList.getElementsByClassName("companyCd")[0].value * 1;
+    updatedData["aircon"] = inputList.getElementsByClassName("aircon")[0].value * 1;
 
     let result = await addData("cars", updatedData);
-    if(result){
+    if (result) {
         alert("완료되었습니다.");
         await btnSearch();
     }

@@ -5,6 +5,43 @@ import { pagingunit } from './setting.js';
 // 페이지 로드 시 한 번 실행
 window.onload = function () {
 
+    //인수장소 세팅
+    setLocation();
+
+    let today = new Date();
+    today.setMinutes(0);
+    today.setHours(today.getHours() + 1)
+
+    let today2 = new Date();
+    today2.setMinutes(0);
+    today2.setHours(today2.getHours() + 1)
+
+    $("#pickupDate").daterangepicker({
+        "locale": {
+            "format": "YYYY-MM-DD hh:mm A",
+            "separator": " ~ ",
+            "applyLabel": "확인",
+            "cancelLabel": "취소",
+            "fromLabel": "From",
+            "toLabel": "To",
+            "customRangeLabel": "Custom",
+            "weekLabel": "W",
+            "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
+            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+        },
+        timePicker: true,
+        timePickerIncrement: 30,
+        "startDate": today,
+        "endDate": new Date(today2.setDate(today2.getDate() + 3)),
+        "drops": "auto"
+    }, function (start, end, label) {
+        //console.log(e);
+    });
+
+    $(".datepicker").on("focus", function(e){
+        e.preventDefault();
+    });
+
     //daterangepicker 값을 두개의 input에 나눠넣기 
     if ($("#pickupDate").val() != '') {
         let dateArray = $("#pickupDate").val().split(' ~ ');
@@ -12,40 +49,7 @@ window.onload = function () {
         $("#returnDate").val(dateArray[1]);
     }
 
-    //인수장소 세팅
-    setLocation();
-
 }
-
-let today = new Date();
-today.setMinutes(0);
-today.setHours(today.getHours() + 1)
-
-let today2 = new Date();
-today2.setMinutes(0);
-today2.setHours(today2.getHours() + 1)
-
-$("#pickupDate").daterangepicker({
-    "locale": {
-        "format": "YYYY-MM-DD hh:mm A",
-        "separator": " ~ ",
-        "applyLabel": "확인",
-        "cancelLabel": "취소",
-        "fromLabel": "From",
-        "toLabel": "To",
-        "customRangeLabel": "Custom",
-        "weekLabel": "W",
-        "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
-        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-    },
-    timePicker: true,
-    timePickerIncrement: 30,
-    "startDate": today,
-    "endDate": new Date(today2.setDate(today2.getDate() + 3)),
-    "drops": "auto"
-}, function (start, end, label) {
-    //console.log(e);
-});
 
 // $("#pickupDate").change(function(){
 //     let dateArray = $("#pickupDate").val().split(' ~ ');
@@ -72,7 +76,7 @@ $("#btnSearch").click(async () => {
     sessionStorage.setItem("companyNm", companyNm);
 
     window.location.href = "./carList.html"
-    
+
 });
 
 $("#btnMoreList").click(async function () {

@@ -33,6 +33,19 @@ export async function addData(colNm, item) {
         return false;
     }
 }
+
+//문서 추가 후 아이디 가져와야함
+export async function addDataId(colNm, item) {
+    // 데이터를 추가할 cars 컬렉션 참조
+    const itemCollectionRef = collection(db, colNm);
+
+    try {
+        const docRef = await addDoc(itemCollectionRef, item);
+        return docRef.id;
+    } catch (e) {
+        return false;
+    }
+}
 // 데이터 전체 가져오기 함수
 export async function fetchData(collectionName) {
     const querySnapshot = await getDocs(collection(db, collectionName));
@@ -63,6 +76,21 @@ export async function fetchOneDocument(documentId) {
         return null;
     }
 }
+
+// 문서ID로 데이터 가져오기
+export async function fetchOneResDocument(colNm , documentId) {
+    let collectionDb = collection(db, colNm);
+    const documentRef = doc(collectionDb, documentId); // 특정 문서 참조
+    const documentSnapshot = await getDoc(documentRef);
+
+    if (documentSnapshot.exists()) {
+        const data = documentSnapshot.data();
+        return data;
+    } else {
+        return null;
+    }
+}
+
 
 // companyCd Max값 구해오기
 export async function fetchComCdMax() {

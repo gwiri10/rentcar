@@ -61,29 +61,43 @@
     </nav>
     
     <div class="container notice-container">
-        <div class="title">
-            <h2>공지사항</h2>
+        <div class="title res-title">
+            <h2>예약조회</h2>
         </div>
-        <div class="content">
-            <div class="" style="width:100%">
-                <div class="notice">
-                    <div class="card-body">
-                        <p class="card-title">공지사항1</p>
-                    </div>
+        <div class="content res-content">
+            <!-- 로그인 컨테이너 -->
+            <div class="login-container">
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" placeholder="이름" required>
                 </div>
-                <div class="notice">
-                    <div class="card-body">
-                        <p class="card-title">공지사항2</p>
-                    </div>
+                <div class="form-group">
+                    <label for="reservation-number">예약번호</label>
+                    <input type="text" id="reservation-number" placeholder="예약번호" required>
                 </div>
-                <div class="notice">
-                    <div class="card-body">
-                        <p class="card-title">공지사항3</p>
-                    </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" placeholder="이메일" required>
+                </div>
+                <button id="check-reservation">예약조회</button>
+            </div>
+    
+            <!-- 예약 정보 컨테이너 -->
+            <div class="bord-container" style="display: none;">
+                <div class="star">
+                    <span><span class="icon15 exclamation"></span>예약 번호를 꼭 기억해 주세요<span class="icon15 exclamation"></span></span>
+                </div>
+                <label id="resState" class="reservation-status">예약대기</label>
+                <div id="reservation-info">
+                    
                 </div>
             </div>
+            
         </div>
     </div>
+    
+    
+    
     <!-- footer 시작 -->
     <footer class="bg-dark text-white py-4 footer">
         <div class="container">
@@ -115,7 +129,7 @@
     <!-- footer 끝 -->
 
     <script type="module" src="js/firebase.js"></script>
-    <script type="module" src="js/source.js"></script>
+    <script type="module" src="js/retRes.js"></script>
 
 </body>
 

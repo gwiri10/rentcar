@@ -38,3 +38,188 @@
 .ask-button:hover {
     background-color: #0056b3; /* 호버 시 버튼 배경색 변경 */
 }
+
+.content {
+    margin-top: 20px;
+}
+
+.login-container {
+    max-width: 320px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+}
+
+.login-container .form-group {
+    margin-bottom: 15px;
+}
+
+.login-container label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.bord-container {
+    margin-top: 20px;
+}
+.star{
+    margin-bottom: 15px;
+}
+.star span{
+    font-size: 16px;
+    font-weight: bold;
+}
+.bord-container h3 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.bord-container p {
+    text-align: center;
+}
+/* 기본적인 스타일 */
+.bord-container {
+    background-color: white; /* 배경색 흰색 */
+    border-radius: 10px; /* 둥근 테두리 */
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 */
+    font-size: 14px;
+    position: relative; /* label을 절대 위치로 배치하기 위해 */
+}
+
+.bord-container h3 {
+    margin-bottom: 20px;
+}
+
+/* 표 스타일 */
+#reservation-info table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#reservation-info td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+#reservation-info td:first-child {
+    font-weight: bold;
+}
+
+/* 예약 상태 label 위치와 스타일 */
+.reservation-status {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* 예약 대기 상태 */
+.status-waiting {
+    background-color: #ffc107; /* 노란색 */
+    color: white;
+    font-size: 20px;
+}
+
+/* 예약 확정 상태 */
+.status-confirmed {
+    background-color: #28a745; /* 초록색 */
+    color: white;
+    font-size: 20px;
+}
+
+/* 예약 취소 상태 */
+.status-cancelled {
+    background-color: #dc3545; /* 빨간색 */
+    color: white;
+    font-size: 20px;
+}
+.res-content{
+    margin : 0;
+    width: 100%;
+}
+.res-title{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .bord-container {
+        padding: 15px;
+    }
+
+    #reservation-info table td {
+        font-size: 12px;
+    }
+
+    .reservation-status {
+        font-size: 12px;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bord-container {
+        padding: 10px;
+    }
+
+    #reservation-info table td {
+        font-size: 10px;
+        padding: 6px 10px;
+    }
+
+    .reservation-status {
+        font-size: 10px;
+        padding: 3px 7px;
+    }
+}
+/*===============================================================================================================
+
+	ICON STYLE 15PX
+
+===============================================================================================================*/
+.icon15 {
+	display: inline-block;
+	position: relative;
+	width: 15px;
+	height: 15px;
+	background-image: url('https://www.okizonepass.com/okinawa/images/text-icons.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	font-size: 0px;
+	line-height: inherit;
+	margin: -1px 4px 0 0;
+	overflow: hidden;
+}
+
+.icon15.check { background-position: 0 0; }
+.icon15.exclamation { background-position: -16px 0; }
+.icon15.arrow_right { background-position: -32px 0; }
+

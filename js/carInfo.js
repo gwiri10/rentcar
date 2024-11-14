@@ -38,6 +38,12 @@ async function fetchCarInfo(data) {
     $("#passenger-capacity").html(data.people + '명');
     $("#transmission").html(data.gear);
 
+    $("#addPrice24").val(data.addPrice24);
+    $("#addPrice48").val(data.addPrice48);
+    $("#addPrice72").val(data.addPrice72);
+    $("#addPrice96").val(data.addPrice96);
+    $("#addPrice100").val(data.addPrice100);
+
     let ariconNm = '';
     data.aircon == '1' ? ariconNm = "있음" : "없음";
 
@@ -115,21 +121,25 @@ const getDateDiff = async() => {
     let beforePrice = totalPrice * calRate;
     let afterPrice = (totalPrice* 1 - beforePrice) / 10;
 
+    //성수기 시 추가요금
+    let addPrice = 0;
     if(isDateInRangeResult){
         if(diffDay == 1){
-            afterPrice += 5500
+            addPrice = $("#addPrice24").val()!= undefined ? $("#addPrice24").val() : 5500
         }else if(diffDay == 2){
-            afterPrice += 10800
+            addPrice = $("#addPrice48").val()!= undefined ? $("#addPrice48").val() : 10800
         }
         else if(diffDay == 3){
-            afterPrice += 16000
+            addPrice = $("#addPrice72").val()!= undefined ? $("#addPrice72").val() : 16000
         }
         else if(diffDay == 4){
-            afterPrice += 21100
+            addPrice = $("#addPrice96").val()!= undefined ? $("#addPrice96").val() : 21100
         }
         else{
-            afterPrice += 5000*diffDay
+            addPrice = $("#addPrice100").val()!= undefined ? $("#addPrice100").val() : 5000
+            addPrice = addPrice*diffDay
         }
+        afterPrice += addPrice;
     }
     //예약하기 시 넘겨줄 데이터
     document.getElementById("afterPrice").value = afterPrice;

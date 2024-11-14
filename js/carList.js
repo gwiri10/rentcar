@@ -6,42 +6,41 @@ window.onload = async function () {
 
     //인수장소 세팅
     await setLocation();
-    
+
+    $("#pickupDate").daterangepicker({
+        "locale": {
+            "format": "YYYY-MM-DD hh:mm A",
+            "separator": " ~ ",
+            "applyLabel": "확인",
+            "cancelLabel": "취소",
+            "fromLabel": "From",
+            "toLabel": "To",
+            "customRangeLabel": "Custom",
+            "weekLabel": "W",
+            "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
+            "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+        },
+        timePicker: true,
+        timePickerIncrement: 30,
+        "drops": "auto"
+    }, function (start, end, label) {
+        //console.log(e);
+    });
+
     let pickupDate = sessionStorage.getItem("pickupDate");
     let returnDate = sessionStorage.getItem("returnDate");
     
     $("#pickupDate").val(pickupDate);
     $("#returnDate").val(returnDate);
-    
+
+    $(".datepicker").on("focus", function(e){
+        e.preventDefault();
+    });
+
     //검색 세팅
     $("#btnSearch").click();
 }
 
-$("#pickupDate").daterangepicker({
-    "locale": {
-        "format": "YYYY-MM-DD hh:mm A",
-        "separator": " ~ ",
-        "applyLabel": "확인",
-        "cancelLabel": "취소",
-        "fromLabel": "From",
-        "toLabel": "To",
-        "customRangeLabel": "Custom",
-        "weekLabel": "W",
-        "daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
-        "monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-    },
-    timePicker: true,
-    timePickerIncrement: 30,
-    "drops": "auto"
-}, function (start, end, label) {
-    //console.log(e);
-});
-
-// $("#pickupDate").change(function(){
-//     let dateArray = $("#pickupDate").val().split(' ~ ');
-//     $("#pickupDate").val(dateArray[0]);
-//     $("#returnDate").val(dateArray[1]);
-// });
 $("#pickupDate").on('apply.daterangepicker', function (ev, picker) {
     let dateArray = $("#pickupDate").val().split(' ~ ');
     $("#pickupDate").val(dateArray[0]);

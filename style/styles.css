@@ -247,13 +247,18 @@ p{
 .index-search{
     position: absolute;
     top: 425px;
-    left: 355px;
+    /* left: 355px; */
     z-index: 10;
+}
+.noticeTitle{
+    font-size: 20px;
 }
 .notice p{
     text-align: left;
     border-bottom: 1px solid #ccc;
+    font-size: 15px;
 }
+
 .footer {
     background-color: #343a40; /* 어두운 배경 */
     color: white; /* 텍스트 색상 */
@@ -366,7 +371,7 @@ p{
     
     .nav {
         display: inline-flex; /* 가로로 항목 배치 */
-        min-width: 600px; /* 전체 크기 설정 */
+        min-width: 700px; /* 전체 크기 설정 */
         white-space: nowrap; /* 줄바꿈 방지 */
         padding: 0; /* 기본 패딩 제거 */
         margin: 0; /* 기본 마진 제거 */
