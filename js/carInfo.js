@@ -14,12 +14,6 @@ window.onload = async function () {
         $("#returnDate").val(returnDate);
     }
 
-    $(".datepicker").on("focus", function(e){
-        $(this).prop("readonly", true); // 자판 비활성화
-    }).on("blur", function(e){
-        $(this).prop("readonly", false); // focus가 해제되면 readonly 속성 제거
-    });
-    
     $(".datepicker").on("touchstart focus", function(e){
         e.preventDefault();
     });
