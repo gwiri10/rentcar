@@ -38,8 +38,11 @@ window.onload = function () {
         //console.log(e);
     });
 
-    $(".datepicker").on("touchstart focus", function(e){
-        e.preventDefault();
+    $("#pickupDate").on("focus", function (e) {
+        $(this).prop("readonly", true);  // 자판 비활성화
+        $(this).click();
+    }).on("blur", function (e) {
+        $(this).prop("readonly", false); // focus가 벗어나면 readonly 제거
     });
 
     //daterangepicker 값을 두개의 input에 나눠넣기 
@@ -51,15 +54,17 @@ window.onload = function () {
 
 }
 
-// $("#pickupDate").change(function(){
-//     let dateArray = $("#pickupDate").val().split(' ~ ');
-//     $("#pickupDate").val(dateArray[0]);
-//     $("#returnDate").val(dateArray[1]);
-// });
-$("#pickupDate").on('hideCalendar.daterangepicker', function (ev, picker) {
+$("#pickupDate").on('apply.daterangepicker', function (ev, picker) {
     let dateArray = $("#pickupDate").val().split(' ~ ');
     $("#pickupDate").val(dateArray[0]);
     $("#returnDate").val(dateArray[1]);
+});
+$(document).on('mousedown', function (event) {
+    if (!$(event.target).closest('#your-daterangepicker-element').length) {
+        let dateArray = $("#pickupDate").val().split(' ~ ');
+        $("#pickupDate").val(dateArray[0]);
+        $("#returnDate").val(dateArray[1]);
+    }
 });
 
 $("#btnSearch").click(async () => {
