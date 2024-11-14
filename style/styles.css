@@ -23,7 +23,9 @@ p{
 .container {
     max-width: 1200px;
 }
-
+.form-control[readonly]{
+    background-color: #fff;
+}
 .serchContainer{
     border: 1px solid #9ca0a5;
     padding-top: 10px;

@@ -38,27 +38,6 @@ window.onload = function () {
         //console.log(e);
     });
 
-    $("#pickupDate").on("click", function (e) {
-        $(this).prop("readonly", true);  // 자판 비활성화
-        $(this).click();
-    }).on("blur", function (e) {
-        $(this).prop("readonly", false); // focus가 벗어나면 readonly 제거
-    });
-
-    $("#returnDate").on("click", function (e) {
-        $(this).prop("readonly", true);  // 자판 비활성화
-        $("#pickupDate").click();
-    }).on("blur", function (e) {
-        $(this).prop("readonly", false); // focus가 벗어나면 readonly 제거
-    });
-
-    //daterangepicker 값을 두개의 input에 나눠넣기 
-    if ($("#pickupDate").val() != '') {
-        let dateArray = $("#pickupDate").val().split(' ~ ');
-        $("#pickupDate").val(dateArray[0]);
-        $("#returnDate").val(dateArray[1]);
-    }
-
 }
 
 $("#pickupDate").on('apply.daterangepicker', function (ev, picker) {
@@ -66,9 +45,10 @@ $("#pickupDate").on('apply.daterangepicker', function (ev, picker) {
     $("#pickupDate").val(dateArray[0]);
     $("#returnDate").val(dateArray[1]);
 });
-$(document).on('mousedown touchstart', function (event) {
-    if (!$(event.target).closest('#your-daterangepicker-element').length) {
-        let dateArray = $("#pickupDate").val().split(' ~ ');
+
+$("#pickupDate").on('change', function (ev, picker) {
+    let dateArray = $("#pickupDate").val().split(' ~ ');
+    if(dateArray.length > 1 ){
         $("#pickupDate").val(dateArray[0]);
         $("#returnDate").val(dateArray[1]);
     }
