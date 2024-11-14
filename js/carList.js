@@ -33,7 +33,7 @@ window.onload = async function () {
     $("#pickupDate").val(pickupDate);
     $("#returnDate").val(returnDate);
 
-    $("#pickupDate").on("focus", function (e) {
+    $("#pickupDate").on("click", function (e) {
         $(this).prop("readonly", true);  // 자판 비활성화
         $(this).click();
     }).on("blur", function (e) {

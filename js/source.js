@@ -45,6 +45,13 @@ window.onload = function () {
         $(this).prop("readonly", false); // focus가 벗어나면 readonly 제거
     });
 
+    $("#returnDate").on("click", function (e) {
+        $(this).prop("readonly", true);  // 자판 비활성화
+        $("#pickupDate").click();
+    }).on("blur", function (e) {
+        $(this).prop("readonly", false); // focus가 벗어나면 readonly 제거
+    });
+
     //daterangepicker 값을 두개의 input에 나눠넣기 
     if ($("#pickupDate").val() != '') {
         let dateArray = $("#pickupDate").val().split(' ~ ');
