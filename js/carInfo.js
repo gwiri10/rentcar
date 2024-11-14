@@ -81,7 +81,7 @@ $("#pickupDate").daterangepicker({
     //console.log(e);
 });
 
-$("#pickupDate").on('apply.daterangepicker', async function (ev, picker) {
+$("#pickupDate").on('hideCalendar.daterangepicker', async function (ev, picker) {
     let dateArray = $("#pickupDate").val().split(' ~ ');
     $("#pickupDate").val(dateArray[0]);
     $("#returnDate").val(dateArray[1]);
