@@ -6,7 +6,7 @@ import { pagingunit } from './setting.js';
 window.onload = function () {
 
     sessionStorage.clear();
-
+    
     //인수장소 세팅
     setLocation();
 
@@ -41,6 +41,12 @@ window.onload = function () {
     });
 
 }
+
+$("#pickupDate").on('apply.daterangepicker', function (ev, picker) {
+    let dateArray = $("#pickupDate").val().split(' ~ ');
+    $("#pickupDate").val(dateArray[0]);
+    $("#returnDate").val(dateArray[1]);
+});
 
 $("#pickupDate").on('change', function (ev, picker) {
     let dateArray = $("#pickupDate").val().split(' ~ ');
