@@ -38,7 +38,7 @@ window.onload = function () {
         //console.log(e);
     });
 
-    $("#pickupDate").on("focus click", function (e) {
+    $("#pickupDate").on("click", function (e) {
         $(this).prop("readonly", true);  // 자판 비활성화
         $(this).click();
     }).on("blur", function (e) {
