@@ -14,6 +14,11 @@
     padding: 20px;
     box-sizing: border-box;
 }
+.nav-container {
+    max-width: 100%; /* 부모 컨테이너 크기 제한 */
+    overflow-x: auto; /* 가로 스크롤 허용 */
+    padding : 0 !important;
+}
 
 /* 차량 정보 */
 .car-info {
