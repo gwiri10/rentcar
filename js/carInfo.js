@@ -97,9 +97,6 @@ const getDateDiff = async() => {
     let date1 = new Date($("#pickupDate").val());
     let date2 = new Date($("#returnDate").val());
 
-    //성수기 안에 선택한 값이 들어가는지 확인
-    let isDateInRangeResult = isDateInRange(date1, date2, 1) ;
-
     //예약불가 기간 안에 선택한 값이 들어가는지 확인
     let isDateInRangeResultCancle = isDateInRange(date1, date2, 2) ;
     $("#downDataCheck").val(isDateInRangeResultCancle);
@@ -130,33 +127,97 @@ const getDateDiff = async() => {
 
     //사전결제비율
     let calRate = $("#rate").val()==""? 0.2 : $("#rate").val()*0.01;
-    // let result = await fetchData("rate");
-    // result.forEach((doc) => {
-    //     calRate = doc.data().rate * 0.01;
-    // });
     let beforePrice = totalPrice * calRate;
     let afterPrice = (totalPrice* 1 - beforePrice) / 10;
 
-    //성수기 시 추가요금
+    let data = await fetchOneDocument(id);
     let addPrice = 0;
+    //기간별 추가 요금 세팅
+    //1. 비수기
+    let rage1 = data.upData1 != undefined ? data.upData1 : '25/01/06 - 25/01/24'
+    let isDateInRangeResult = isAddPriceDateInRange(date1, date2, rage1) ;
     if(isDateInRangeResult){
         if(diffDay == 1){
-            addPrice = $("#addPrice24").val()!= undefined ? $("#addPrice24").val() : 5500
+            addPrice = data.addprice24_1 != undefined ? data.addprice24_1 : 5500
         }else if(diffDay == 2){
-            addPrice = $("#addPrice48").val()!= undefined ? $("#addPrice48").val() : 10800
+            addPrice = data.addprice48_1 != undefined ? data.addprice48_1 : 10800
         }
         else if(diffDay == 3){
-            addPrice = $("#addPrice72").val()!= undefined ? $("#addPrice72").val() : 16000
+            addPrice = data.addprice72_1 != undefined ? data.addprice72_1 : 16000
         }
         else if(diffDay == 4){
-            addPrice = $("#addPrice96").val()!= undefined ? $("#addPrice96").val() : 21100
+            addPrice = data.addprice96_1 != undefined ? data.addprice96_1 : 21100
         }
         else{
-            addPrice = $("#addPrice100").val()!= undefined ? $("#addPrice100").val() : 5000
+            addPrice = data.addprice100_1 != undefined ? data.addprice100_1 : 5000
             addPrice = addPrice*diffDay
         }
-        afterPrice += addPrice;
     }
+
+    //2. 준성수기
+    let rage2 = data.upData2 != undefined ? data.upData2 : '25/07/01 - 25/07/02'
+    let isDateInRangeResult2 = isAddPriceDateInRange(date1, date2, rage2) ;
+    if(isDateInRangeResult2){
+        if(diffDay == 1){
+            addPrice = data.addprice24_2 != undefined ? data.addprice24_2 : 6000
+        }else if(diffDay == 2){
+            addPrice = data.addprice48_2 != undefined ? data.addprice48_2 : 11900
+        }
+        else if(diffDay == 3){
+            addPrice = data.addprice72_2 != undefined ? data.addprice72_2 : 16000
+        }
+        else if(diffDay == 4){
+            addPrice = data.addprice96_2 != undefined ? data.addprice96_2 : 21100
+        }
+        else{
+            addPrice = data.addprice100_2 != undefined ? data.addprice100_2 : 5600
+            addPrice = addPrice*diffDay
+        }
+    }
+
+    //2. 성수기
+    let rage3 = data.upData3 != undefined ? data.upData3 : '25/08/01 - 25/08/02'
+    let isDateInRangeResult3 = isAddPriceDateInRange(date1, date2, rage3) ;
+    if(isDateInRangeResult3){
+        if(diffDay == 1){
+            addPrice = data.addprice24_3 != undefined ? data.addprice24_3 : 7500
+        }else if(diffDay == 2){
+            addPrice = data.addprice48_3 != undefined ? data.addprice48_3 : 14900
+        }
+        else if(diffDay == 3){
+            addPrice = data.addprice72_3 != undefined ? data.addprice72_3 : 16000
+        }
+        else if(diffDay == 4){
+            addPrice = data.addprice96_3 != undefined ? data.addprice96_3 : 21100
+        }
+        else{
+            addPrice = data.addprice100_3 != undefined ? data.addprice100_3 : 7100
+            addPrice = addPrice*diffDay
+        }
+    }
+
+    //4. 극성수기
+    let rage4 = data.upData4 != undefined ? data.upData4 : '25/09/01 - 25/09/02'
+    let isDateInRangeResult4 = isAddPriceDateInRange(date1, date2, rage4) ;
+    if(isDateInRangeResult4){
+        if(diffDay == 1){
+            addPrice = data.addprice24_4 != undefined ? data.addprice24_4 : 10000
+        }else if(diffDay == 2){
+            addPrice = data.addprice48_4 != undefined ? data.addprice48_4 : 19900
+        }
+        else if(diffDay == 3){
+            addPrice = data.addprice72_4 != undefined ? data.addprice72_4 : 16000
+        }
+        else if(diffDay == 4){
+            addPrice = data.addprice96_4 != undefined ? data.addprice96_4 : 21100
+        }
+        else{
+            addPrice = data.addprice100_4 != undefined ? data.addprice100_4 : 9600
+            addPrice = addPrice*diffDay
+        }
+    }
+    
+    afterPrice += addPrice;
     //예약하기 시 넘겨줄 데이터
     document.getElementById("afterPrice").value = afterPrice;
     document.getElementById("beforePrice").value = beforePrice;
@@ -197,6 +258,27 @@ function isDateInRange(date1, date2, flag) {
         r1Start.setHours(0); r1Start.setMinutes(0);
     const r1End = new Date(range1End);
     r1End.setHours(0); r1End.setMinutes(0);
+    // Check overlap with range 1
+    const isInRange1 = startDate <= r1End && endDate >= r1Start;
+
+    // Return true if either range matches
+    return isInRange1 
+}
+
+
+function isAddPriceDateInRange(date1, date2, range) {
+
+    let rangeArr = range.trim().split("-");
+    range1Start = rangeArr[0];
+    range1End = rangeArr[1];
+
+    // Convert inputs to Date objects
+    const startDate = new Date(date1);
+    const endDate = new Date(date2);
+    const r1Start = new Date(range1Start);
+        r1Start.setHours(0); r1Start.setMinutes(0);
+    const r1End = new Date(range1End);
+        r1End.setHours(0); r1End.setMinutes(0);
     // Check overlap with range 1
     const isInRange1 = startDate <= r1End && endDate >= r1Start;
 
