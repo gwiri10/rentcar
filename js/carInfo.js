@@ -269,8 +269,8 @@ function isDateInRange(date1, date2, flag) {
 function isAddPriceDateInRange(date1, date2, range) {
 
     let rangeArr = range.trim().split("-");
-    range1Start = rangeArr[0];
-    range1End = rangeArr[1];
+    let range1Start = rangeArr[0];
+    let range1End = rangeArr[1];
 
     // Convert inputs to Date objects
     const startDate = new Date(date1);
