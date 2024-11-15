@@ -43,6 +43,9 @@ async function fetchCarInfo(data) {
     $("#addPrice72").val(data.addPrice72);
     $("#addPrice96").val(data.addPrice96);
     $("#addPrice100").val(data.addPrice100);
+    $("#upData").val(data.upData);
+    $("#downDate").val(data.downData);
+    $("#rate").val(data.rate);
 
     let ariconNm = '';
     data.aircon == '1' ? ariconNm = "있음" : "없음";
@@ -56,8 +59,6 @@ async function fetchCarInfo(data) {
     let companyNm = await fetchCompanysDocument(data.companyCd*1);
     $("#rentSpot").html(companyNm);
 }
-
-const today = new Date();
 
 $("#pickupDate").daterangepicker({
     "locale": {
@@ -87,6 +88,8 @@ $("#pickupDate").on('change', function (ev, picker) {
         $("#pickupDate").val(dateArray[0]);
         $("#returnDate").val(dateArray[1]);
     }
+
+    getDateDiff();
 });
 
 const getDateDiff = async() => {
@@ -95,7 +98,19 @@ const getDateDiff = async() => {
     let date2 = new Date($("#returnDate").val());
 
     //성수기 안에 선택한 값이 들어가는지 확인
-    let isDateInRangeResult = isDateInRange(date1, date2) ;
+    let isDateInRangeResult = isDateInRange(date1, date2, 1) ;
+
+    //예약불가 기간 안에 선택한 값이 들어가는지 확인
+    let isDateInRangeResultCancle = isDateInRange(date1, date2, 2) ;
+    $("#downDataCheck").val(isDateInRangeResultCancle);
+    if(isDateInRangeResultCancle){
+        let msg = "2024-11-20 부터 2024-11-23 은 예약불가 기간입니다."
+        if($("#downData").val()!=undefined && $("#downData").val()!=""){
+            msg = $("#downData").val()+" 은 예약불가 기간입니다."
+        }
+        alert(msg);
+        return;
+    }
 
     let diffDate = Math.abs((date1.getTime() - date2.getTime()) / (1000 * 60 * 60 )); // 밀리세컨 * 초 * 분 = 시간
 
@@ -113,11 +128,12 @@ const getDateDiff = async() => {
 
     totalPrice = ($("#totalPrice").val() * diffDay) + extraDate*11000;
 
-    let calRate = 0;//사전결제비율
-    let result = await fetchData("rate");
-    result.forEach((doc) => {
-        calRate = doc.data().rate * 0.01;
-    });
+    //사전결제비율
+    let calRate = $("#rate").val()==""? 0.2 : $("#rate").val()*0.01;
+    // let result = await fetchData("rate");
+    // result.forEach((doc) => {
+    //     calRate = doc.data().rate * 0.01;
+    // });
     let beforePrice = totalPrice * calRate;
     let afterPrice = (totalPrice* 1 - beforePrice) / 10;
 
@@ -151,27 +167,39 @@ const getDateDiff = async() => {
 
 }
 
-function isDateInRange(date1, date2) {
-    //성수기 기간 하드코딩
-    const range1Start = '2025-01-06';
-    const range1End = '2025-01-24';
-    const range2Start = '2025-01-25';
-    const range2End = '2025-04-06';
+function isDateInRange(date1, date2, flag) {
+    let range = "";
+    if(flag == 1){
+        range = $("#upData").val();
+    }else{
+        range = $("#downData").val();
+    }
+    
+    let range1Start, range1End = "";
+    if(range == undefined || range == ""){
+        if(flag == 1){
+            range1Start = '2025-01-06';
+            range1End = '2025-01-24';
+        }else{
+            range1Start = '2024-11-20';
+            range1End = '2024-11-23';
+        }
+    }else{
+        let rangeArr = range.trim().split("-");
+        range1Start = rangeArr[0];
+        range1End = rangeArr[1];
+    }
 
     // Convert inputs to Date objects
     const startDate = new Date(date1);
     const endDate = new Date(date2);
     const r1Start = new Date(range1Start);
+        r1Start.setHours(0); r1Start.setMinutes(0);
     const r1End = new Date(range1End);
-    const r2Start = new Date(range2Start);
-    const r2End = new Date(range2End);
-
+    r1End.setHours(0); r1End.setMinutes(0);
     // Check overlap with range 1
     const isInRange1 = startDate <= r1End && endDate >= r1Start;
 
-    // Check overlap with range 2
-    const isInRange2 = startDate <= r2End && endDate >= r2Start;
-
     // Return true if either range matches
-    return isInRange1 || isInRange2;
+    return isInRange1 
 }

@@ -51,7 +51,7 @@
                     <a class="nav-link text-white" href="./ask.html">문의하기</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./retRes.html">예약조회</a>
+                    <a class="nav-link text-white" href="./retRes.html">마이페이지</a>
                 </li>
             </ul>
         </div>
@@ -62,16 +62,44 @@
             <h2>문의하기</h2>
         </div>
         <div class="content">
+            <div class="" style="width:100%" id="askList">
+                <div class="notice">
+                    <div class="card-body">
+                        <p class="card-title">문의사항1</p>
+                    </div>
+                </div>
+                <div class="notice">
+                    <div class="card-body">
+                        <p class="card-title">문의사항2</p>
+                    </div>
+                </div>
+                <div class="notice">
+                    <div class="card-body">
+                        <p class="card-title">문의사항3</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ask-btn">
+                <button class="ask-button" id="ask-button">문의하기</button>
+            </div>
+        </div>
+        <div class="ask-container">
+            <div class="ask-content">
+                <label>제목</label>
+                <input type="text" id="title">
+            </div>
             <div class="ask-content">
                 <label>내용</label>
-                <textarea></textarea>
+                <textarea id="content"></textarea>
             </div>
             <div class="ask-content">
                 <label>이메일</label>
-                <input type="text">
+                <input type="text" id="email">
             </div>
             <div class="ask-content ask-btn" >
-                <button class="ask-button">문의하기</button>
+                <button class="back-button" id="back_ask">이전으로</button>
+                <button class="ask-button" id="reg_ask">문의하기</button>
             </div>
         </div>
     </div>
@@ -107,6 +135,7 @@
 
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/source.js"></script>
+    <script type="module" src="js/ask.js"></script>
 
 </body>
 

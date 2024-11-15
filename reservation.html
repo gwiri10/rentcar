@@ -18,12 +18,16 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
+    <!-- 결제 -->
+    <script src="https://js.tosspayments.com/v1/payment-widget"></script>
+
 </head>
 
 <body>
 
     <header class="bg-white text-white" style="background-color: #ffffff;">
-        <div class="container d-flex justify-content-between align-items-center py-3" style="padding-bottom:0 !important;">
+        <div class="container d-flex justify-content-between align-items-center py-3"
+            style="padding-bottom:0 !important;">
             <div class="d-flex align-items-center" onclick="window.location.href='./index.html'">
                 <img src="./img/logo.png" alt="로고" class="loo" style="width: 75px;">
                 <h2 class="ml-2 logoTitle" style="font-weight:bold;margin: 0 !important;">니혼카</h2>
@@ -47,7 +51,7 @@
                     <a class="nav-link text-white" href="./ask.html">문의하기</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./retRes.html">예약조회</a>
+                    <a class="nav-link text-white" href="./retRes.html">마이페이지</a>
                 </li>
             </ul>
         </div>
@@ -65,7 +69,7 @@
                 <p>배차 상황을 확인 후 이메일로 예약 가능 여부를 안내해드립니다.</p>
             </div>
         </div>
-        <input type="hidden" id="car-people"/>
+        <input type="hidden" id="car-people" />
 
         <!-- 예약 정보 섹션 -->
         <form class="reservation-form">
@@ -209,7 +213,7 @@
             <!-- 이메일 -->
             <div class="form-group">
                 <label for="email">이메일</label>
-                <input type="email" id="email" name="email" >
+                <input type="email" id="email" name="email">
                 <p style="margin: 8px 0 6px;"><span class="icon15 exclamation"></span>24시간 이내에 이메일로 예약 가능 여부 를
                     안내해드립니다.<span class="text-danger">※메일이 도착하지 않을 경우 스팸 메일 폴더도 확인해 주시기 바랍니다.</span></p>
             </div>
@@ -225,8 +229,8 @@
                 </div>
                 <p style="margin: 8px 0 6px;">
                     <!-- <span class="icon15 exclamation"></span> -->
-                    4~5인승 : <span class="text-danger"  id="insurance1">0</span>(엔)  24시간 기준<br>
-                    7~8인승 : <span class="text-danger" id="insurance2">0</span>(엔)  24시간 기준
+                    4~5인승 : <span class="text-danger" id="insurance1">0</span>(엔) 24시간 기준<br>
+                    7~8인승 : <span class="text-danger" id="insurance2">0</span>(엔) 24시간 기준
                 </p>
             </div>
 
@@ -296,12 +300,12 @@
                 </div>
                 <p style="margin: 8px 0 6px;">
                     <!-- <span class="icon15 exclamation"></span> -->
-                    주니어카시트 : <span class="text-danger"  id="carseat1">0</span>(엔) 전 일정<br>
+                    주니어카시트 : <span class="text-danger" id="carseat1">0</span>(엔) 전 일정<br>
                     <span class="carseatNote">- 체중 15~32kg, 신장 100~135cm 이하 / 약 4세~ 6세 미만</span><br>
                     차일드카시트 : <span class="text-danger" id="carseat2">0</span>(엔) 전 일정<br>
                     <span class="carseatNote">- 체중 9~18kg, 신장 100cm 이하 / 약 9개월 ~ 4세 미만</span><br>
                     베이비카시트 : <span class="text-danger" id="carseat3">0</span>(엔) 전 일정<br>
-                    <span class="carseatNote">-  체중 9kg 이하, 신장 100cm 이하 / 생후 ~ 약 9개월 미만</span>
+                    <span class="carseatNote">- 체중 9kg 이하, 신장 100cm 이하 / 생후 ~ 약 9개월 미만</span>
                 </p>
             </div>
 
@@ -310,7 +314,8 @@
                     <p><strong>사전결제:</strong><span class="text-danger" id="beforePrice">70,500</span>(원)
                         +현장결제:<span class="text-danger" id="afterPrice">1000</span>(엔)</p>
                 </div>
-                <p id="insurance">풀커버 보험(NOC안심) 가입 : <span id="ins1"></span>(엔) X <span id="diffDay">0</span>(박)</span></p>
+                <p id="insurance">풀커버 보험(NOC안심) 가입 : <span id="ins1"></span>(엔) X <span id="diffDay">0</span>(박)</span>
+                </p>
                 <p>주니어카시트 : <span id="carse1"></span>(엔) X <span id="juniorCnt">0</span>(개)</span></p>
                 <p>차일드카시트 : <span id="carse2"></span>(엔) X <span id="chileCnt">0</span>(개)</span></p>
                 <p>베이비카시트 : <span id="carse3"></span>(엔) X <span id="babyCnt">0</span>(개)</span></p>
@@ -346,7 +351,19 @@
             </div>
         </form>
     </div>
-
+    <div id="overlay">
+        <div style="background-color:#fff;">
+            <div class="wrapper w-100">
+                <div class="max-w-540 w-100">
+                    <div id="payment-method" class="w-100"></div>
+                    <div id="agreement" class="w-100"></div>
+                    <div class="btn-wrapper w-100">
+                        <button id="payment-request-button" class="btn primary w-100">결제하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer class="bg-dark text-white py-4 footer">
         <div class="container">
             <div class="row">
@@ -379,6 +396,40 @@
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/reservation.js"></script>
 
+    <script>
+        const clientKey = 'test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm' // 테스트용 클라이언트 키
+
+        // 2. 결제위젯 SDK 초기화
+        //const paymentWidget = PaymentWidget(clientKey, customerKey) // 회원 결제
+        const paymentWidget = PaymentWidget(clientKey, PaymentWidget.ANONYMOUS) // 비회원 결제
+
+
+        function createPayment(paymentItem) {
+
+            paymentMethods = paymentWidget.renderPaymentMethods('#payment-method', paymentItem.amount)
+
+            /*약관 영역 렌더링*/
+            const paymentAgreement = paymentWidget.renderAgreement('#agreement')
+            /*결제요청 함수 정의*/
+            $("#payment-request-button").on("click", function () {
+                paymentWidget.requestPayment({
+                    orderId: paymentItem.orderId,
+                    orderName: paymentItem.orderName,
+                    successUrl: window.location.origin + "/retRes.html",
+                    failUrl: window.location.origin + "/reservation.html",
+                    customerEmail: paymentItem.customerEmail,
+                    customerName: paymentItem.customerName,
+                    customerMobilePhone: paymentItem.customerMobilePhone,
+                }).catch(async function (error) {
+                    sessionStorage.getItem("docId");
+                    sessionStorage.setItem("reservationState", false);
+                })
+            })
+
+            document.getElementById("overlay").style.display = "flex"
+            $("#overlay").css("display", "flex");
+        }
+    </script>
 </body>
 
 </html>

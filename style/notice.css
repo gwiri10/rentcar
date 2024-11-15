@@ -1,50 +1,109 @@
-.notice-container{
-    min-height:500px;
+.notice-container {
+    min-height: 500px;
 }
-.title{
+
+.title {
     padding: 20px;
 }
-.ask-content{
+
+.ask-content {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;
 }
-.ask-content textarea{
+
+.ask-content textarea {
     width: 100%;
     height: 300px;
 }
+
 .ask-btn {
-    display: flex; /* Flexbox로 설정 */
-    justify-content: flex-end; /* 버튼을 오른쪽 끝으로 정렬 */
-    flex-direction: row; /* 가로 방향으로 정렬 */
-    align-items: center; /* 세로 가운데 정렬 */
-    width: 100%; /* 컨테이너가 화면 전체를 차지하도록 설정 */
-    padding: 1rem; /* 적절한 여백 추가 */
-    box-sizing: border-box; /* 패딩 포함한 크기 계산 */
+    display: flex;
+    /* Flexbox로 설정 */
+    justify-content: flex-end;
+    /* 버튼을 오른쪽 끝으로 정렬 */
+    flex-direction: row;
+    /* 가로 방향으로 정렬 */
+    align-items: center;
+    /* 세로 가운데 정렬 */
+    width: 100%;
+    /* 컨테이너가 화면 전체를 차지하도록 설정 */
+    padding: 1rem;
+    /* 적절한 여백 추가 */
+    box-sizing: border-box;
+    /* 패딩 포함한 크기 계산 */
 }
 
 .ask-button {
-    background-color: #007bff; /* 버튼 배경색 (파란색) */
-    color: white; /* 버튼 텍스트 색상 */
-    border: none; /* 기본 테두리 제거 */
-    border-radius: 4px; /* 둥근 모서리 */
-    padding: 0.5rem 1rem; /* 버튼 안쪽 여백 */
-    font-size: 14px; /* 폰트 크기 */
-    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
-    transition: background-color 0.3s ease; /* 호버 시 부드러운 색상 변경 효과 */
-    width : 100px
+    background-color: #007bff;
+    /* 버튼 배경색 (파란색) */
+    color: white;
+    /* 버튼 텍스트 색상 */
+    border: none;
+    /* 기본 테두리 제거 */
+    border-radius: 4px;
+    /* 둥근 모서리 */
+    padding: 0.5rem 1rem;
+    /* 버튼 안쪽 여백 */
+    font-size: 14px;
+    /* 폰트 크기 */
+    cursor: pointer;
+    /* 마우스 커서를 포인터로 변경 */
+    transition: background-color 0.3s ease;
+    /* 호버 시 부드러운 색상 변경 효과 */
+    width: 100px
+}
+
+.back-button {
+    color: white;
+    /* 버튼 텍스트 색상 */
+    border: none;
+    /* 기본 테두리 제거 */
+    border-radius: 4px;
+    /* 둥근 모서리 */
+    padding: 0.5rem 1rem;
+    /* 버튼 안쪽 여백 */
+    font-size: 14px;
+    /* 폰트 크기 */
+    cursor: pointer;
+    /* 마우스 커서를 포인터로 변경 */
+    transition: background-color 0.3s ease;
+    /* 호버 시 부드러운 색상 변경 효과 */
+    width: 100px;
+    margin-right: 5px;
 }
 
 .ask-button:hover {
-    background-color: #0056b3; /* 호버 시 버튼 배경색 변경 */
+    background-color: #0056b3;
+    /* 호버 시 버튼 배경색 변경 */
 }
 
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+.card-title{
+    border-bottom: none !important;
+    padding: 3px;
+}
+.ask-wating{
+    color : blue;
+    border: 1px solid #ccc;
+    padding: 3px;
+}
+.ask-done{
+    border: 1px solid #ccc;
+    padding: 3px;
+    color : green;
+}
 .content {
     margin-top: 20px;
 }
 
 .login-container {
-    max-width: 320px;
+    width: 340px;
     background-color: white;
     border: 1px solid #ccc;
     padding: 15px;
@@ -84,14 +143,18 @@ button:hover {
 
 .bord-container {
     margin-top: 20px;
+    width:100%
 }
-.star{
+
+.star {
     margin-bottom: 15px;
 }
-.star span{
+
+.star span {
     font-size: 16px;
     font-weight: bold;
 }
+
 .bord-container h3 {
     font-size: 20px;
     text-align: center;
@@ -100,15 +163,20 @@ button:hover {
 .bord-container p {
     text-align: center;
 }
+
 /* 기본적인 스타일 */
 .bord-container {
-    background-color: white; /* 배경색 흰색 */
-    border-radius: 10px; /* 둥근 테두리 */
+    background-color: white;
+    /* 배경색 흰색 */
+    border-radius: 10px;
+    /* 둥근 테두리 */
     padding: 20px;
     margin: 20px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* 그림자 */
     font-size: 14px;
-    position: relative; /* label을 절대 위치로 배치하기 위해 */
+    position: relative;
+    /* label을 절대 위치로 배치하기 위해 */
 }
 
 .bord-container h3 {
@@ -142,32 +210,45 @@ button:hover {
 
 /* 예약 대기 상태 */
 .status-waiting {
-    background-color: #ffc107; /* 노란색 */
+    background-color: #ffc107;
+    /* 노란색 */
     color: white;
     font-size: 20px;
 }
 
 /* 예약 확정 상태 */
 .status-confirmed {
-    background-color: #28a745; /* 초록색 */
+    background-color: #28a745;
+    /* 초록색 */
     color: white;
     font-size: 20px;
 }
 
 /* 예약 취소 상태 */
 .status-cancelled {
-    background-color: #dc3545; /* 빨간색 */
+    background-color: #dc3545;
+    /* 빨간색 */
     color: white;
     font-size: 20px;
 }
-.res-content{
-    margin : 0;
+
+.res-content {
+    margin: 0;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.res-title{
+
+.res-title {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+.ask-container {
+    display: none;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 768px) {
     .bord-container {
@@ -199,27 +280,35 @@ button:hover {
         padding: 3px 7px;
     }
 }
+
 /*===============================================================================================================
 
 	ICON STYLE 15PX
 
 ===============================================================================================================*/
 .icon15 {
-	display: inline-block;
-	position: relative;
-	width: 15px;
-	height: 15px;
-	background-image: url('https://www.okizonepass.com/okinawa/images/text-icons.png');
-	background-position: center center;
-	background-repeat: no-repeat;
-	vertical-align: middle;
-	font-size: 0px;
-	line-height: inherit;
-	margin: -1px 4px 0 0;
-	overflow: hidden;
+    display: inline-block;
+    position: relative;
+    width: 15px;
+    height: 15px;
+    background-image: url('https://www.okizonepass.com/okinawa/images/text-icons.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+    font-size: 0px;
+    line-height: inherit;
+    margin: -1px 4px 0 0;
+    overflow: hidden;
 }
 
-.icon15.check { background-position: 0 0; }
-.icon15.exclamation { background-position: -16px 0; }
-.icon15.arrow_right { background-position: -32px 0; }
+.icon15.check {
+    background-position: 0 0;
+}
 
+.icon15.exclamation {
+    background-position: -16px 0;
+}
+
+.icon15.arrow_right {
+    background-position: -32px 0;
+}

@@ -106,6 +106,18 @@ export async function addCar() {
                     <td><input class="inp-car" name="addprice100" type="text"/></td>
                 </tr>
                 <tr>
+                    <th>성수기기간</th>
+                    <td><input class="inp-car" name="upData" type="text" placeholder="yy/mm/dd - yy/mm/dd/"></td>
+                </tr>
+                <tr>
+                    <th>예약불가기간</th>
+                    <td><input class="inp-car" name="downData" type="text" placeholder="yy/mm/dd - yy/mm/dd/"/></td>
+                </tr>
+                    <tr>
+                    <th>사전결제비율</th>
+                    <td><input class="inp-car" name="rate" type="text" placeholder="20"/></td>
+                </tr>
+                <tr>
                     <th>업체명</th>
                     <td><select class="search-input companyCd" name="companyCd"></select></td>
                 </tr>
@@ -214,23 +226,35 @@ async function btnSearch() {
                         </tr>
                         <tr>
                             <th>24H추가요금</th>
-                            <td><input class="inp-car" name="addprice24" value="${data.addprice24}" type="text"/></td>
+                            <td><input class="inp-car" name="addprice24" value="${val(data.addprice24)}" type="text"/></td>
                         </tr>
                         <tr>
                             <th>48H추가요금</th>
-                            <td><input class="inp-car" name="addprice48" value="${data.addprice48}" type="text"/></td>
+                            <td><input class="inp-car" name="addprice48" value="${val(data.addprice48)}" type="text"/></td>
                         </tr>
                         <tr>
                             <th>72H추가요금</th>
-                            <td><input class="inp-car" name="addprice72" value="${data.addprice72}" type="text"/></td>
+                            <td><input class="inp-car" name="addprice72" value="${val(data.addprice72)}" type="text"/></td>
                         </tr>
                         <tr>
                             <th>96H추가요금</th>
-                            <td><input class="inp-car" name="addprice96" value="${data.addprice96}" type="text"/></td>
+                            <td><input class="inp-car" name="addprice96" value="${val(data.addprice96)}" type="text"/></td>
                         </tr>
                         <tr>
                             <th>1박당추가요금(96H초과)</th>
-                            <td><input class="inp-car" name="addprice100" value="${data.addprice100}" type="text"/></td>
+                            <td><input class="inp-car" name="addprice100" value="${val(data.addprice100)}" type="text"/></td>
+                        </tr>
+                        <tr>
+                            <th>성수기기간</th>
+                            <td><input class="inp-car" name="upData" value="${val(data.upData)}" type="text" placeholder="yy/mm/dd - yy/mm/dd/"></td>
+                        </tr>
+                        <tr>
+                            <th>예약불가기간</th>
+                            <td><input class="inp-car" name="downData" value="${val(data.downData)}" type="text" placeholder="yy/mm/dd - yy/mm/dd/"/></td>
+                        </tr>
+                         <tr>
+                            <th>사전결제비율</th>
+                            <td><input class="inp-car" name="rate" value="${val(data.rate)}" type="text" placeholder="20"/></td>
                         </tr>
                         <tr>
                             <th>업체명</th>
@@ -273,7 +297,13 @@ async function btnSearch() {
     }
 
 }
-
+function val(data){
+    if(data == undefined){
+        return '';
+    }else{
+        return data;
+    }
+}
 // 차량 수정 함수
 async function editCar(id) {
     let inpboxArr = document.getElementById(id).getElementsByClassName("inp-car");

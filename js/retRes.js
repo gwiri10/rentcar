@@ -1,7 +1,7 @@
-import { fetchOneResDocument, fetchFirstDocument, getTotalDocumentsCount, fetchNextDocument } from './firebase.js';
+import { fetchOneResDocument, updateDocument, getTotalDocumentsCount, fetchNextDocument } from './firebase.js';
 
 document.addEventListener('DOMContentLoaded', async function () {
-    let id = sessionStorage.getItem("id");
+    let id = sessionStorage.getItem("docId");
     if (id === null) {
         const loginContainer = document.querySelector('.login-container');
         const bordContainer = document.querySelector('.bord-container');
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 alert('모든 필드를 입력하세요.');
                 return;
             }
-
+            sessionStorage.clear();
             await findRes(0, reservationNumber, name, email);
 
         });
@@ -92,5 +92,15 @@ async function findRes(flag, reservationNumber, name, email) {
     loginContainer.style.display = 'none';
     bordContainer.style.display = 'block';
 
+
+    var search = location.search
+    var params = new URLSearchParams(search);
+    var paymentKey = params.get('paymentKey');
+
+    if(paymentKey != null){
+        updateDocument("reservations",reservationNumber, {
+            paymentKey : paymentKey
+        } )
+    }
 
 }

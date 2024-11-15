@@ -1,10 +1,10 @@
-import { fetchData, updateDocument, addData, deleteItem, fetchComCdMax} from './firebase.js';
+import { fetchData, updateDocument, addData, deleteItem, fetchComCdMax } from './firebase.js';
 
 window.onload = async function () {
     await Search();
 }
 
-async function Search(){
+async function Search() {
     let cardContainer = document.getElementById("cardList"); // 카드 컨테이너 선택
     cardContainer.innerHTML = '';
 
@@ -32,7 +32,7 @@ async function Search(){
                 resStateNm = "예약대기"; // 정의되지 않은 값에 대한 처리
                 classNm = "pending";
         }
-        
+
         const newCarCard = document.createElement('div');
         newCarCard.innerHTML = `
         <div class="reservation-card">
@@ -138,35 +138,74 @@ async function Search(){
         cardContainer.appendChild(newCarCard);
 
         //예약취소
-        newCarCard.getElementsByClassName("cancel-btn")[0].onclick = async function(){
+        newCarCard.getElementsByClassName("cancel-btn")[0].onclick = async function () {
             await changeRes(doc.id, 3);
+            await payCancel(doc.id, data.paymentKey);
         }
 
         //예약확정
-        newCarCard.getElementsByClassName("confirm-btn")[0].onclick = async function(){
+        newCarCard.getElementsByClassName("confirm-btn")[0].onclick = async function () {
             await changeRes(doc.id, 2);
         }
 
         newCarCard.addEventListener('click', () => {
             const details = newCarCard.querySelector('.reservation-details');
-            details.style.display = details.style.display === 'none'|| details.style.display === '' ? 'block' : 'none';
+            details.style.display = details.style.display === 'none' || details.style.display === '' ? 'block' : 'none';
         });
 
         //예약대기가 아니면 버튼창 없애기
-        if(data.resState != 1){
+        if (data.resState != 1) {
             newCarCard.getElementsByClassName("reservation-actions")[0].style.display = 'none';
         }
     });
 }
 
-async function changeRes(id, state){
-    let updateData = {"resState": state}
-    let result = await updateDocument("reservations", id,updateData );
+async function changeRes(id, state) {
+    let updateData = { "resState": state }
+    let result = await updateDocument("reservations", id, updateData);
 
-    if(result){
-        if(state == 2) alert("예약확정 되었습니다.")
-        else if(state == 3) alert("예약취소 되었습니다.")
+    if (result) {
+        if (state == 2) alert("예약확정 되었습니다.")
+        else if (state == 3) alert("예약취소 되었습니다.")
 
         Search();
     }
+}
+
+async function payCancel(docId, paymentKey) {
+
+    const url = 'https://api.tosspayments.com/v1/payments/5EnNZRJGvaBX7zk2yd8ydw26XvwXkLrx9POLqKQjmAw4b0e1/cancel';
+    const options = {
+        method: 'POST',
+        headers: {
+            Authorization: 'Basic dGVzdF9za19PUnpkTWFxTjN3MmpkZ1B5OXZNbTg1QWtZWFFHOg==',
+            'Content-Type': 'application/json'
+        },
+        body: '{"cancelReason":"구매자 변심"}'
+    };
+
+    fetch(`https://api.tosspayments.com/v1/payments/${paymentKey}/cancel`, options)
+        .then(response => response.json())
+        .then(data => console.log(data))  // 응답 받은 데이터 처리
+        .catch(error => console.error('Error:', error));  // 에러 처리
+
+
+    // //결제취소
+    // const url = 'https://api.tosspayments.com/v1/payments/'+paymentKey+'/cancel';
+    // const options = {
+    //     method: 'POST',
+    //     headers: {
+    //         Authorization: 'Basic dGVzdF9za19PUnpkTWFxTjN3MmpkZ1B5OXZNbTg1QWtZWFFHOg==',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: '{"cancelReason":"예약 불가"}'
+    // };
+
+    // try {
+    //     const response = await fetch(url, options);
+    //     const data = await response.json();
+    //     console.log(data);
+    // } catch (error) {
+    //     console.error(error);
+    // }
 }

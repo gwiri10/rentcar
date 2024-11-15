@@ -373,7 +373,16 @@ p{
     
     .nav {
         display: inline-flex; /* 가로로 항목 배치 */
-        min-width: 550px; /* 전체 크기 설정 */
+        min-width: 650px; /* 전체 크기 설정 */
+        white-space: nowrap; /* 줄바꿈 방지 */
+        padding: 0; /* 기본 패딩 제거 */
+        margin: 0; /* 기본 마진 제거 */
+        list-style: none; /* 불필요한 점 제거 */
+        font-size: 13px;
+    }
+    .admin-nav {
+        display: inline-flex; /* 가로로 항목 배치 */
+        min-width: 350px; /* 전체 크기 설정 */
         white-space: nowrap; /* 줄바꿈 방지 */
         padding: 0; /* 기본 패딩 제거 */
         margin: 0; /* 기본 마진 제거 */

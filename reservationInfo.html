@@ -49,7 +49,7 @@
                     <a class="nav-link text-white" href="./ask.html">문의하기</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="./retRes.html">예약조회</a>
+                    <a class="nav-link text-white" href="./retRes.html">마이페이지</a>
                 </li>
             </ul>
         </div>
@@ -63,6 +63,10 @@
         <input type="hidden" id="addPrice72" />
         <input type="hidden" id="addPrice96" />
         <input type="hidden" id="addPrice100" />
+        <input type="hidden" id="upData" />
+        <input type="hidden" id="downData" />
+        <input type="hidden" id="rate" />
+        <input type="hidden" id="downDataCheck" />
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
@@ -202,6 +206,10 @@
                     sessionStorage.setItem("afterPrice", afterPrice);
                     sessionStorage.setItem("diffDay", diffDay);
 
+                    if($("#downDataCheck").val() == 'true'){
+                        alert("예약불가기간이 포함되어있습니다. 기간을 다시 설정해주세요.");
+                        return;
+                    }
                     // 페이지 이동
                     window.location.href = "./reservation.html";
                 }
