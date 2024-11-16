@@ -216,3 +216,7 @@
     flex-direction: column;
     width: 100%;
 }
+
+.total-car-card{
+    margin : 0 !important;
+}

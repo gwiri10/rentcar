@@ -29,6 +29,7 @@ async function fetchCarInfo(data) {
     // price           : 70500,            //금액(1박당)(원)
     // imgurl          : "https://d1masd123hbmlx.cloudfront.net/20231224075834_804_CARMST/20231224075834_804_CARMST_142.png", // 이미지링크URL
     // companyCd       : 1 //1
+    $("#carImg").attr("src", data.imgurl);
     $("#carImg1").attr("src", data.imgurl);
     $("#carImg2").attr("src", data.imgurl);
     $("#carImg3").attr("src", data.imgurl);

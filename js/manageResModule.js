@@ -1,5 +1,13 @@
 import { fetchData, updateDocument, addData, deleteItem, fetchComCdMax } from './firebase.js';
 
+$(document).ready(function () {
+    // let password = prompt("비밀번호를 입력하세요");
+    // if(password != 'nihonka'){
+    //     alert("비밀번호가 일치하지 않습니다.");
+    //     window.location.href="./index.html"
+    // }
+});
+
 window.onload = async function () {
     await Search();
 }
@@ -44,6 +52,10 @@ async function Search() {
             <!-- 클릭 시 펼쳐지는 상세 정보 -->
             <div class="reservation-details">
                     <table>
+                        <tr>
+                            <th>예약번호</th>
+                            <td>${doc.id}</td>
+                        </tr>
                         <tr>
                             <th>예약자명</th>
                             <td>${data.driverName}</td>
@@ -128,8 +140,13 @@ async function Search() {
                 
                 <!-- 예약 관리 버튼들 -->
                 <div class="reservation-actions">
-                    <button class="cancel-btn">예약취소</button>
-                    <button class="confirm-btn">예약확정</button>
+                    <div>
+                        <button class="cancel-btn">예약취소</button>
+                        <button class="confirm-btn">예약확정</button>
+                    </div>
+                    <div>
+                        <button class="delete-btn">삭제</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,6 +165,12 @@ async function Search() {
             await changeRes(doc.id, 2);
         }
 
+        //삭제
+        newCarCard.getElementsByClassName("delete-btn")[0].onclick = async function () {
+            await deleteItem("reservations", doc.id);
+            newCarCard.remove()
+        }
+
         newCarCard.addEventListener('click', () => {
             const details = newCarCard.querySelector('.reservation-details');
             details.style.display = details.style.display === 'none' || details.style.display === '' ? 'block' : 'none';
@@ -155,7 +178,7 @@ async function Search() {
 
         //예약대기가 아니면 버튼창 없애기
         if (data.resState != 1) {
-            newCarCard.getElementsByClassName("reservation-actions")[0].style.display = 'none';
+            //newCarCard.getElementsByClassName("reservation-actions")[0].style.display = 'none';
         }
     });
 }

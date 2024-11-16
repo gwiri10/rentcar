@@ -40,7 +40,7 @@ export async function addCar() {
 
     // 새로운 차량 카드 생성
     const newCarCard = document.createElement('div');
-    newCarCard.className = 'car-card expanded';
+    newCarCard.className = 'car-card total-car-card expanded';
     newCarCard.onclick = function (event) { toggleDetails(event, newCarCard); };
     newCarCard.innerHTML = `
         <div class="car-details">
@@ -82,8 +82,12 @@ export async function addCar() {
                     <td><input class="inp-car" name="imgurl" type="text"/></td>
                 </tr>
                 <tr>
-                    <th>금액</th>
-                    <td><input class="inp-car" name="price" type="text"/></td>
+                    <th>이미지URL2</th>
+                    <td><input class="inp-car" name="imgurl2" type="text"/></td>
+                </tr>
+                <tr>
+                    <th>이미지URL3</th>
+                    <td><input class="inp-car" name="imgurl3" type="text"/></td>
                 </tr>
                 <tr>
                     <th>비수기기간</th>
@@ -103,86 +107,86 @@ export async function addCar() {
                 </tr>
 
                 <tr>
-                    <th>비수기 : 24H추가요금</th>
+                    <th>비수기 : 24H요금</th>
                     <td><input class="inp-car" name="addprice24_1" type="text"></td>
                 </tr>
                 <tr>
-                    <th>비수기 : 48H추가요금</th>
+                    <th>비수기 : 48H요금</th>
                     <td><input class="inp-car" name="addprice48_1" type="text"></td>
                 </tr>
                 <tr>
-                    <th>비수기 : 72H추가요금</th>
+                    <th>비수기 : 72H요금</th>
                     <td><input class="inp-car" name="addprice72_1" type="text"></td>
                 </tr>
                 <tr>
-                    <th>비수기 : 96H추가요금</th>
+                    <th>비수기 : 96H요금</th>
                     <td><input class="inp-car" name="addprice96_1" type="text"></td>
                 </tr>
                 <tr>
-                    <th>비수기 : 1박당추가요금(96H초과)</th>
+                    <th>비수기 : 96H 이후 24H 추가요금</th>
                     <td><input class="inp-car" name="addprice100_1" type="text"></td>
                 </tr>
 
                 <tr>
-                    <th>준성수기 : 24H추가요금</th>
+                    <th>준성수기 : 24H요금</th>
                     <td><input class="inp-car" name="addprice24_2" type="text"></td>
                 </tr>
                 <tr>
-                    <th>준성수기 : 48H추가요금</th>
+                    <th>준성수기 : 48H요금</th>
                     <td><input class="inp-car" name="addprice48_2" type="text"></td>
                 </tr>
                 <tr>
-                    <th>준성수기 : 72H추가요금</th>
+                    <th>준성수기 : 72H요금</th>
                     <td><input class="inp-car" name="addprice72_2" type="text"></td>
                 </tr>
                 <tr>
-                    <th>준성수기 : 96H추가요금</th>
+                    <th>준성수기 : 96H요금</th>
                     <td><input class="inp-car" name="addprice96_2" type="text"></td>
                 </tr>
                 <tr>
-                    <th>준성수기 : 1박당추가요금(96H초과)</th>
+                    <th>준성수기 : 96H 이후 24H 추가요금</th>
                     <td><input class="inp-car" name="addprice100_2" type="text"></td>
                 </tr>
 
                 <tr>
-                    <th>성수기 : 24H추가요금</th>
+                    <th>성수기 : 24H요금</th>
                     <td><input class="inp-car" name="addprice24_3" type="text"></td>
                 </tr>
                 <tr>
-                    <th>성수기 : 48H추가요금</th>
+                    <th>성수기 : 48H요금</th>
                     <td><input class="inp-car" name="addprice48_3" type="text"></td>
                 </tr>
                 <tr>
-                    <th>성수기 : 72H추가요금</th>
+                    <th>성수기 : 72H요금</th>
                     <td><input class="inp-car" name="addprice72_3" type="text"></td>
                 </tr>
                 <tr>
-                    <th>성수기 : 96H추가요금</th>
+                    <th>성수기 : 96H요금</th>
                     <td><input class="inp-car" name="addprice96_3" type="text"></td>
                 </tr>
                 <tr>
-                    <th>성수기 : 1박당추가요금(96H초과)</th>
+                    <th>성수기 : 96H 이후 24H 추가요금</th>
                     <td><input class="inp-car" name="addprice100_3" type="text"></td>
                 </tr>
 
                 <tr>
-                    <th>극성수기 : 24H추가요금</th>
+                    <th>극성수기 : 24H요금</th>
                     <td><input class="inp-car" name="addprice24_4" type="text"></td>
                 </tr>
                 <tr>
-                    <th>극성수기 : 48H추가요금</th>
+                    <th>극성수기 : 48H요금</th>
                     <td><input class="inp-car" name="addprice48_4" type="text"></td>
                 </tr>
                 <tr>
-                    <th>극성수기 : 72H추가요금</th>
+                    <th>극성수기 : 72H요금</th>
                     <td><input class="inp-car" name="addprice72_4" type="text"></td>
                 </tr>
                 <tr>
-                    <th>극성수기 : 96H추가요금</th>
+                    <th>극성수기 : 96H요금</th>
                     <td><input class="inp-car" name="addprice96_4" type="text"></td>
                 </tr>
                 <tr>
-                    <th>극성수기 : 1박당추가요금(96H초과)</th>
+                    <th>극성수기 : 96H 이후 24H 추가요금</th>
                     <td><input class="inp-car" name="addprice100_4" type="text"></td>
                 </tr>
 
@@ -249,14 +253,13 @@ async function btnSearch() {
             let data = doc.data();
 
             const newCarCard = document.createElement('div');
-            newCarCard.className = 'car-card ' + doc.id;
+            newCarCard.className = 'car-card total-car-card ' + doc.id;
             newCarCard.onclick = function (event) { toggleDetails(event, newCarCard); };
             newCarCard.innerHTML = `
                 <div class="car-simple-info">
                     <img src="${data.imgurl}" class="car-img" alt="차량 이미지">
                     <div class="car-info-text">
                         <h3 class="car-title">${data.modelNm}</h3>
-                        <p class="car-company">금액 : ${data.price}</p>
                     </div>
                 </div>
                 <div class="car-details">
@@ -298,8 +301,12 @@ async function btnSearch() {
                             <td><input class="inp-car" name="imgurl" type="text" value="${data.imgurl}" /></td>
                         </tr>
                         <tr>
-                            <th>금액</th>
-                            <td><input class="inp-car" name="price" type="text" value="${data.price}" /></td>
+                            <th>이미지URL2</th>
+                            <td><input class="inp-car" name="imgurl2" type="text" value="${val(data.imgurl2)}" /></td>
+                        </tr>
+                        <tr>
+                            <th>이미지URL3</th>
+                            <td><input class="inp-car" name="imgurl3" type="text" value="${val(data.imgurl3)}" /></td>
                         </tr>
                         <tr>
                             <th>비수기기간</th>
@@ -319,86 +326,86 @@ async function btnSearch() {
                         </tr>
                         
                         <tr>
-                            <th>비수기 : 24H추가요금</th>
+                            <th>비수기 : 24H요금</th>
                             <td><input class="inp-car" name="addprice24_1" value="${val(data.addprice24_1)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>비수기 : 48H추가요금</th>
+                            <th>비수기 : 48H요금</th>
                             <td><input class="inp-car" name="addprice48_1" value="${val(data.addprice48_1)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>비수기 : 72H추가요금</th>
+                            <th>비수기 : 72H요금</th>
                             <td><input class="inp-car" name="addprice72_1" value="${val(data.addprice72_1)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>비수기 : 96H추가요금</th>
+                            <th>비수기 : 96H요금</th>
                             <td><input class="inp-car" name="addprice96_1" value="${val(data.addprice96_1)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>비수기 : 1박당추가요금(96H초과)</th>
+                            <th>비수기 : 96H 이후 24H 추가요금</th>
                             <td><input class="inp-car" name="addprice100_1" value="${val(data.addprice100_1)}" type="text"/></td>
                         </tr>
 
                         <tr>
-                            <th>준성수기 : 24H추가요금</th>
+                            <th>준성수기 : 24H요금</th>
                             <td><input class="inp-car" name="addprice24_2" value="${val(data.addprice24_2)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>준성수기 : 48H추가요금</th>
+                            <th>준성수기 : 48H요금</th>
                             <td><input class="inp-car" name="addprice48_2" value="${val(data.addprice48_2)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>준성수기 : 72H추가요금</th>
+                            <th>준성수기 : 72H요금</th>
                             <td><input class="inp-car" name="addprice72_2" value="${val(data.addprice72_2)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>준성수기 : 96H추가요금</th>
+                            <th>준성수기 : 96H요금</th>
                             <td><input class="inp-car" name="addprice96_2" value="${val(data.addprice96_2)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>준성수기 : 1박당추가요금(96H초과)</th>
+                            <th>준성수기 : 96H 이후 24H 추가요금</th>
                             <td><input class="inp-car" name="addprice100_2" value="${val(data.addprice100_2)}" type="text"/></td>
                         </tr>
 
                         <tr>
-                            <th>성수기 : 24H추가요금</th>
+                            <th>성수기 : 24H요금</th>
                             <td><input class="inp-car" name="addprice24_3" value="${val(data.addprice24_3)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>성수기 : 48H추가요금</th>
+                            <th>성수기 : 48H요금</th>
                             <td><input class="inp-car" name="addprice48_3" value="${val(data.addprice48_3)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>성수기 : 72H추가요금</th>
+                            <th>성수기 : 72H요금</th>
                             <td><input class="inp-car" name="addprice72_3" value="${val(data.addprice72_3)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>성수기 : 96H추가요금</th>
+                            <th>성수기 : 96H요금</th>
                             <td><input class="inp-car" name="addprice96_3" value="${val(data.addprice96_3)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>성수기 : 1박당추가요금(96H초과)</th>
+                            <th>성수기 : 96H 이후 24H 추가요금</th>
                             <td><input class="inp-car" name="addprice100_3" value="${val(data.addprice100_3)}" type="text"/></td>
                         </tr>
 
                         <tr>
-                            <th>극성수기 : 24H추가요금</th>
+                            <th>극성수기 : 24H요금</th>
                             <td><input class="inp-car" name="addprice24_4" value="${val(data.addprice24_4)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>극성수기 : 48H추가요금</th>
+                            <th>극성수기 : 48H요금</th>
                             <td><input class="inp-car" name="addprice48_4" value="${val(data.addprice48_4)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>극성수기 : 72H추가요금</th>
+                            <th>극성수기 : 72H요금</th>
                             <td><input class="inp-car" name="addprice72_4" value="${val(data.addprice72_4)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>극성수기 : 96H추가요금</th>
+                            <th>극성수기 : 96H요금</th>
                             <td><input class="inp-car" name="addprice96_4" value="${val(data.addprice96_4)}" type="text"/></td>
                         </tr>
                         <tr>
-                            <th>극성수기 : 1박당추가요금(96H초과)</th>
+                            <th>극성수기 : 96H 이후 24H 추가요금</th>
                             <td><input class="inp-car" name="addprice100_4" value="${val(data.addprice100_4)}" type="text"/></td>
                         </tr>
 

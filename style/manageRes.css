@@ -73,6 +73,8 @@
 .reservation-actions {
     margin-top: 10px;
     text-align: right;
+    display: flex;
+    justify-content: space-between;
 }
 
 .cancel-btn, .confirm-btn {
@@ -111,13 +113,13 @@
     margin: 5px;
 }
 
-/* 예약취소 버튼 스타일 */
-.cancel-btn {
+/* 삭제 버튼 스타일 */
+.delete-btn {
     background-color: #d9534f; /* 빨간색 */
     transition: background-color 0.3s ease;
 }
 
-.cancel-btn:hover {
+.delete-btn:hover {
     background-color: #c9302c;
 }
 
@@ -130,3 +132,14 @@
 .confirm-btn:hover {
     background-color: #4cae4c;
 }
+
+/* 예약취소 버튼 스타일 */
+.cancel-btn {
+    background-color: #0077ff; /* 초록색 */
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #0051ff;
+}
+

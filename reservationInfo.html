@@ -70,29 +70,9 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', () => {
-                let currentIndex = 0;
-                const slides = document.querySelectorAll('.slide');
-                const totalSlides = slides.length;
-                const slider = document.querySelector('.slider');
-
-                function updateSlidePosition() {
-                    const offset = -currentIndex * 100; // 슬라이드 위치 계산
-                    slider.style.transform = `translateX(${offset}%)`;
-                }
-
-                function nextSlide() {
-                    currentIndex = (currentIndex + 1) % totalSlides; // 다음 슬라이드
-                    updateSlidePosition();
-                }
-
-                function prevSlide() {
-                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // 이전 슬라이드
-                    updateSlidePosition();
-                }
-
-                // 버튼 이벤트 추가
-                document.querySelector('.left-arrow').addEventListener('click', prevSlide);
-                document.querySelector('.right-arrow').addEventListener('click', nextSlide);
+                $(".previewImg img").on("click", function(){
+                    $("#carImg").attr("src",this.src)
+                })
             });
 
         </script>
@@ -100,23 +80,13 @@
             <section class="car-details">
                 <div class="car-container">
                     <div class="car-image">
-                        <div class="slider-container">
-                            <button class="arrow left-arrow" onclick="prevSlide()">&#10094;</button>
-                            <div class="slider">
-                                <div class="slide">
-                                    <label class="slide-label">정면</label>
-                                    <img id="carImg1" alt="렌터카 이미지">
-                                </div>
-                                <div class="slide">
-                                    <label class="slide-label">옆면</label>
-                                    <img id="carImg2" alt="렌터카 이미지">
-                                </div>
-                                <div class="slide">
-                                    <label class="slide-label">뒷면</label>
-                                    <img id="carImg3" alt="렌터카 이미지">
-                                </div>
+                        <div class="carImg">
+                            <img id="carImg" alt="렌터카 이미지">
+                            <div class="previewImg">
+                                <img id="carImg1" alt="렌터카 이미지">
+                                <img id="carImg2" alt="렌터카 이미지">
+                                <img id="carImg3" alt="렌터카 이미지">
                             </div>
-                            <button class="arrow right-arrow" onclick="nextSlide()">&#10095;</button>
                         </div>
                         <h3 id="title">오릭스 렌터카 - 모델명</h3>
                     </div>
@@ -169,7 +139,8 @@
                     <div class="form-group">
                         <div class="date-time-group">
                             <label for="pickupDate">대여 일시</label>
-                            <input type="text" class="form-control datepicker" id="pickupDate" placeholder="대여기간 선택" readonly>
+                            <input type="text" class="form-control datepicker" id="pickupDate" placeholder="대여기간 선택"
+                                readonly>
                         </div>
                         <div class="date-time-group">
                             <label for="returnDate">반납 일시</label>
@@ -206,7 +177,7 @@
                     sessionStorage.setItem("afterPrice", afterPrice);
                     sessionStorage.setItem("diffDay", diffDay);
 
-                    if($("#downDataCheck").val() == 'true'){
+                    if ($("#downDataCheck").val() == 'true') {
                         alert("예약불가기간이 포함되어있습니다. 기간을 다시 설정해주세요.");
                         return;
                     }
